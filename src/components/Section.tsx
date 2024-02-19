@@ -16,38 +16,44 @@ const Section = () => {
 								</p>
 
 								<Row>
-									<Col xs={12} md={4}>
-										<i className="bi bi-people-fill me-1"></i>{" "}
-										<span className="fw-bold ">
-											{" "}
-											{Math.floor(Math.random() * 100)} visualizzazioni del
-											profilo
-										</span>
-										<p className="ps-4">
-											Scopri chi ha visitato il tuo profilo.
-										</p>
+									<Col xs={12} md={4} className="d-flex ">
+										<Col md={1}>
+											<i className="bi bi-people-fill me-2"></i>
+										</Col>
+										<Col md={11}>
+											<span className="fw-bold ">
+												{" "}
+												{Math.floor(Math.random() * 100)} visualizzazioni del
+												profilo
+											</span>
+											<p>Scopri chi ha visitato il tuo profilo.</p>
+										</Col>
 									</Col>
 
-									<Col xs={12} md={4}>
-										<i className="bi bi-bar-chart-line-fill"></i>{" "}
-										<span className="fw-bold ">
-											{" "}
-											{Math.floor(Math.random() * 100)} impressioni del post
-										</span>
-										<p className="ps-4">
-											Scopri chi sta interagendo con i tuoi post.
-										</p>
+									<Col xs={12} md={4} className="d-flex">
+										<Col md={1}>
+											<i className="bi bi-bar-chart-line-fill me-2"></i>
+										</Col>
+										<Col md={11}>
+											<span className="fw-bold ">
+												{" "}
+												{Math.floor(Math.random() * 100)} impressioni del post
+											</span>
+											<p>Scopri chi sta interagendo con i tuoi post.</p>
+										</Col>
 									</Col>
-									<Col xs={12} md={4}>
-										<i className="bi bi-search"></i>{" "}
-										<span className="fw-bold ">
-											{" "}
-											{Math.floor(Math.random() * 100)} comparse nei motori di
-											ricerca
-										</span>
-										<p className="ps-4">
-											vedi quante volte compari nei risultati di ricerca
-										</p>
+									<Col xs={12} md={4} className="d-flex">
+										<Col xs={1}>
+											<i className="bi bi-search"></i>{" "}
+										</Col>
+										<Col xs={11}>
+											<span className="fw-bold">
+												{" "}
+												{Math.floor(Math.random() * 100)} comparse nei motori di
+												ricerca
+											</span>
+											<p>vedi quante volte compari nei risultati di ricerca</p>
+										</Col>
 									</Col>
 								</Row>
 							</Card.Body>

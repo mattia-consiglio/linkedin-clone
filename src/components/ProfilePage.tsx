@@ -6,7 +6,7 @@ const Profile = () => {
 		<Container>
 			<Row className="flex-column flex-md-row justify-content-center align-items-top py-3 g-2 mx-2">
 				<Col xs={12} md={7} className="me-0 me-md-3">
-					<Row className="text-center flex-column g-2">
+					<Row className=" flex-column g-2">
 						<Col className="border rounded-3 bg-white">
 							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi,
 							voluptatum laborum minus autem sit placeat aut iusto iure officia
