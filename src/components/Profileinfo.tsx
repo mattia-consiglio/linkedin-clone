@@ -1,6 +1,5 @@
-import { RootState, useAppDispatch, useAppSelector } from "../redux/store";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { useEffect } from "react";
 import { getUserAction } from "../redux/actions";
 import { Col, Row } from "react-bootstrap";
 
