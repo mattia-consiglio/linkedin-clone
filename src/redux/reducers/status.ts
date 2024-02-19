@@ -12,7 +12,7 @@ const initialState: Status = {
 
 const statusReducer = (
 	state = initialState,
-	{ type, payload }: { type: string; payload: any },
+	{ type, payload }: { type: string; payload: Status },
 ) => {
 	switch (type) {
 		case SET_LOADING_STATUS:
