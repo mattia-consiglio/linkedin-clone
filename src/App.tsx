@@ -1,21 +1,12 @@
-import React, { useState } from "react";
-import Navbar from "./components/NavBar"; // Importa il componente Navbar
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import React from "react";
+import Navbar from "./components/NavBar";
 
-function App() {
-	const [count, setCount] = useState(0);
-
+const App = () => {
 	return (
-		<>
-			<Navbar /> {/* Includi la navbar qui */}
-			<div>
-				<h1>Contatore: {count}</h1>
-				<button onClick={() => setCount(count + 1)}>Incrementa</button>
-			</div>
-		</>
+		<div>
+			<Navbar />
+		</div>
 	);
-}
+};
 
 export default App;
