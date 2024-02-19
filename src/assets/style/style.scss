@@ -55,7 +55,35 @@
 @import "../../../node_modules/bootstrap/scss/utilities/api";
 
 // ---------------------------------------------
+.customButton {
+	background-color: white;
+	color: grey;
+}
+.customButton:hover {
+	background-color: rgb(214, 213, 213);
+	color: grey;
+}
 
-h1 {
-	color: red;
+.customButton:active {
+	background-color: rgb(214, 213, 213) !important;
+	color: grey !important;
+}
+
+.smallButton {
+	background-color: rgb(230, 228, 228);
+	border-color: white;
+	color: grey;
+	font-weight: bold;
+	padding: 1px 5px 1px 5px;
+}
+
+.smallButton:active {
+	background-color: rgb(214, 213, 213) !important;
+	color: grey !important;
+}
+
+.smallButton:hover {
+	background-color: rgb(230, 228, 228);
+	border-color: white;
+	color: grey;
 }
