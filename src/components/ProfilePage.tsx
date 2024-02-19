@@ -4,10 +4,10 @@ import Section from "./Section";
 const Profile = () => {
 	return (
 		<Container>
-			<Row className="flex-column flex-md-row justify-content-evenly align-items-top py-3 g-2 mx-2">
-				<Col xs={12} md={7}>
+			<Row className="flex-column flex-md-row justify-content-center align-items-top py-3 g-2 mx-2">
+				<Col xs={12} md={7} className="me-0 me-md-3">
 					<Row className="text-center flex-column g-2">
-						<Col className="border border-info border-2 rounded-2">
+						<Col className="border rounded-3 bg-white">
 							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi,
 							voluptatum laborum minus autem sit placeat aut iusto iure officia
 							dignissimos quasi possimus tempora velit debitis expedita suscipit
@@ -37,17 +37,15 @@ const Profile = () => {
 							reiciendis soluta quibusdam voluptatem enim dolores, pariatur
 							adipisci harum maxime. Earum, similique cupiditate!
 						</Col>
-						<Col className="border border-info border-2 rounded-2">
+						<Col className="border rounded-3 bg-white">
 							<Section />
 						</Col>
 					</Row>
 				</Col>
-				<Col xs={12} md={2}>
+				<Col xs={12} md={2} className="ms-0 ms-md-3">
 					<Row className="flex-column g-2">
-						<Col className="border border-info border-2 rounded-2">
-							Lingua del profilo
-						</Col>
-						<Col className="border border-info border-2 rounded-2">
+						<Col className="border rounded-3 bg-white">Lingua del profilo</Col>
+						<Col className="border rounded-3 bg-white">
 							Altri profili <br />
 							consultati Lorem ipsum dolor sit amet consectetur adipisicing
 							elit. Amet quis ducimus cum assumenda earum dolorem. Accusantium
