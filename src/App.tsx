@@ -1,15 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./components/ProfilePage";
 
-import "./App.css";
-
 function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Profile />}></Route>
-				</Routes>
+				<header></header>
+				<main className="BgPage">
+					<Routes>
+						<Route path="/" element={<Profile />}></Route>
+					</Routes>
+				</main>
+				<footer></footer>
 			</BrowserRouter>
 		</>
 	);
