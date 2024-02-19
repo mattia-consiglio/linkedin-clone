@@ -30,7 +30,7 @@ const initialState: Profile = {
 
 const profileReducer = (
 	state = initialState,
-	action: { type: string; payload: any },
+	action: { type: string; payload: User },
 ) => {
 	switch (action.type) {
 		case SET_USER:
