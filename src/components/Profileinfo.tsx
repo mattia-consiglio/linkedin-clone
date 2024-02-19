@@ -5,8 +5,11 @@ import { getUserAction } from "../redux/actions";
 import { Col, Row } from "react-bootstrap";
 
 export const Profileinfo = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
+	useEffect(() => {
+		dispatch(getUserAction("me"));
+	}, []);
 
 	// dispatch(getUserAction("me"));
 	return (
