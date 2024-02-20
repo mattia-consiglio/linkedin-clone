@@ -25,8 +25,8 @@ export const Profileinfo = () => {
 					<Col>
 						<img
 							className="fotoProfilo rounded-circle border border-white border-4 z-4"
-							src="https://placedog.net/170/170"
-							alt="foto profilo"
+							src={profileInfo.image}
+							alt={profileInfo.name + " " + profileInfo.surname}
 						/>
 					</Col>
 					<Col className="text-end ">
@@ -36,7 +36,9 @@ export const Profileinfo = () => {
 				<Row className="justify-content-between align-items-center mx-3 mt-3">
 					<Col xs={12} md={6} className="d">
 						<Row className="me-5 w-100">
-							<Col className="fw-bold fs-4 pe-0">Mario Rossi</Col>
+							<Col className="fw-bold fs-4 pe-0">
+								{profileInfo.name + " " + profileInfo.surname}
+							</Col>
 							<Col className=" rounded-4 verificaOra px-0 fw-bold">
 								<Row className="justify-content-evenly align-items-center">
 									<Col xs={3} className="pe-0 text-center">
@@ -67,7 +69,7 @@ export const Profileinfo = () => {
 				<Row className="justify-content-center mx-3 flex-column">
 					<Col>Web Developer</Col>
 					<Col className="text-secondary">
-						Porto Mantovano, Lombardia, Italia -{" "}
+						{profileInfo.area} -{" "}
 						<span className="text-primary-linkedin-a">
 							Informazioni di contatto
 						</span>
