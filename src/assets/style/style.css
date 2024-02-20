@@ -12019,11 +12019,61 @@ textarea.form-control-lg {
 }
 
 .fotoProfilo {
-  margin-top: -6em;
+  margin-top: -9em;
 }
 @media screen and (max-width: 1200px) {
   .fotoProfilo {
     max-width: 60%;
-    margin-top: -4em;
+    margin-top: -5em;
   }
+}
+
+.text-primary-linkedin-a {
+  text-decoration: none;
+  color: #0a66c2;
+  cursor: pointer;
+}
+
+.verificaOra {
+  border: #0a66c2 solid 1px;
+  color: #0a66c2;
+  cursor: pointer;
+  transition: background-color 0.5s ease, border 0.5s ease;
+}
+.verificaOra:hover {
+  background-color: #d9edff;
+  border: solid rgb(0, 89, 255) 1px;
+}
+
+.logoIstruzioneAccount {
+  width: 25%;
+}
+
+i {
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.4s ease, padding 0.4s ease;
+}
+i:hover {
+  background-color: rgb(152, 152, 152) !important;
+  padding: 0.5em;
+}
+
+.bgLinkedin {
+  background-color: #0a66c2;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+.bgLinkedin:hover {
+  background-color: #00274d;
+}
+
+.altroButton {
+  cursor: pointer;
+  transition: background-color 0.5s ease, border 0.5s ease;
+}
+.altroButton:hover {
+  background-color: #dddddd;
+  border: solid black 2px;
 }/*# sourceMappingURL=style.css.map */
