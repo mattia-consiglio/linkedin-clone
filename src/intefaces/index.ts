@@ -8,7 +8,7 @@ export interface User {
 	bio: string;
 	area: string;
 	image: string;
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: string;
+	updatedAt: string;
 	__v: number;
 }

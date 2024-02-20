@@ -117,7 +117,7 @@ $font-family-sans-serif:
 header {
 	position: sticky;
 	top: 0;
-	z-index: 9000;
+	z-index: 800;
 }
 
 .navbar {
@@ -185,6 +185,7 @@ header {
 	margin-top: -112px;
 	width: 152px;
 	height: 152px;
+	cursor: pointer;
 	@media screen and (max-width: 1200px) {
 		max-width: 100%;
 		min-width: 50px;

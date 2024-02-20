@@ -3,14 +3,17 @@ import { useEffect } from "react";
 import { getUserAction } from "../redux/actions";
 import { Button, Col, Row } from "react-bootstrap";
 
-export const Profileinfo = () => {
+export const Profileinfo = ({
+	setShow,
+}: {
+	setShow: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
 	useEffect(() => {
 		dispatch(getUserAction("me"));
 	}, []);
 
-	// dispatch(getUserAction("me"));
 	return (
 		<Row className="flex-column justify-content-center align-items-between">
 			<Col>
@@ -27,6 +30,7 @@ export const Profileinfo = () => {
 							className="fotoProfilo rounded-circle border border-white border-4 z-4"
 							src={profileInfo.image}
 							alt={profileInfo.name + " " + profileInfo.surname}
+							onClick={() => setShow(true)}
 						/>
 					</Col>
 					<Col className="text-end ">
