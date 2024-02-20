@@ -13,6 +13,7 @@ function App() {
 				<main className="BgPage">
 					<Routes>
 						<Route path="/" element={<Profile />}></Route>
+						<Route path="/experiences" element={<Profile />}></Route>
 					</Routes>
 				</main>
 				<footer></footer>
