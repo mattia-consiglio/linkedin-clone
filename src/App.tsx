@@ -12,7 +12,7 @@ function App() {
 				</header>
 				<main className="BgPage">
 					<Routes>
-						<Route path="/" element={<Profile />}></Route>
+						<Route path="/profile" element={<Profile />}></Route>
 					</Routes>
 				</main>
 				<footer></footer>

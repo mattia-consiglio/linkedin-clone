@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from "react";
 import { getUserAction } from "../redux/actions";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 export const Profileinfo = () => {
 	const dispatch = useAppDispatch();
@@ -34,24 +34,26 @@ export const Profileinfo = () => {
 					</Col>
 				</Row>
 				<Row className="justify-content-between align-items-center mx-3 mt-3">
-					<Col xs={12} md={6} className="d">
+					<Col xs={12} md={8} className="d">
 						<Row className="me-5 w-100">
 							<Col className="fw-bold fs-4 pe-0">
 								{profileInfo.name + " " + profileInfo.surname}
 							</Col>
-							<Col className=" rounded-4 verificaOra px-0 fw-bold">
-								<Row className="justify-content-evenly align-items-center">
-									<Col xs={3} className="pe-0 text-center">
-										<i className="bi bi-patch-check"></i>
-									</Col>
-									<Col className="px-0" xs={6}>
-										Verifica ora
-									</Col>
-								</Row>
+							<Col className=" ">
+								<Button
+									variant="outline-primary"
+									className="text-primary rounded-4 verificaOra px-0 fw-bold w-100"
+								>
+									<i className="bi bi-patch-check"></i> Verifica ora
+								</Button>
+								{/* <Row className="justify-content-evenly align-items-center">
+									<Col xs={3} className="pe-0 text-center"></Col>
+									<Col className="px-0" xs={6}></Col>
+								</Row> */}
 							</Col>
 						</Row>
 					</Col>
-					<Col md={5} className="ms-5 fw-bold d-none d-md-inline">
+					<Col md={4} className="fw-bold d-none d-md-block ">
 						<Row className="justify-content-start align-items-center">
 							<Col xs={8}>
 								<img
@@ -95,21 +97,22 @@ export const Profileinfo = () => {
 					<Col>
 						<Row className=" my-2 mb-4 justify-content-start align-items-center ps-2">
 							<Col
-								xs={6}
-								lg={2}
+								xs={12}
+								lg={3}
 								className=" text-center bgLinkedin rounded-5 py-1 fw-bold px-1 me-1 mb-2 mb-lg-0"
 							>
 								Disponibile per
 							</Col>
 							<Col
-								xs={10}
+								xs={12}
 								lg={4}
 								className=" text-center verificaOra rounded-5 py-1 fw-bold px-1 ms-1 me-1"
 							>
 								Aggiungi sezione del profilo
 							</Col>
 							<Col
-								xs={1}
+								xs={12}
+								lg={3}
 								className="d-none d-lg-inline altroButton text-center border border-secondary text-secondary rounded-5 py-1 fw-bold px-1 ms-1"
 							>
 								Altro

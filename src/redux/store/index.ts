@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import profileReducer, { Profile } from "../reducers/profile";
-import statusReducer, { Status } from "../reducers/status";
+import profileReducer from "../reducers/profile";
+import statusReducer from "../reducers/status";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 
 // export interface RootState {
