@@ -1,12 +1,23 @@
-import Experience from "./assets/components/Experience";
-import "./App.css";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Profile from "./components/ProfilePage";
+import NavBar from "./components/NavBar";
 
 function App() {
 	return (
-		<div>
-			<Experience/>
-		</div>
+		<>
+			<BrowserRouter>
+				<header>
+					{" "}
+					<NavBar />{" "}
+				</header>
+				<main className="BgPage">
+					<Routes>
+						<Route path="/" element={<Profile />}></Route>
+					</Routes>
+				</main>
+				<footer></footer>
+			</BrowserRouter>
+		</>
 	);
 }
 
