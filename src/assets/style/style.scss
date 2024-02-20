@@ -92,6 +92,27 @@
 	background-color: #f4f2ee;
 }
 
+.navbar-nav {
+	margin-left: 70px; /* Sposta tutti gli elementi a destra */
+}
+
+.nav-item {
+	margin-top: 19px;
+	margin-right: 50px;
+	display: flex;
+	justify-content: center; /* Centra gli elementi nella navbar */
+}
+
+.nav-item:first-child {
+	margin-top: 19px;
+	margin-right: 50px; /* Sposta l'elemento "Home" a sinistra */
+}
+.vertical-line {
+	border-left: 1px solid #525050; /* Colore grigio */
+	height: 80px; /* Altezza desiderata */
+	margin: 1 8px; /* Margine desiderato */
+}
+
 .bgServiziOfferti {
 	background-color: #dde7f1;
 }

@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./components/ProfilePage";
-import Navbar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 
 function App() {
 	return (
 		<>
 			<BrowserRouter>
 				<header>
-					<Navbar />
+					{" "}
+					<NavBar />{" "}
 				</header>
 				<main className="BgPage">
 					<Routes>
