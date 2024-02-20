@@ -112,3 +112,81 @@
 	height: 80px; /* Altezza desiderata */
 	margin: 1 8px; /* Margine desiderato */
 }
+
+.bgServiziOfferti {
+	background-color: #dde7f1;
+}
+
+.bgServiziOf,
+.bgServiziOfferti {
+	font-size: 0.8em;
+}
+
+.fotoProfilo {
+	margin-top: -9em;
+	@media screen and (max-width: 1200px) {
+		max-width: 60%;
+		margin-top: -5em;
+	}
+}
+
+.text-primary-linkedin-a {
+	text-decoration: none;
+	color: #0a66c2;
+	cursor: pointer;
+	// NON CAPISCO PERCHè QUESTO HOVER NON FUNZIONA
+	// transition: text-decoration 0.2s ease;
+	// &::hover {
+	// 	text-decoration: underline !important;
+	// }
+}
+
+.verificaOra {
+	border: #0a66c2 solid 1px;
+	color: #0a66c2;
+	cursor: pointer;
+	transition:
+		background-color 0.5s ease,
+		border 0.5s ease;
+	&:hover {
+		background-color: #d9edff;
+		border: solid rgb(0, 89, 255) 1px;
+	}
+}
+
+.logoIstruzioneAccount {
+	width: 25%;
+}
+
+i {
+	cursor: pointer;
+	border-radius: 50%;
+	transition:
+		background-color 0.4s ease,
+		padding 0.4s ease;
+	&:hover {
+		background-color: rgb(152, 152, 152) !important;
+		padding: 0.5em;
+	}
+}
+
+.bgLinkedin {
+	background-color: #0a66c2;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.5s ease;
+	&:hover {
+		background-color: #00274d;
+	}
+}
+
+.altroButton {
+	cursor: pointer;
+	transition:
+		background-color 0.5s ease,
+		border 0.5s ease;
+	&:hover {
+		background-color: #dddddd;
+		border: solid black 2px; //2px qua non funziona ..?
+	}
+}
