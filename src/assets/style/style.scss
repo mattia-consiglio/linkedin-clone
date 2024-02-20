@@ -1,4 +1,6 @@
+@use "sass:map";
 @import "../../../node_modules/bootstrap/scss/functions";
+$primary: #0a66c2;
 // $secondary-dark: #e5e5e5;
 // $secondary: #737373;
 // $body-bg: #f3f3f3;
@@ -10,7 +12,27 @@
 // $active-background: $body-bg-dark;
 // $link-color: #0f84fa;
 
-// $font-family-sans-serif: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+$font-family-sans-serif:
+	-apple-system,
+	system-ui,
+	BlinkMacSystemFont,
+	Segoe UI,
+	Roboto,
+	Helvetica Neue,
+	Fira Sans,
+	Ubuntu,
+	Oxygen,
+	Oxygen Sans,
+	Cantarell,
+	Droid Sans,
+	Apple Color Emoji,
+	Segoe UI Emoji,
+	Segoe UI Emoji,
+	Segoe UI Symbol,
+	Lucida Grande,
+	Helvetica,
+	Arial,
+	sans-serif;
 
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
@@ -92,21 +114,58 @@
 	background-color: #f4f2ee;
 }
 
-.navbar-nav {
-	margin-left: 70px; /* Sposta tutti gli elementi a destra */
+header {
+	position: sticky;
+	top: 0;
+	z-index: 9000;
+}
+
+.navbar {
+	height: 53px;
+	padding-top: 0;
+	padding-bottom: 0;
+	background-color: #fff;
+}
+
+.navbar-brand {
+	svg {
+		width: 41px;
+		height: 41px;
+	}
 }
 
 .nav-item {
-	margin-top: 19px;
-	margin-right: 50px;
 	display: flex;
 	justify-content: center; /* Centra gli elementi nella navbar */
+	width: 48px;
+	font-size: 12px;
+
+	.nav-link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		span {
+			display: none;
+		}
+	}
+
+	@media screen and (min-width: map.get($grid-breakpoints, "md")) {
+		width: 80px;
+		.nav-link span {
+			display: inline;
+		}
+
+		&:last-of-type {
+			width: 89px;
+		}
+	}
+
+	&:nth-of-type(6) {
+		border-right: 1px solid #525050; /* Colore grigio */
+	}
 }
 
-.nav-item:first-child {
-	margin-top: 19px;
-	margin-right: 50px; /* Sposta l'elemento "Home" a sinistra */
-}
 .vertical-line {
 	border-left: 1px solid #525050; /* Colore grigio */
 	height: 80px; /* Altezza desiderata */
@@ -123,9 +182,13 @@
 }
 
 .fotoProfilo {
-	margin-top: -9em;
+	margin-top: -112px;
+	width: 152px;
+	height: 152px;
 	@media screen and (max-width: 1200px) {
-		max-width: 60%;
+		max-width: 100%;
+		min-width: 50px;
+		height: auto;
 		margin-top: -5em;
 	}
 }
@@ -348,4 +411,27 @@ input:checked + .slider:before {
 
 .slider.round:before {
 	border-radius: 50%;
+}
+.experience {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.formation {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.competence {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
 }
