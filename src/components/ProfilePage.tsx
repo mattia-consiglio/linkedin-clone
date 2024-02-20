@@ -6,6 +6,7 @@ import AsidePortrait from "./AsidePortrait";
 import Button from "react-bootstrap/Button";
 import Analyses from "./Analyses";
 import Resources from "./Resources";
+
 const Profile = () => {
 	return (
 		<Container>
@@ -15,14 +16,13 @@ const Profile = () => {
 						<Col className="border rounded-3 bg-white p-0">
 							<Profileinfo />
 						</Col>
-						<Col>
+						<Col className="border rounded-3 bg-white p-0">
 							<Analyses />
 						</Col>
-
-						<Col>
+						<Col className="border rounded-3 bg-white p-0">
 							<Resources />
 						</Col>
-						<Col>
+						<Col className="border rounded-3 bg-white p-0">
 							<Experience />
 						</Col>
 					</Row>
