@@ -1,6 +1,13 @@
+import { icon } from "@fortawesome/fontawesome-svg-core";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-const AsidePortrait = () => {
+const AsidePortrait = ({
+	label,
+	icon,
+}: {
+	label: string;
+	icon: JSX.Element;
+}) => {
 	return (
 		<>
 			<Container>
@@ -17,20 +24,8 @@ const AsidePortrait = () => {
 						<h6 className="mb-0 ms-2">PlaceFirstLastName</h6>
 						<p className="mb-0 ms-2">placeJob</p>
 						<Button className="rounded-pill btn btn-light btn btn-outline-secondary border-2 mb-3 py-1 mt-3 customButton">
-							<svg
-								role="none"
-								aria-hidden="true"
-								className="artdeco-button__icon text-secondary"
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 16 16"
-								data-supported-dps="16x16"
-								data-test-icon="connect-small"
-							>
-								<use href="#connect-small" width="16" height="16"></use>
-							</svg>{" "}
-							Collegati
+							{icon}
+							{label}
 						</Button>
 					</Col>
 				</Row>
