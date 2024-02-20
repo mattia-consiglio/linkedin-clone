@@ -1,9 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
-import Section from "./Section";
+// import Section from "./Section";
 import { Profileinfo } from "./Profileinfo";
 import Experience from "./Experience";
 import AsidePortrait from "./AsidePortrait";
 import Button from "react-bootstrap/Button";
+import Analyses from "./Analyses";
+import Resources from "./Resources";
 const Profile = () => {
 	return (
 		<Container>
@@ -13,8 +15,12 @@ const Profile = () => {
 						<Col className="border rounded-3 bg-white p-0">
 							<Profileinfo />
 						</Col>
-						<Col className="border rounded-3 bg-white p-0">
-							<Section />
+						<Col>
+							<Analyses />
+						</Col>
+
+						<Col>
+							<Resources />
 						</Col>
 						<Col>
 							<Experience />
@@ -96,7 +102,6 @@ const Profile = () => {
 										role="none"
 										data-supported-dps="16x16"
 										fill="currentColor"
-										width="16"
 										height="16"
 									>
 										<path d="M14 9H9v5H7V9H2V7h5V2h2v5h5z"></path>
@@ -117,7 +122,6 @@ const Profile = () => {
 										role="none"
 										data-supported-dps="16x16"
 										fill="currentColor"
-										width="16"
 										height="16"
 									>
 										<path d="M14 9H9v5H7V9H2V7h5V2h2v5h5z"></path>
