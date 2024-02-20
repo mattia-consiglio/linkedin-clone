@@ -190,3 +190,27 @@ i {
 		border: solid black 2px; //2px qua non funziona ..?
 	}
 }
+
+@media (max-width: 767px) {
+	.navbar-toggler {
+		display: none; /* Nasconde il pulsante del menu hamburger */
+	}
+
+	.navbar-collapse {
+		display: none; /* Nasconde il menu dropdown */
+	}
+
+	.navbar-nav {
+		display: flex !important; /* Mostra tutte le icone */
+		justify-content: space-evenly;
+	}
+
+	.navbar-nav .nav-item {
+		flex: 1;
+		text-align: center;
+	}
+
+	.vertical-line {
+		display: none; /* Nasconde la linea verticale */
+	}
+}

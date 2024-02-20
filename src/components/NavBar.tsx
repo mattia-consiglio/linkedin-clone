@@ -1,19 +1,33 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useAppSelector } from "../redux/store";
+import "../assets/style/style.scss";
 const Navbar = () => {
 	const [showCard, setShowCard] = useState(false);
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth < 768);
+		};
+		handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const handleTuClick = () => {
 		setShowCard(!showCard);
 	};
 
-	const handleClick = (label) => {
+	const handleClick = (label: string) => {
 		console.log(label + " cliccato");
 	};
+	const profileInfo = useAppSelector((state) => state.profile.me);
 
 	return (
 		<nav
-			className="navbar navbar-expand-lg navbar-light"
+			className={`navbar navbar-expand-lg navbar-light ${
+				isMobile ? "first-mobile" : ""
+			}`}
 			style={{ backgroundColor: "#ffffff", height: "60px" }}
 		>
 			<div className="container-fluid custom-container">
@@ -127,14 +141,74 @@ const Navbar = () => {
 						{/* Aggiunto elemento "Tu" */}
 						<li className="nav-item" onClick={handleTuClick}>
 							<a className="nav-link" href="#">
-								<div className="d-flex flex-column align-items-center">
+								<div className="d-flex flex-column align-items-center position-relative ">
 									<img
-										src="https://www.placedog.net/24"
-										width="35px"
+										src={profileInfo.image}
+										width="25px"
 										alt="Gioele Friggia"
 										style={{ borderRadius: "50%" }}
 									/>
+
 									<span>Tu &#9660;</span>
+									{showCard && (
+										<div
+											className="card"
+											style={{
+												position: "absolute",
+												top: "65px",
+												right: "-60px",
+												zIndex: "200px",
+												width: "300px",
+											}}
+										>
+											<div className="card-body p-3">
+												<div style={{ display: "flex", alignItems: "center" }}>
+													<img
+														src={profileInfo.image}
+														className="rounded-circle me-3"
+														alt="Profilo"
+														style={{ width: "50px", height: "50px" }}
+													/>
+													<div>
+														<h5>
+															{profileInfo.name + " " + profileInfo.surname}
+														</h5>
+														<p>{profileInfo.bio}</p>
+													</div>
+												</div>
+												<a
+													href="#"
+													className="btn btn-outline-primary mt-1 w-100 rounded-pill"
+												>
+													Visualizza profilo
+												</a>
+												<hr />
+												<a href="#" className="text-decoration-none text-dark">
+													<h6>Account</h6>
+													<p>Prova Premium per 0 EUR</p>
+												</a>
+												<a href="#" className="text-decoration-none text-dark">
+													<p>Impostazioni e privacy</p>
+												</a>
+												<a href="#" className="text-decoration-none text-dark">
+													<p>Guida</p>
+												</a>
+												<a href="#" className="text-decoration-none text-dark">
+													<p>Lingua</p>
+												</a>
+												<hr />
+												<a href="#" className="text-decoration-none text-dark">
+													<h6>Gestisci</h6>
+													<p>Post e attività</p>
+													<p>Account per la pubblicazione di of...</p>
+												</a>
+												<hr />
+												<a href="#" className="text-decoration-none text-dark">
+													Esci
+												</a>
+											</div>
+										</div>
+									)}
 								</div>
 							</a>
 						</li>
@@ -166,63 +240,6 @@ const Navbar = () => {
 					</ul>
 				</div>
 			</div>
-			{showCard && (
-				<div
-					className="card"
-					style={{
-						position: "absolute",
-						top: "95%",
-						left: "50%",
-						zIndex: "200px",
-						width: "300px",
-					}}
-				>
-					<div className="card-body p-3">
-						<div style={{ display: "flex", alignItems: "center" }}>
-							<img
-								src="https://www.placedog.net/24"
-								className="rounded-circle me-3"
-								alt="Profilo"
-								style={{ width: "40px", height: "40px" }}
-							/>
-							<div>
-								<h6>Gioele Friggia</h6>
-								<p>Sottotitolo</p>
-							</div>
-						</div>
-						<a
-							href="#"
-							className="btn btn-outline-primary mt-0 w-100 rounded-pill"
-						>
-							Visualizza profilo
-						</a>
-						<hr />
-						<a href="#" className="text-decoration-none text-dark">
-							<h6>Account</h6>
-							<p>Prova Premium per 0 EUR</p>
-						</a>
-						<a href="#" className="text-decoration-none text-dark">
-							<p>Impostazioni e privacy</p>
-						</a>
-						<a href="#" className="text-decoration-none text-dark">
-							<p>Guida</p>
-						</a>
-						<a href="#" className="text-decoration-none text-dark">
-							<p>Lingua</p>
-						</a>
-						<hr />
-						<a href="#" className="text-decoration-none text-dark">
-							<h6>Gestisci</h6>
-							<p>Post e attività</p>
-							<p>Account per la pubblicazione di of...</p>
-						</a>
-						<hr />
-						<a href="#" className="text-decoration-none text-dark">
-							Esci
-						</a>
-					</div>
-				</div>
-			)}
 		</nav>
 	);
 };
