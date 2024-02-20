@@ -1,6 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Section from "./Section";
 import { Profileinfo } from "./Profileinfo";
+import Experience from "./Experience";
+import Education from "./Education";
 
 const Profile = () => {
 	return (
@@ -13,6 +15,12 @@ const Profile = () => {
 						</Col>
 						<Col className="border rounded-3 bg-white p-0">
 							<Section />
+						</Col>
+						<Col className="border rounded-3 bg-white p-0">
+							<Experience />
+						</Col>
+						<Col className="border rounded-3 bg-white p-0">
+							<Education />
 						</Col>
 					</Row>
 				</Col>

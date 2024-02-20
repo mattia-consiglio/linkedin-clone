@@ -28,7 +28,7 @@ const Navbar = () => {
 			className={`navbar navbar-expand-lg navbar-light ${
 				isMobile ? "first-mobile" : ""
 			}`}
-			style={{ backgroundColor: "#ffffff", height: "60px" }}
+			style={{ backgroundColor: "#ffffff", height: "auto" }}
 		>
 			<div className="container-fluid custom-container">
 				<a className="navbar-brand" href="#">
