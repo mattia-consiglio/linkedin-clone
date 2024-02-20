@@ -12,3 +12,16 @@ export interface User {
 	updatedAt: Date;
 	__v: number;
 }
+
+export interface Experience {
+	_id: string;
+	role: string;
+	company: string;
+	startDate: string;
+	endDate: string | null;
+	description: string;
+	area: string;
+	username: string;
+	image: string;
+	__v: number;
+}

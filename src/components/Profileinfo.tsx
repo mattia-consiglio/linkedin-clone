@@ -1,16 +1,22 @@
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from "react";
-import { getUserAction } from "../redux/actions";
-import { Col, Row } from "react-bootstrap";
+import { getUserAction, getExperiencesAction } from "../redux/actions";
+import { Button, Col, Row } from "react-bootstrap";
+import { postExperiencesAction } from "../redux/actions";
 
 export const Profileinfo = () => {
 	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
 	useEffect(() => {
 		dispatch(getUserAction("me"));
-	}, []);
 
-	// dispatch(getUserAction("me"));
+		dispatch(getExperiencesAction(profileInfo._id));
+	}, [profileInfo._id]);
+
+	const handleAddExperience = () => {
+		dispatch(postExperiencesAction(profileInfo._id));
+	};
+
 	return (
 		<Row className="flex-column justify-content-center align-items-between">
 			<Col>
@@ -37,7 +43,10 @@ export const Profileinfo = () => {
 					<Col xs={12} md={6} className="d">
 						<Row className="me-5 w-100">
 							<Col className="fw-bold fs-4 pe-0">Mario Rossi</Col>
-							<Col className=" rounded-4 verificaOra px-0 fw-bold">
+							<Col
+								className=" rounded-4 verificaOra px-0 fw-bold"
+								onClick={handleAddExperience}
+							>
 								<Row className="justify-content-evenly align-items-center">
 									<Col xs={3} className="pe-0 text-center">
 										<i className="bi bi-patch-check"></i>

@@ -1,9 +1,10 @@
-import { User } from "../../intefaces";
-import { SET_USER } from "../actions";
+import { User, Experience } from "../../intefaces";
+import { SET_USER, SET_EXPERIENCES } from "../actions";
 
 export interface Profile {
 	me: User;
 	tokens: string[];
+	exp: Experience[];
 }
 
 const initialState: Profile = {
@@ -26,6 +27,20 @@ const initialState: Profile = {
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTJjMDI0ZjYwNTAwMTkzN2Q0NjYiLCJpYXQiOjE3MDgzMzE3MTIsImV4cCI6MTcwOTU0MTMxMn0.kApVEAE7EuNP4OLFDVTbjttsI11FxXFMhjRTsu_XeVo",
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTFkZTI0ZjYwNTAwMTkzN2Q0NTUiLCJpYXQiOjE3MDgzMzE0OTYsImV4cCI6MTcwOTU0MTA5Nn0.Fi9e_SVIoiF7H-zbHPLrlR1lRmttL4ooCAgkbzv0ihQ",
 	],
+	exp: [
+		{
+			_id: "",
+			role: "",
+			company: "",
+			startDate: "",
+			endDate: "",
+			description: "",
+			area: "",
+			username: "",
+			image: "",
+			__v: 0,
+		},
+	],
 };
 
 const profileReducer = (
@@ -35,6 +50,8 @@ const profileReducer = (
 	switch (action.type) {
 		case SET_USER:
 			return { ...state, me: action.payload };
+		case SET_EXPERIENCES:
+			return { ...state, exp: action.payload };
 
 		default:
 			return state;
