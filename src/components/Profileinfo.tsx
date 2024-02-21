@@ -4,8 +4,8 @@ import {
 	getUserAction,
 	getExperiencesAction,
 	postExperiencesAction,
-	getPostAction,
-	postPostAction,
+	// getPostAction,
+	// postPostAction,
 } from "../redux/actions";
 import { Button, Col, Row } from "react-bootstrap";
 
@@ -19,16 +19,16 @@ export const Profileinfo = ({
 	useEffect(() => {
 		dispatch(getUserAction("me"));
 		dispatch(getExperiencesAction(profileInfo._id));
-		dispatch(getPostAction(profileInfo._id));
+		// dispatch(getPostAction(profileInfo._id));
 	}, [profileInfo._id]);
 
-	const handleAddExperience = () => {
-		dispatch(postExperiencesAction(profileInfo._id));
-	};
+	// const handleAddExperience = () => {
+	// 	dispatch(postExperiencesAction(profileInfo._id));
+	// };
 
-	const handleAddPost = () => {
-		dispatch(postPostAction(profileInfo._id));
-	};
+	// const handleAddPost = () => {
+	// 	dispatch(postPostAction(profileInfo._id));
+	// };
 
 	return (
 		<Row className="flex-column justify-content-center align-items-between">
@@ -63,7 +63,6 @@ export const Profileinfo = ({
 								<Button
 									variant="outline-primary"
 									className="text-primary rounded-4 verificaOra px-0 fw-bold w-100"
-									onClick={handleAddPost}
 								>
 									<i className="bi bi-patch-check"></i> Verifica ora
 								</Button>

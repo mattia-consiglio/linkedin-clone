@@ -190,7 +190,7 @@ export const getPostAction = (id: string) => {
 	};
 };
 
-export const postPostAction = (id: string) => {
+export const postPostAction = (id: string, text: string) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
@@ -201,12 +201,13 @@ export const postPostAction = (id: string) => {
 				Authorization: `Bearer ${bearerToken}`,
 			},
 			body: JSON.stringify({
-				text: "BUILD WEEK 3 - LINKEDIN",
+				text: text,
 			}),
 		})
 			.then((resp) => {
 				if (resp.ok) {
 					console.log("RESPONSE OK FROM POST COOMENT", resp);
+					alert("COMMENT POSTED, REFRESH PAGE");
 					return resp.json();
 				} else {
 					throw new Error("RESPONSE NOT OK FROM POST COMMENT");
@@ -218,6 +219,68 @@ export const postPostAction = (id: string) => {
 			})
 			.catch((err) => {
 				console.log("ERRORE NEL CONTATTARE IL SERVER, POST COMMENT", err);
+			});
+	};
+};
+
+export const deleteCommentsAction = (id: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM DELETE COMMENT", resp);
+					alert("COMMENT DELETE, REFRESH PAGE");
+				} else {
+					throw new Error("RESPONSE NOT OK FROM DELETE COMMENT");
+				}
+			})
+			// .then((data) => {
+			// 	console.log("DELETED COMMENT", data);
+			// 	// dispatch(getPostAction(id));
+			// })
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE COMMENT", err);
+			});
+	};
+};
+
+export const putCommentsAction = (id: string, text: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+			body: JSON.stringify({
+				text: text,
+			}),
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM PUT COMMENT", resp);
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM PUT COMMENT");
+				}
+			})
+			.then((data) => {
+				console.log("COMMENT CHANGED DA PUT COMMENT", data);
+				alert("COMMENT PUT, REFRESH PAGE");
+				dispatch(getPostAction(id));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, PUT COMMENT", err);
 			});
 	};
 };
