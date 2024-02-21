@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPen, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Button, Modal, Row, Form, FloatingLabel } from "react-bootstrap";
 
 const Experience = () => {
-	const [show, setShow] = useState(true);
+	const [experienceShow, setExpirienceShow] = useState(false);
 	const [formData, setFormData] = useState({
 		startDate: "",
 		endDate: "",
 		// Aggiungi qui altri campi se necessario
 	});
+
+	const location = useLocation();
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -62,7 +64,7 @@ const Experience = () => {
 					<div>
 						<FontAwesomeIcon
 							onClick={() => {
-								setShow(true);
+								setExpirienceShow(true);
 							}}
 							icon={faPen}
 							style={{ marginRight: "30px" }}
@@ -83,7 +85,11 @@ const Experience = () => {
 					certificat SSL....
 				</p>
 			</div>
-			<Modal size="lg" show={show} onHide={() => setShow(false)}>
+			<Modal
+				size="lg"
+				show={experienceShow}
+				onHide={() => setExpirienceShow(false)}
+			>
 				<Modal.Header closeButton>
 					<Modal.Title>Modifica esperienza</Modal.Title>
 				</Modal.Header>
@@ -166,7 +172,7 @@ const Experience = () => {
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={() => setShow(false)}>
+					<Button variant="secondary" onClick={() => setExpirienceShow(false)}>
 						Close
 					</Button>
 					<Button variant="primary">Save Changes</Button>
