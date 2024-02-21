@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import ExperiencesPage from "./components/ExperiencesPage";
 import SideProfile from "./components/SideProfile";
 import FormComment from "./components/FromCommentProva";
+import { ErrorPage } from "./components/ErrorPage";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 						<Route path="/profile" element={<Profile />}></Route>
 						<Route path="/experiences" element={<ExperiencesPage />}></Route>
 						<Route path="/form" element={<FormComment />}></Route>
+						<Route path="/*" element={<ErrorPage />}></Route>
 					</Routes>
 				</main>
 				<footer></footer>
