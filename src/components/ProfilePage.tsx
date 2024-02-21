@@ -7,6 +7,9 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { setUserImageAction } from "../redux/actions";
+import Analyses from "./Analyses";
+import Resources from "./Resources";
+
 const Profile = () => {
 	const [show, setShow] = useState(true);
 	const [inputValue, setInputValue] = useState("");
@@ -32,9 +35,12 @@ const Profile = () => {
 								<Profileinfo setShow={setShow} />
 							</Col>
 							<Col className="border rounded-3 bg-white p-0">
-								<Section />
+								<Analyses />
 							</Col>
-							<Col>
+							<Col className="border rounded-3 bg-white p-0">
+								<Resources />
+							</Col>
+							<Col className="border rounded-3 bg-white p-0">
 								<Experience />
 							</Col>
 						</Row>
@@ -115,7 +121,6 @@ const Profile = () => {
 											role="none"
 											data-supported-dps="16x16"
 											fill="currentColor"
-											width="16"
 											height="16"
 										>
 											<path d="M14 9H9v5H7V9H2V7h5V2h2v5h5z"></path>
@@ -135,7 +140,6 @@ const Profile = () => {
 											role="none"
 											data-supported-dps="16x16"
 											fill="currentColor"
-											width="16"
 											height="16"
 										>
 											<path d="M14 9H9v5H7V9H2V7h5V2h2v5h5z"></path>
