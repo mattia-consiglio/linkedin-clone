@@ -35,7 +35,7 @@ const GridSystem = ({
 		<Container>
 			<Row className="py-3 gx-4">
 				<Col
-					style={{ maxWidth: "225px" }}
+					style={{ maxWidth: colsNumber === 3 ? "225px" : "auto" }}
 					xs={12}
 					lg={colsNumber === 3 ? 3 : 9}
 				>

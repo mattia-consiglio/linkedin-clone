@@ -18,7 +18,7 @@ interface CardWithPageProps<T = any> {
 }
 
 const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
-	const [modalShow, setModalShow] = useState(true);
+	const [modalShow, setModalShow] = useState(false);
 	const location = useLocation();
 	const [formData, setFormData] = useState({
 		id: "",
