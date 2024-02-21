@@ -2,6 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./components/ProfilePage";
 import NavBar from "./components/NavBar";
 import ExperiencesPage from "./components/ExperiencesPage";
+import SideProfile from "./components/SideProfile";
+import HomePage from "./components/HomePage";
+import FormComment from "./components/FromCommentProva";
+import { ErrorPage } from "./components/ErrorPage";
 import { useEffect } from "react";
 import { getUserAction, getExperiencesAction } from "./redux/actions";
 import { useAppDispatch, useAppSelector } from "./redux/store";
@@ -17,13 +21,15 @@ function App() {
 		<>
 			<BrowserRouter>
 				<header>
-					{" "}
-					<NavBar />{" "}
+					<NavBar />
 				</header>
 				<main>
 					<Routes>
+						<Route path="/" element={<HomePage />}></Route>
 						<Route path="/profile" element={<Profile />}></Route>
 						<Route path="/experiences" element={<ExperiencesPage />}></Route>
+						<Route path="/form" element={<FormComment />}></Route>
+						<Route path="/*" element={<ErrorPage />}></Route>
 					</Routes>
 				</main>
 				<footer></footer>

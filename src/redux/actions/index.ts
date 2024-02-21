@@ -6,6 +6,7 @@ import {
 	editExperience,
 	setExperiences,
 	setUser,
+	setPostProfile,
 } from "../reducers/profile";
 import { setErrorStatus, setLoadingStatus } from "../reducers/status";
 import { ImageProps } from "react-bootstrap";
@@ -265,6 +266,132 @@ export const deleteExperiencesAction = (
 			})
 			.catch((err) => {
 				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE EXP", err);
+			});
+	};
+};
+
+export const getPostAction = (id: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+
+		if (!id) return;
+		fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log(`RESPONSE OK FROM GET POST ${resp.status}`);
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM GET POST");
+				}
+			})
+			.then((data) => {
+				console.log("DATA RICEVUTA DA GET POST", data);
+				dispatch(setPostProfile(data));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, GET POST", err);
+			});
+	};
+};
+
+export const postPostAction = (id: string, text: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+			body: JSON.stringify({
+				text: text,
+			}),
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM POST COOMENT", resp);
+					alert("COMMENT POSTED, REFRESH PAGE");
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM POST COMMENT");
+				}
+			})
+			.then((data) => {
+				console.log("DATA INVIATI DA FUCNTION POST COMMENT", data);
+				dispatch(getPostAction(id));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, POST COMMENT", err);
+			});
+	};
+};
+
+export const deleteCommentsAction = (id: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM DELETE COMMENT", resp);
+					alert("COMMENT DELETE, REFRESH PAGE");
+				} else {
+					throw new Error("RESPONSE NOT OK FROM DELETE COMMENT");
+				}
+			})
+			// .then((data) => {
+			// 	console.log("DELETED COMMENT", data);
+			// 	// dispatch(getPostAction(id));
+			// })
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE COMMENT", err);
+			});
+	};
+};
+
+export const putCommentsAction = (id: string, text: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+			body: JSON.stringify({
+				text: text,
+			}),
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM PUT COMMENT", resp);
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM PUT COMMENT");
+				}
+			})
+			.then((data) => {
+				console.log("COMMENT CHANGED DA PUT COMMENT", data);
+				alert("COMMENT PUT, REFRESH PAGE");
+				dispatch(getPostAction(id));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, PUT COMMENT", err);
 			});
 	};
 };

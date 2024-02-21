@@ -34,11 +34,15 @@ const GridSystem = ({
 	return (
 		<Container>
 			<Row className="py-3 gx-4">
-				<Col xs={12} lg={colsNumber === 3 ? 2 : 9}>
+				<Col
+					style={{ maxWidth: "225px" }}
+					xs={12}
+					lg={colsNumber === 3 ? 3 : 9}
+				>
 					<Row className=" flex-column g-2">{leftCol}</Row>
 				</Col>
 				{colsNumber === 3 && (
-					<Col xs={12} lg={7}>
+					<Col>
 						<Row className=" flex-column g-2">{centerCol}</Row>
 					</Col>
 				)}

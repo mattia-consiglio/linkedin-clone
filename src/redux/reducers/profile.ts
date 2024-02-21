@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User, Experience } from "../../intefaces";
+import { User, Experience, Comment } from "../../intefaces";
 // import { SET_USER, SET_USER_IMAGE } from "../actions";
 
 export interface Profile {
@@ -7,6 +7,7 @@ export interface Profile {
 	tokens: string[];
 	currentProfileIndex: number;
 	exp: Experience[];
+	post: Comment[];
 }
 
 const initialState: Profile = {
@@ -48,6 +49,16 @@ const initialState: Profile = {
 			__v: 0,
 		},
 	],
+	post: [
+		{
+			text: "",
+			username: "",
+			createdAt: new Date().toDateString(),
+			updatedAt: new Date().toDateString(),
+			__v: 0,
+			_id: "",
+		},
+	],
 };
 
 const profileReducer = createSlice({
@@ -79,12 +90,17 @@ const profileReducer = createSlice({
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
 			state.currentProfileIndex = action.payload;
 		},
+		setPostProfile: (state, action: PayloadAction<Comment[]>) => {
+			state.post = action.payload;
+		},
 	},
 });
+
 export const {
 	setUser,
 	setUserImage,
 	setExperiences,
+	setPostProfile,
 	addExperience,
 	editExperience,
 	deleteExperience,
