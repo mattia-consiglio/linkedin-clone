@@ -137,11 +137,15 @@ const Navbar = () => {
 					</li>
 					{/* Aggiunto elemento "Tu" */}
 					<li className="nav-item" onClick={handleTuClick}>
-						<a className="nav-link position-relative" href="#">
+						<span
+							className="nav-link position-relative"
+							style={{ cursor: "pointer" }}
+						>
 							<img
 								src={profileInfo.image}
 								width="25px"
-								alt="Gioele Friggia"
+								height="25px"
+								alt={profileInfo.name + " " + profileInfo.surname}
 								style={{ borderRadius: "50%" }}
 							/>
 
@@ -170,14 +174,14 @@ const Navbar = () => {
 												<p>{profileInfo.bio}</p>
 											</div>
 										</div>
-										<a
-											href="#"
+										<Link
+											to={"/profile"}
 											className="btn btn-outline-primary mt-1 w-100 rounded-pill"
 										>
 											Visualizza profilo
-										</a>
+										</Link>
 										<hr />
-										<a href="#" className="text-decoration-none text-dark">
+										<a href="##" className="text-decoration-none text-dark">
 											<h6>Account</h6>
 											<p>Prova Premium per 0 EUR</p>
 										</a>
@@ -203,10 +207,8 @@ const Navbar = () => {
 									</div>
 								</div>
 							)}
-						</a>
+						</span>
 					</li>
-
-					{/* Linea verticale */}
 
 					{/* Elemento per le aziende */}
 					<li className="nav-item">

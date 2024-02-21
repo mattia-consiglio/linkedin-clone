@@ -39,7 +39,7 @@ const GridSystem = ({
 				</Col>
 				{colsNumber === 3 && (
 					<Col xs={12} lg={7}>
-						{centerCol}
+						<Row className=" flex-column g-2">{centerCol}</Row>
 					</Col>
 				)}
 				<Col xs={12} lg={3}>
