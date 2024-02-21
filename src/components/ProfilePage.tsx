@@ -10,7 +10,7 @@ import Analyses from "./Analyses";
 import Resources from "./Resources";
 
 const Profile = () => {
-	const [show, setShow] = useState(true);
+	const [show, setShow] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 	const [image, setImage] = useState<File | null>(null);
 	const dispatch = useAppDispatch();
