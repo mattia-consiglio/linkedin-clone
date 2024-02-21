@@ -12077,3 +12077,49 @@ i:hover {
   background-color: #dddddd;
   border: solid black 2px;
 }/*# sourceMappingURL=style.css.map */
+
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.footer-column h5 {
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+  text-decoration: none;
+}
+
+.footer-copyright {
+  flex: 1;
+  text-align: right;
+}
+
+.footerSettings {
+  display: flex;
+    align-items: center;
+}
+
+   
+.footer {
+  color: grey;
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+
+.inline-text {
+  display: inline;
+}

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './Experience.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faPen, faBuilding, faCircle } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+
 
 const Experience: React.FC = () => {
     return (

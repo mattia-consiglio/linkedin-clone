@@ -7,7 +7,7 @@ const Navbar = () => {
 		setShowCard(!showCard);
 	};
 
-	const handleClick = (label) => {
+	const handleClick = (label: string) => {
 		console.log(label + " cliccato");
 	};
 
