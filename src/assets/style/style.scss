@@ -194,9 +194,14 @@ header {
 	}
 }
 .fotoProfiloSide {
-	margin-top: -145px;
-	width: 80px;
-	height: 80px;
+	position: relative;
+	margin-top: -45px;
+	width: 72px;
+	height: 72px;
+}
+
+.littleFont {
+	font-size: 12px;
 }
 
 .text-primary-linkedin-a {

@@ -6,7 +6,7 @@ const News = () => {
 		<>
 			<Container>
 				<Row className="justify-content-center">
-					<Col xs={12} md={3} className="my-2">
+					<Col xs={12} className="my-2">
 						<Card>
 							<Card.Title className=" px-3 pt-4 fs-6 d-flex justify-content-between">
 								LinkedIn Notizie{" "}
