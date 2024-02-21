@@ -1,6 +1,6 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../store";
-import { setUser } from "../reducers/profile";
+import { setExperiences, setUser } from "../reducers/profile";
 import { setErrorStatus, setLoadingStatus } from "../reducers/status";
 import { ImageProps } from "react-bootstrap";
 
@@ -47,10 +47,8 @@ export const setUserImageAction = (userId = "", image: File) => {
 	return async (dispatch: AppDispatch, getState: () => RootState) => {
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
-		console.log(image);
 		const formData = new FormData();
 		formData.append("profile", image);
-		console.log(formData);
 
 		try {
 			let resp = await fetch(
@@ -58,6 +56,7 @@ export const setUserImageAction = (userId = "", image: File) => {
 				{
 					method: "POST",
 					headers: {
+						//non aggiungere il Content-Type, viene aggiunto automaticamente
 						Authorization: "Bearer " + bearerToken,
 					},
 					body: formData,
@@ -75,112 +74,16 @@ export const setUserImageAction = (userId = "", image: File) => {
 	};
 };
 
-//////////////////////////////////// Experience ////////////////
-export const SET_EXPERIENCES = "SET_EXPERIENCES";
-
-export type GetExperiencesAction = {
-	type: string;
-	payload: any[];
-};
-
-export const getExperiencesAction = (id: string, i = 0) => {
-	return (
-		dispatch: Dispatch<GetExperiencesAction>,
-		getState: () => RootState,
-	) => {
-		const bearerToken = getState().profile.tokens[i];
-
-		if (!id) return;
-
-		fetch(
-			"https://striveschool-api.herokuapp.com/api/profile/" +
-				id +
-				"/experiences",
-			{
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${bearerToken}`,
-				},
-			},
-		)
-			.then((resp) => {
-				if (!resp.ok) {
-					throw new Error(
-						`RISPOTA NON OK RICEVUTA DA GET EXPERIENCES REQUEST: ${resp.status}`,
-					);
-				} else {
-					console.log("RISPOSTA OK RICEVUTA DA GET EXPERIENCES REQUEST", resp);
-					return resp.json();
-				}
-			})
-			.then((data) => {
-				console.log("ESEPRIENZE", data);
-				dispatch({
-					type: SET_ERROR_STATUS,
-					payload: resp.status + ": " + resp.statusText,
-				});
-			}
-		} catch (error: any) {
-			dispatch(setErrorStatus(error.toString()));
-		} finally {
-			dispatch(setLoadingStatus(false));
-		}
-	};
-};
-
-export const setUserImageAction = (userId = "", image: File) => {
-	return async (dispatch: AppDispatch, getState: () => RootState) => {
+export const getExperiencesAction = (userId: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
-		console.log(image);
-		const formData = new FormData();
-		formData.append("profile", image);
-		console.log(formData);
 
-		try {
-			let resp = await fetch(
-				`https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`,
-				{
-					method: "POST",
-					headers: {
-						Authorization: "Bearer " + bearerToken,
-					},
-					body: formData,
-				},
-			);
-			if (resp.ok) {
-				let response = await resp.json();
-				dispatch(setUser(response));
-			} else {
-				throw new Error(resp.status + ": " + resp.statusText);
-			}
-		} catch (error: any) {
-			dispatch(setErrorStatus(error.toString()));
-		}
-	};
-};
-
-//////////////////////////////////// Experience ////////////////
-export const SET_EXPERIENCES = "SET_EXPERIENCES";
-
-export type GetExperiencesAction = {
-	type: string;
-	payload: any[];
-};
-
-export const getExperiencesAction = (id: string, i = 0) => {
-	return (
-		dispatch: Dispatch<GetExperiencesAction>,
-		getState: () => RootState,
-	) => {
-		const bearerToken = getState().profile.tokens[i];
-
-		if (!id) return;
+		if (!userId) return;
 
 		fetch(
 			"https://striveschool-api.herokuapp.com/api/profile/" +
-				id +
+				userId +
 				"/experiences",
 			{
 				method: "GET",
@@ -201,21 +104,21 @@ export const getExperiencesAction = (id: string, i = 0) => {
 				}
 			})
 			.then((data) => {
-				console.log("ESEPRIENZE", data);
-				dispatch({
-					type: SET_EXPERIENCES,
-					payload: data,
-				});
+				dispatch(setExperiences(data));
 			})
-			.catch((err) => {
-				console.log("GET EXPERIENCES ERROR REQUEST", err);
+			.catch((error: any) => {
+				dispatch(setErrorStatus(error.toString()));
+			})
+			.finally(() => {
+				dispatch(setLoadingStatus(false));
 			});
 	};
 };
 
-export const postExperiencesAction = (id: string, i = 0) => {
+export const postExperiencesAction = (id: string) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
-		const bearerToken = getState().profile.tokens[i];
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
 
 		if (!id) return;
 		fetch(

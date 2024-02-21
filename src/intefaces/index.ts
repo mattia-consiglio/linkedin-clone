@@ -23,5 +23,7 @@ export interface Experience {
 	area: string;
 	username: string;
 	image: string;
+	createdAt: string;
+	updatedAt: string;
 	__v: number;
 }

@@ -1,5 +1,4 @@
 import { Container, Row, Col, Modal, Form } from "react-bootstrap";
-import Section from "./Section";
 import { Profileinfo } from "./Profileinfo";
 import Experience from "./Experience";
 import AsidePortrait from "./AsidePortrait";
