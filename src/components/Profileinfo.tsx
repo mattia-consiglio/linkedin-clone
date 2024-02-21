@@ -1,16 +1,27 @@
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from "react";
-import { getUserAction } from "../redux/actions";
-import { Col, Row } from "react-bootstrap";
+import {
+	getUserAction,
+	getExperiencesAction,
+	postExperiencesAction,
+} from "../redux/actions";
+import { Button, Col, Row } from "react-bootstrap";
 
-export const Profileinfo = () => {
+export const Profileinfo = ({
+	setShow,
+}: {
+	setShow: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
 	useEffect(() => {
 		dispatch(getUserAction("me"));
-	}, []);
+		dispatch(getExperiencesAction(profileInfo._id));
+	}, [profileInfo._id]);
 
-	// dispatch(getUserAction("me"));
+	const handleAddExperience = () => {
+		dispatch(postExperiencesAction(profileInfo._id));
+	};
 	return (
 		<Row className="flex-column justify-content-center align-items-between">
 			<Col>
@@ -25,8 +36,9 @@ export const Profileinfo = () => {
 					<Col>
 						<img
 							className="fotoProfilo rounded-circle border border-white border-4 z-4"
-							src="https://placedog.net/170/170"
-							alt="foto profilo"
+							src={profileInfo.image}
+							alt={profileInfo.name + " " + profileInfo.surname}
+							onClick={() => setShow(true)}
 						/>
 					</Col>
 					<Col className="text-end ">
@@ -34,22 +46,27 @@ export const Profileinfo = () => {
 					</Col>
 				</Row>
 				<Row className="justify-content-between align-items-center mx-3 mt-3">
-					<Col xs={12} md={6} className="d">
+					<Col xs={12} md={8} className="d">
 						<Row className="me-5 w-100">
-							<Col className="fw-bold fs-4 pe-0">Mario Rossi</Col>
-							<Col className=" rounded-4 verificaOra px-0 fw-bold">
-								<Row className="justify-content-evenly align-items-center">
-									<Col xs={3} className="pe-0 text-center">
-										<i className="bi bi-patch-check"></i>
-									</Col>
-									<Col className="px-0" xs={6}>
-										Verifica ora
-									</Col>
-								</Row>
+							<Col className="fw-bold fs-4 pe-0">
+								{profileInfo.name + " " + profileInfo.surname}
+							</Col>
+							<Col className=" ">
+								<Button
+									variant="outline-primary"
+									className="text-primary rounded-4 verificaOra px-0 fw-bold w-100"
+									onClick={handleAddExperience}
+								>
+									<i className="bi bi-patch-check"></i> Verifica ora
+								</Button>
+								{/* <Row className="justify-content-evenly align-items-center">
+									<Col xs={3} className="pe-0 text-center"></Col>
+									<Col className="px-0" xs={6}></Col>
+								</Row> */}
 							</Col>
 						</Row>
 					</Col>
-					<Col md={5} className="ms-5 fw-bold d-none d-md-inline">
+					<Col md={4} className="fw-bold d-none d-md-block ">
 						<Row className="justify-content-start align-items-center">
 							<Col xs={8}>
 								<img
@@ -67,7 +84,7 @@ export const Profileinfo = () => {
 				<Row className="justify-content-center mx-3 flex-column">
 					<Col>Web Developer</Col>
 					<Col className="text-secondary">
-						Porto Mantovano, Lombardia, Italia -{" "}
+						{profileInfo.area} -{" "}
 						<span className="text-primary-linkedin-a">
 							Informazioni di contatto
 						</span>
@@ -93,21 +110,22 @@ export const Profileinfo = () => {
 					<Col>
 						<Row className=" my-2 mb-4 justify-content-start align-items-center ps-2">
 							<Col
-								xs={6}
-								lg={2}
+								xs={12}
+								lg={3}
 								className=" text-center bgLinkedin rounded-5 py-1 fw-bold px-1 me-1 mb-2 mb-lg-0"
 							>
 								Disponibile per
 							</Col>
 							<Col
-								xs={10}
+								xs={12}
 								lg={4}
 								className=" text-center verificaOra rounded-5 py-1 fw-bold px-1 ms-1 me-1"
 							>
 								Aggiungi sezione del profilo
 							</Col>
 							<Col
-								xs={1}
+								xs={12}
+								lg={3}
 								className="d-none d-lg-inline altroButton text-center border border-secondary text-secondary rounded-5 py-1 fw-bold px-1 ms-1"
 							>
 								Altro

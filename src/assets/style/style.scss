@@ -1,4 +1,6 @@
+@use "sass:map";
 @import "../../../node_modules/bootstrap/scss/functions";
+$primary: #0a66c2;
 // $secondary-dark: #e5e5e5;
 // $secondary: #737373;
 // $body-bg: #f3f3f3;
@@ -10,7 +12,27 @@
 // $active-background: $body-bg-dark;
 // $link-color: #0f84fa;
 
-// $font-family-sans-serif: Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+$font-family-sans-serif:
+	-apple-system,
+	system-ui,
+	BlinkMacSystemFont,
+	Segoe UI,
+	Roboto,
+	Helvetica Neue,
+	Fira Sans,
+	Ubuntu,
+	Oxygen,
+	Oxygen Sans,
+	Cantarell,
+	Droid Sans,
+	Apple Color Emoji,
+	Segoe UI Emoji,
+	Segoe UI Emoji,
+	Segoe UI Symbol,
+	Lucida Grande,
+	Helvetica,
+	Arial,
+	sans-serif;
 
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
@@ -92,21 +114,58 @@
 	background-color: #f4f2ee;
 }
 
-.navbar-nav {
-	margin-left: 70px; /* Sposta tutti gli elementi a destra */
+header {
+	position: sticky;
+	top: 0;
+	z-index: 800;
+}
+
+.navbar {
+	height: 53px;
+	padding-top: 0;
+	padding-bottom: 0;
+	background-color: #fff;
+}
+
+.navbar-brand {
+	svg {
+		width: 41px;
+		height: 41px;
+	}
 }
 
 .nav-item {
-	margin-top: 19px;
-	margin-right: 50px;
 	display: flex;
 	justify-content: center; /* Centra gli elementi nella navbar */
+	width: 48px;
+	font-size: 12px;
+
+	.nav-link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		span {
+			display: none;
+		}
+	}
+
+	@media screen and (min-width: map.get($grid-breakpoints, "md")) {
+		width: 80px;
+		.nav-link span {
+			display: inline;
+		}
+
+		&:last-of-type {
+			width: 89px;
+		}
+	}
+
+	&:nth-of-type(6) {
+		border-right: 1px solid #525050; /* Colore grigio */
+	}
 }
 
-.nav-item:first-child {
-	margin-top: 19px;
-	margin-right: 50px; /* Sposta l'elemento "Home" a sinistra */
-}
 .vertical-line {
 	border-left: 1px solid #525050; /* Colore grigio */
 	height: 80px; /* Altezza desiderata */
@@ -123,9 +182,14 @@
 }
 
 .fotoProfilo {
-	margin-top: -9em;
+	margin-top: -112px;
+	width: 152px;
+	height: 152px;
+	cursor: pointer;
 	@media screen and (max-width: 1200px) {
-		max-width: 60%;
+		max-width: 100%;
+		min-width: 50px;
+		height: auto;
 		margin-top: -5em;
 	}
 }
@@ -189,4 +253,186 @@ i {
 		background-color: #dddddd;
 		border: solid black 2px; //2px qua non funziona ..?
 	}
+}
+
+@media (max-width: 767px) {
+	.navbar-toggler {
+		display: none; /* Nasconde il pulsante del menu hamburger */
+	}
+
+	.navbar-collapse {
+		display: none; /* Nasconde il menu dropdown */
+	}
+
+	.navbar-nav {
+		display: flex !important; /* Mostra tutte le icone */
+		justify-content: space-evenly;
+	}
+
+	.navbar-nav .nav-item {
+		flex: 1;
+		text-align: center;
+	}
+
+	.vertical-line {
+		display: none; /* Nasconde la linea verticale */
+	}
+}
+.experience {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.formation {
+	text-align: left;
+	// border: 1px solid #000;
+	// border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.competence {
+	text-align: left;
+	// border: 1px solid #000;
+	// border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+.small-experience {
+	padding: 5px; /* Riduci il padding */
+	margin-bottom: 10px; /* Riduci il margine inferiore */
+	margin-right: 30px; /* Aggiungi margine a destra */
+	margin-left: 70px; /* Aggiungi margine a sinistra */
+}
+
+.small-experience h3 {
+	font-size: 18px; /* Riduci la dimensione del font per il titolo */
+}
+
+.small-experience p {
+	font-size: 12px; /* Riduci la dimensione del font per il testo */
+}
+/* style.scss */
+
+.modal {
+	display: none; /* Il modale è nascosto di default */
+	position: fixed;
+
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4); /* Sfondo semi-trasparente */
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #2196f3;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+.experience {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.formation {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.competence {
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
 }
