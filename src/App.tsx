@@ -3,6 +3,7 @@ import Profile from "./components/ProfilePage";
 import NavBar from "./components/NavBar";
 import ExperiencesPage from "./components/ExperiencesPage";
 import SideProfile from "./components/SideProfile";
+import HomePage from "./components/HomePage";
 import FormComment from "./components/FromCommentProva";
 import { ErrorPage } from "./components/ErrorPage";
 
@@ -15,7 +16,7 @@ function App() {
 				</header>
 				<main className="BgPage">
 					<Routes>
-						<Route path="/" element={<SideProfile />}></Route>
+						<Route path="/" element={<HomePage />}></Route>
 						<Route path="/profile" element={<Profile />}></Route>
 						<Route path="/experiences" element={<ExperiencesPage />}></Route>
 						<Route path="/form" element={<FormComment />}></Route>
