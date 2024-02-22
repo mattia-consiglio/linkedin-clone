@@ -601,7 +601,7 @@ input:checked + .slider:before {
 }
 
 .fotterErrorPage {
-	bottom: 15px;
+	bottom: 0;
 	position: fixed;
 	font-size: 0.7em;
 	@media screen and (max-width: 1300px) {
