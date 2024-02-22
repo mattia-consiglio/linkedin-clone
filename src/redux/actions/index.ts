@@ -1,6 +1,14 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../store";
-import { setExperiences, setUser } from "../reducers/profile";
+import {
+	addExperience,
+	deleteExperience,
+	editExperience,
+	setExperiences,
+	setUser,
+	setPostProfile,
+	addUser,
+} from "../reducers/profile";
 import { setErrorStatus, setLoadingStatus } from "../reducers/status";
 import { ImageProps } from "react-bootstrap";
 
@@ -13,8 +21,10 @@ export type GetUserAction = {
 	payload: any;
 };
 
-export const getUserAction = (userId = "") => {
+export const getUserAction = () => {
 	return async (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id || "me";
+
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
 		dispatch(setLoadingStatus(true));
@@ -31,6 +41,7 @@ export const getUserAction = (userId = "") => {
 			);
 			if (resp.ok) {
 				let response = await resp.json();
+				console.log("DATI RICEVUTI DA GET USER ACTION", response);
 				dispatch(setUser(response));
 			} else {
 				throw new Error(resp.status + ": " + resp.statusText);
@@ -43,8 +54,9 @@ export const getUserAction = (userId = "") => {
 	};
 };
 
-export const setUserImageAction = (userId = "", image: File) => {
+export const setUserImageAction = (image: File) => {
 	return async (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id;
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
 		const formData = new FormData();
@@ -74,8 +86,9 @@ export const setUserImageAction = (userId = "", image: File) => {
 	};
 };
 
-export const getExperiencesAction = (userId: string) => {
+export const getExperiencesAction = () => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id;
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
 
@@ -115,15 +128,24 @@ export const getExperiencesAction = (userId: string) => {
 	};
 };
 
-export const postExperiencesAction = (id: string) => {
+export const postExperiencesAction = (data: {
+	role: string;
+	company: string;
+	startDate: string;
+	endDate: string;
+	description: string;
+	area: string;
+}) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id;
+
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
 
-		if (!id) return;
+		if (!userId) return;
 		fetch(
 			"https://striveschool-api.herokuapp.com/api/profile/" +
-				id +
+				userId +
 				"/experiences",
 			{
 				method: "POST",
@@ -131,30 +153,271 @@ export const postExperiencesAction = (id: string) => {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${bearerToken}`,
 				},
-				body: JSON.stringify({
-					role: "Developer",
-					company: "MyBrand",
-					startDate: "2012-06-16",
-					endDate: "2023-08-21", // può essere null
-					description: "grtgtgtgtgtg",
-					area: "Rome",
-				}),
+				body: JSON.stringify(data),
 			},
 		)
 			.then((resp) => {
 				if (resp.ok) {
-					console.log("DATI INVIATI AL SERVER, POST EXP", resp);
 					return resp.json();
 				} else {
 					throw new Error("DATI NON INVIATI AL SERVER, POST EXP");
 				}
 			})
 			.then((data) => {
-				console.log("DATI RICEVUTI DAL SERVER, POST EXP", data);
-				dispatch(getExperiencesAction(id));
+				dispatch(addExperience(data));
+				alert("Esperienza aggiunta con successo!");
 			})
 			.catch((err) => {
 				console.log("ERRORE NEL CONTATTARE IL SERVER, POST EXP", err);
 			});
+	};
+};
+
+export const putExperiencesAction = (
+	formData: {
+		role: string;
+		company: string;
+		startDate: string;
+		endDate: string;
+		description: string;
+		area: string;
+	},
+	idExeperience: string,
+) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id;
+
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		console.log("DATA INVIATA AL SERVER, PUT EXP", formData);
+
+		if (!userId) return;
+		fetch(
+			"https://striveschool-api.herokuapp.com/api/profile/" +
+				userId +
+				"/experiences/" +
+				idExeperience,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${bearerToken}`,
+				},
+				body: JSON.stringify(formData),
+			},
+		)
+			.then((resp) => {
+				if (resp.ok) {
+					return resp.json();
+				} else {
+					throw new Error("DATI NON INVIATI AL SERVER, PUT EXP");
+				}
+			})
+			.then((data) => {
+				dispatch(editExperience({ ...data, ...formData }));
+				alert("Esperienza modificata correttamente");
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, PUT EXP", err);
+			});
+	};
+};
+
+export const deleteExperiencesAction = (
+	data: {
+		role: string;
+		company: string;
+		startDate: string;
+		endDate: string;
+		description: string;
+		area: string;
+	},
+	idExeperience: string,
+) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id;
+
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+
+		if (!userId) return;
+		fetch(
+			"https://striveschool-api.herokuapp.com/api/profile/" +
+				userId +
+				"/experiences/" +
+				idExeperience,
+			{
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${bearerToken}`,
+				},
+				body: JSON.stringify(data),
+			},
+		)
+			.then((resp) => {
+				if (resp.ok) {
+					dispatch(deleteExperience(idExeperience));
+				} else {
+					throw new Error("DATI NON INVIATI AL SERVER, PUT EXP");
+				}
+			})
+
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE EXP", err);
+			});
+	};
+};
+
+export const getPostAction = (id: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+
+		if (!id) return;
+		fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log(`RESPONSE OK FROM GET POST ${resp.status}`);
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM GET POST");
+				}
+			})
+			.then((data) => {
+				console.log("DATA RICEVUTA DA GET POST", data);
+				dispatch(setPostProfile(data));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, GET POST", err);
+			});
+	};
+};
+
+export const postPostAction = (id: string, text: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+			body: JSON.stringify({
+				text: text,
+			}),
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM POST COOMENT", resp);
+					alert("COMMENT POSTED, REFRESH PAGE");
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM POST COMMENT");
+				}
+			})
+			.then((data) => {
+				console.log("DATA INVIATI DA FUCNTION POST COMMENT", data);
+				dispatch(getPostAction(id));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, POST COMMENT", err);
+			});
+	};
+};
+
+export const deleteCommentsAction = (id: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM DELETE COMMENT", resp);
+					alert("COMMENT DELETE, REFRESH PAGE");
+				} else {
+					throw new Error("RESPONSE NOT OK FROM DELETE COMMENT");
+				}
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE COMMENT", err);
+			});
+	};
+};
+
+export const putCommentsAction = (id: string, text: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${bearerToken}`,
+			},
+			body: JSON.stringify({
+				text: text,
+			}),
+		})
+			.then((resp) => {
+				if (resp.ok) {
+					console.log("RESPONSE OK FROM PUT COMMENT", resp);
+					return resp.json();
+				} else {
+					throw new Error("RESPONSE NOT OK FROM PUT COMMENT");
+				}
+			})
+			.then((data) => {
+				console.log("COMMENT CHANGED DA PUT COMMENT", data);
+				alert("COMMENT PUT, REFRESH PAGE");
+				dispatch(getPostAction(id));
+			})
+			.catch((err) => {
+				console.log("ERRORE NEL CONTATTARE IL SERVER, PUT COMMENT", err);
+			});
+	};
+};
+
+export const getAllUserAction = () => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id || "me";
+		const tokens = getState().profile.tokens;
+		dispatch(setLoadingStatus(true));
+
+		tokens.map(async (bearerToken) => {
+			console.log("BEARER", bearerToken);
+			return fetch(
+				"https://striveschool-api.herokuapp.com/api/profile/" + userId,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + bearerToken,
+					},
+				},
+			)
+				.then((resp) => {
+					if (!resp.ok) {
+						throw new Error(resp.status + ": " + resp.statusText);
+					}
+					return resp.json();
+				})
+				.then((data) => {
+					dispatch(addUser(data));
+				});
+		});
 	};
 };

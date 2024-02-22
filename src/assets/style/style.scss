@@ -110,7 +110,7 @@ $font-family-sans-serif:
 	color: grey;
 }
 
-.BgPage {
+body {
 	background-color: #f4f2ee;
 }
 
@@ -192,6 +192,16 @@ header {
 		height: auto;
 		margin-top: -5em;
 	}
+}
+.fotoProfiloSide {
+	position: relative;
+	margin-top: -45px;
+	width: 72px;
+	height: 72px;
+}
+
+.littleFont {
+	font-size: 12px;
 }
 
 .text-primary-linkedin-a {
@@ -392,11 +402,11 @@ i {
 }
 
 input:checked + .slider {
-	background-color: #2196f3;
+	background-color: #01754f;
 }
 
 input:focus + .slider {
-	box-shadow: 0 0 1px #2196f3;
+	box-shadow: 0 0 1px #01754f;
 }
 
 input:checked + .slider:before {
@@ -436,149 +446,212 @@ input:checked + .slider:before {
 	padding: 10px;
 	margin: 10px;
 }
+/* Posts.css */
+.custom-button {
+	background-color: white; /* Sfondo bianco */
+	color: black; /* Testo nero */
+	margin-right: 10px; /* Margine a destra per separare i bottoni */
+}
+/* style.scss */
+
+/* style.scss */
+.center-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
 
 .card {
+	// width: 400px;
+	// background-color: rgb(248, 243, 243);
+	// border-radius: 8px;
+	// box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
+	// padding: 20px;
+}
+
+.card-header {
 	display: flex;
-	justify-content: space-around; 
-	margin-left: 170px;
-	margin-top: 30px;
-    background-color: white;
-    padding: 20px;
-    width: 250px;
-	height: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.title {
-    display: flex;
-    align-items: center;
-	margin: 5px;
-}
-
-.mercado-match{
-	margin-right: 10px;
-}
-
-.icon {
-    margin-right: 10px;
-}
-
-.container {
-    width: 250px;
-}
-
-
-
-.card-button {
-
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-	border: 1px solid #0a66c2;
-	color: #0a66c2;
-	background-color: white;
-	margin-top: 10px;
-	margin-left: 170px;
-	height: 60px;
-	width: 250px;
-}
-
-.PenButton{
-	display: flex;
-	flex-direction: row;
-}
-
-.h6Offerta{
-	text-align: center;
-	margin-left: 20px;
-}
-
-
-.new-card {
-	border-radius: 10px;
-    width: 650px;
-    height: 500px;
-    border: 1px solid grey;
-	display: flex;
-	background-color: white;
-	display: flex;flex-direction: column;
-	align-items: flex-start;	
-}
-
-.new-card h5 {
-    margin-top: 30px;
-	margin-left: 10px;
-}
-
-.new-card p{
-	color: grey;
-	margin-left: 10px;
-}
-
-.logoCard {
-    width: 20px;
-    height: 20px;
-    background-color: grey;
-    object-fit: cover;
-}
-
-.logo-container {
-    display: flex;
 	align-items: center;
-	margin-left: 10px;
-	margin-bottom: 30px;
-}
-
-.new-card-place{
-	margin-left: 50px;
-}
-
-
-.PerformerBootcamp{
-	display: flex;
-	flex-direction: column;
-	margin-left: 20px;
-}
-
-.LogoJobs{
-	margin-bottom: 20px;
-}
-
-.CardRight{
-	border-radius: 10px;
-    background-color: white;
-    width: 330px;
-	height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-	border: 1px solid grey;
-	padding: 10px;
-	padding-top: 10px;
-}
-
-.image-container {
-	display: flex;
-	flex-direction: row;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: grey;
-    overflow: hidden;
 }
 
 .profile-image {
-    
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
 }
 
-.CardRighth5{
-	margin-top: 20px;
+.card-footer {
+	margin-top: 10px;
 }
+/* style.scss */
 
-.logo-recruiter{
+.card {
+	// width: 800px;
+	// margin-top: 20px;
+}
+/* style.scss */
+
+.button-container {
 	display: flex;
-	width: 100%;
-	background-color: #e8f4ff;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.btn-no-border {
+	border: none;
+}
+.btn-like.liked {
+	color: rgb(34, 34, 158);
+}
+.btn-icon-extra-small svg {
+	width: 24px;
+	height: 24px;
+}
+.btn-one {
+	// background-color: rgb(248, 243, 243);
+	// color: #000;
+}
+
+.btn-one .icon-container {
+	color: #378fe9;
+}
+.btn-two {
+	color: #000;
+}
+
+.btn-two .icon-container {
+	color: rgb(225, 158, 13);
+}
+.btn-three {
+	color: #000;
+}
+
+.btn-three .icon-container {
+	color: rgb(244, 73, 6);
+}
+.btn-modal svg {
+	width: 20px;
+}
+
+.icon-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border-radius: 50%;
+
+	&:hover {
+		background-color: #ebebeb;
+	}
+
+	&.large-icon {
+		width: 48px;
+		height: 48px;
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.col-with-icon {
+	flex-grow: 0;
+	svg {
+		width: 48px;
+		height: 48px;
+	}
+}
+
+.fs-12px {
+	font-size: 12px;
+}
+
+.fs-14px {
+	font-size: 14px;
+}
+
+.text-low-enpahsis {
+	color: rgb(0 0 0/0.9);
+}
+
+.sky-blue-modal-section {
+	background-color: #edf3f8;
+	margin-left: -20px;
+	margin-right: -20px;
+	padding: 20px;
+}
+
+.fixed-modal .modal-content {
+	max-height: 90vh;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 0;
+
+	.modal-body {
+		padding-top: 0;
+		overflow-x: hidden;
+	}
+}
+
+.errorPage {
+	height: 88.5vh;
+}
+
+.fotterErrorPage {
+	bottom: 0;
+	position: fixed;
+	font-size: 0.7em;
+	@media screen and (max-width: 1300px) {
+		font-size: 0.6em;
+	}
+	@media screen and (max-width: 1110px) {
+		font-size: 0.52em;
+	}
+	@media screen and (max-width: 785px) {
+		font-size: 0.55em;
+	}
+	@media screen and (max-width: 500px) {
+		font-size: 0.45em;
+	}
+}
+
+.col2ShortFooter {
+	width: 12%;
+}
+
+.smallProfileImg {
+	height: 50px;
+	width: 50px;
+	img {
+		object-fit: cover;
+		min-width: 100%;
+		min-height: 100%;
+	}
+}
+
+.hoverColor {
+	&:hover {
+		cursor: pointer;
+		background-color: #d7e9fb;
+	}
+}
+.footer {
+	font-size: small;
+	margin-top: 30px; /* Modifica questo valore a seconda del margine desiderato */
+}
+.footerSettings {
+	display: flex;
+	justify-content: flex-start; /* Allinea i contenuti alla fine del contenitore */
+}
+
+.flexContainer {
+	display: flex;
+	align-items: center; /* Centra verticalmente gli elementi all'interno */
+}
+
+.flexContainer h5 {
+	margin-left: 5px; /* Aggiunge spazio tra l'icona e il testo */
 }

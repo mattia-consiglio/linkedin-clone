@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User, Experience } from "../../intefaces";
+import { User, Experience, Comment } from "../../intefaces";
 // import { SET_USER, SET_USER_IMAGE } from "../actions";
 
 export interface Profile {
@@ -7,6 +7,8 @@ export interface Profile {
 	tokens: string[];
 	currentProfileIndex: number;
 	exp: Experience[];
+	post: Comment[];
+	allUsers: User[];
 }
 
 const initialState: Profile = {
@@ -26,9 +28,11 @@ const initialState: Profile = {
 	},
 	currentProfileIndex: 0,
 	tokens: [
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMGNiYTI0ZjYwNTAwMTkzN2Q0NDkiLCJpYXQiOjE3MDgzMzAxNzAsImV4cCI6MTcwOTUzOTc3MH0.bxNveBRHEzm8op8lnJMQlFUQH7hpQVx2EKX4N9xuQlo", //Mattia
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMGNiYTI0ZjYwNTAwMTkzN2Q0NDkiLCJpYXQiOjE3MDgzMzAxNzAsImV4cCI6MTcwOTUzOTc3MH0.bxNveBRHEzm8op8lnJMQlFUQH7hpQVx2EKX4N9xuQlo", // Mattia
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTJjMDI0ZjYwNTAwMTkzN2Q0NjYiLCJpYXQiOjE3MDgzMzE3MTIsImV4cCI6MTcwOTU0MTMxMn0.kApVEAE7EuNP4OLFDVTbjttsI11FxXFMhjRTsu_XeVo", // Alessandro
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTFkZTI0ZjYwNTAwMTkzN2Q0NTUiLCJpYXQiOjE3MDgzMzE0OTYsImV4cCI6MTcwOTU0MTA5Nn0.Fi9e_SVIoiF7H-zbHPLrlR1lRmttL4ooCAgkbzv0ihQ", //Ciro
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTFkZTI0ZjYwNTAwMTkzN2Q0NTUiLCJpYXQiOjE3MDgzMzE0OTYsImV4cCI6MTcwOTU0MTA5Nn0.Fi9e_SVIoiF7H-zbHPLrlR1lRmttL4ooCAgkbzv0ihQ", // Ciro
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMWJkMjI0ZjYwNTAwMTkzN2Q0NzYiLCJpYXQiOjE3MDgzMzQwMzUsImV4cCI6MTcwOTU0MzYzNX0.q3_9_6g2DZdTVv8ET42lVOpu2nvm8GWthO_b3luwewM", // Gioele
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ1ZGFmOWEzM2ZjOTAwMTk2NTgzNmMiLCJpYXQiOjE3MDg1MTQwNDEsImV4cCI6MTcwOTcyMzY0MX0.IGws4Er_f4jcVYo98DjALA2yobA5OOcyxwwug63AHVE", // Ermias
 	],
 	exp: [
 		{
@@ -46,6 +50,17 @@ const initialState: Profile = {
 			__v: 0,
 		},
 	],
+	post: [
+		{
+			text: "",
+			username: "",
+			createdAt: new Date().toDateString(),
+			updatedAt: new Date().toDateString(),
+			__v: 0,
+			_id: "",
+		},
+	],
+	allUsers: [],
 };
 
 const profileReducer = createSlice({
@@ -62,11 +77,40 @@ const profileReducer = createSlice({
 		setExperiences: (state, action: PayloadAction<Experience[]>) => {
 			state.exp = action.payload;
 		},
+		addExperience: (state, action: PayloadAction<Experience>) => {
+			state.exp.push(action.payload);
+		},
+		editExperience: (state, action: PayloadAction<Experience>) => {
+			state.exp[state.exp.findIndex((exp) => exp._id === action.payload._id)] =
+				action.payload;
+		},
+		deleteExperience: (state, action: PayloadAction<string>) => {
+			console.log(action.payload);
+			state.exp.splice(
+				state.exp.findIndex((exp) => exp._id === action.payload, 1),
+			);
+		},
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
 			state.currentProfileIndex = action.payload;
 		},
+		setPostProfile: (state, action: PayloadAction<Comment[]>) => {
+			state.post = action.payload;
+		},
+		addUser: (state, action: PayloadAction<User>) => {
+			state.allUsers.push(action.payload);
+		},
 	},
 });
-export const { setUser, setUserImage, setExperiences } = profileReducer.actions;
+
+export const {
+	setUser,
+	setUserImage,
+	setExperiences,
+	setPostProfile,
+	addExperience,
+	editExperience,
+	deleteExperience,
+	addUser,
+} = profileReducer.actions;
 
 export default profileReducer.reducer;

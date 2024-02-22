@@ -27,3 +27,12 @@ export interface Experience {
 	updatedAt: string;
 	__v: number;
 }
+
+export interface Comment {
+	text: string;
+	username: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+	_id: string;
+}
