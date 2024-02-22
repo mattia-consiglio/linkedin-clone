@@ -4,7 +4,18 @@ import { Container, Row, Col } from "react-bootstrap/";
 import LittleLeftList from "./LittleLeftList";
 import News from "./News";
 import MiniFooter from "./MiniFooter";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { useEffect } from "react";
+import { getUserAction } from "../redux/actions";
+
 const SideProfile = () => {
+	const dispatch = useAppDispatch();
+	const profileInfo = useAppSelector((state) => state.profile.me);
+
+	useEffect(() => {
+		dispatch(getUserAction());
+	}, []);
+
 	return (
 		<>
 			<Container>
@@ -21,16 +32,16 @@ const SideProfile = () => {
 								/>
 								<img
 									className="fotoProfiloSide rounded-circle border border-white border-3 z-11 "
-									src="http://placekitten.com/200"
+									src={profileInfo.image}
 									alt="bg profilo"
 								/>
 							</div>
 							<Card.Body className="p-0 mt-4 ">
 								<Card.Title className="text-center px-2 fs-6">
-									PlaceNameProfile
+									{profileInfo.name} {profileInfo.surname}
 								</Card.Title>
 								<Card.Text className="text-center px-2 littleFont">
-									PlaceAboutProfile
+									{profileInfo.title}
 								</Card.Text>
 								<hr />
 								<div className=" px-3 d-flex  justify-content-between">

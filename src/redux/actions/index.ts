@@ -40,6 +40,7 @@ export const getUserAction = () => {
 			);
 			if (resp.ok) {
 				let response = await resp.json();
+				console.log("DATI RICEVUTI DA GET USER ACTION", response);
 				dispatch(setUser(response));
 			} else {
 				throw new Error(resp.status + ": " + resp.statusText);
