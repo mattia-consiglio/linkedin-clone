@@ -628,3 +628,20 @@ input:checked + .slider:before {
 		background-color: #d7e9fb;
 	}
 }
+.footer {
+	font-size: small;
+	margin-top: 30px; /* Modifica questo valore a seconda del margine desiderato */
+}
+.footerSettings {
+	display: flex;
+	justify-content: flex-start; /* Allinea i contenuti alla fine del contenitore */
+}
+
+.flexContainer {
+	display: flex;
+	align-items: center; /* Centra verticalmente gli elementi all'interno */
+}
+
+.flexContainer h5 {
+	margin-left: 5px; /* Aggiunge spazio tra l'icona e il testo */
+}

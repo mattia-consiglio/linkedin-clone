@@ -11,7 +11,6 @@ import { ErrorPage } from "./components/pages/ErrorPage";
 import { useEffect } from "react";
 import { getUserAction, getExperiencesAction } from "./redux/actions";
 import { useAppDispatch, useAppSelector } from "./redux/store";
-import SingleJob from "./components/SingleJob";
 
 function App() {
 	const dispatch = useAppDispatch();
@@ -32,6 +31,7 @@ function App() {
 						<Route path="/profile" element={<Profile />}></Route>
 						<Route path="/experiences" element={<ExperiencesPage />}></Route>
 						<Route path="/form" element={<FormComment />}></Route>
+						<Route path="/navjob" element={<NavJob />}></Route>{" "}
 						<Route path="/*" element={<ErrorPage />}></Route>
 					</Routes>
 				</main>
