@@ -51,7 +51,7 @@ const AsidePortrait = ({ label }: { label: "Collegati" | "Segui" }) => {
 						<h6 className="mb-0 ms-2">PlaceFirstLastName</h6>
 						<p className="mb-0 ms-2">placeJob</p>
 						<Button className="rounded-pill btn btn-light btn btn-outline-secondary border-2 mb-3 py-1 mt-3 customButton">
-							{label === "Collegati" ? plusIcon : userIcon}
+							{label === "Collegati" ? userIcon : plusIcon}
 							{label}
 						</Button>
 					</Col>

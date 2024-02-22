@@ -11,13 +11,16 @@ import Resources from "./Resources";
 
 import GridSystem from "./GridSystem";
 import { CardColWrapper } from "./CardColWrapper";
+import Footer from "./Footer";
+import CardWithPage from "./CardWithPage";
+import { buildingsIcon } from "../icons";
 
 const Profile = () => {
 	const [show, setShow] = useState(false);
 	const [inputValue, setInputValue] = useState("");
 	const [image, setImage] = useState<File | null>(null);
 	const dispatch = useAppDispatch();
-	const userId = useAppSelector((state) => state.profile.me._id);
+	const profileExp = useAppSelector((state) => state.profile.exp);
 
 	useEffect(() => {
 		console.log("inputValue", inputValue);
@@ -42,9 +45,13 @@ const Profile = () => {
 						<CardColWrapper>
 							<Resources />
 						</CardColWrapper>
-						<CardColWrapper>
-							<Experience />
-						</CardColWrapper>
+
+						<CardWithPage
+							title="Esperienza"
+							page="/experiences"
+							data={profileExp}
+							icon={buildingsIcon}
+						/>
 					</>
 				}
 				rightCol={
@@ -83,59 +90,7 @@ const Profile = () => {
 					</>
 				}
 			/>
-			{/* <Container>
-				<Row className="flex-column flex-md-row justify-content-center align-items-top py-3 g-2 mx-2">
-					<Col xs={12} lg={8} className="me-0 me-md-3">
-						<Row className=" flex-column g-2">
-							<Col className="border rounded-3 bg-white p-0">
-								<Resources />
-							</Col>
-							<Col className="border rounded-3 bg-white p-0"></Col>
-							<Col></Col>
-						</Row>
-					</Col>
-					<Col xs={12} lg={3} className="ms-0 ms-md-3 ">
-						<Row className="flex-column g-2 ">
-							<Col className="border rounded-3 bg-white">
-								Lingua del profilo
-							</Col>
-							<Col className="border rounded-3 bg-white px-3 ">
-								<h6 className="mt-3 ms-2">Altri profili consultati</h6>
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Segui" />
-								<hr />
-								<AsidePortrait label="Segui" />
-								<Button className="fw-semibold border-top border border-0 customButton w-100 ">
-									Mostra tutto
-								</Button>
-							</Col>
-							<Col className="border rounded-3 bg-white px-3">
-								<h6 className="mt-3 ms-2 mb-0">
-									Persone che potresti conoscere
-								</h6>
-								<p className=" ms-2 fs-6">Dal tuo settore</p>
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Collegati" />
-								<hr />
-								<AsidePortrait label="Collegati" />
-								<Button className="fw-semibold border-top border border-0 customButton w-100 ">
-									Mostra tutto
-								</Button>
-							</Col>
-						</Row>
-					</Col>
-				</Row>
-			</Container> */}
+			<Footer />
 			<Modal
 				show={show}
 				onHide={() => {
@@ -179,7 +134,7 @@ const Profile = () => {
 						variant="primary"
 						onClick={() => {
 							if (image) {
-								dispatch(setUserImageAction(userId, image));
+								dispatch(setUserImageAction(image));
 							}
 						}}
 					>

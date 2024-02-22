@@ -16,11 +16,10 @@ export const Profileinfo = ({
 }) => {
 	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
-	useEffect(() => {
-		dispatch(getUserAction("me"));
-		dispatch(getExperiencesAction(profileInfo._id));
-		// dispatch(getPostAction(profileInfo._id));
-	}, [profileInfo._id]);
+	// useEffect(() => {
+	// 	dispatch(getUserAction("me"));
+	// 	dispatch(getExperiencesAction(profileInfo._id));
+	// }, [profileInfo._id]);
 
 	// const handleAddExperience = () => {
 	// 	dispatch(postExperiencesAction(profileInfo._id));

@@ -75,6 +75,18 @@ const profileReducer = createSlice({
 		setExperiences: (state, action: PayloadAction<Experience[]>) => {
 			state.exp = action.payload;
 		},
+		addExperience: (state, action: PayloadAction<Experience>) => {
+			state.exp.push(action.payload);
+		},
+		editExperience: (state, action: PayloadAction<Experience>) => {
+			state.exp[state.exp.findIndex((exp) => exp._id === action.payload._id)] =
+				action.payload;
+		},
+		deleteExperience: (state, action: PayloadAction<Experience>) => {
+			state.exp.splice(
+				state.exp.findIndex((exp) => exp._id === action.payload._id),
+			);
+		},
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
 			state.currentProfileIndex = action.payload;
 		},
@@ -84,7 +96,14 @@ const profileReducer = createSlice({
 	},
 });
 
-export const { setUser, setUserImage, setExperiences, setPostProfile } =
-	profileReducer.actions;
+export const {
+	setUser,
+	setUserImage,
+	setExperiences,
+	setPostProfile,
+	addExperience,
+	editExperience,
+	deleteExperience,
+} = profileReducer.actions;
 
 export default profileReducer.reducer;
