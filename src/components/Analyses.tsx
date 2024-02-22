@@ -55,7 +55,10 @@ const Analyses = () => {
 							</Col>
 						</Row>
 					</Card.Body>
-					<Button className="fw-semibold border-top border border-0 customButton">
+					<Button
+						variant=""
+						className="fw-semibold border-top border border-0 customButton"
+					>
 						Mostra tutte le analisi <i className="bi bi-arrow-right"></i>
 					</Button>
 				</Card>

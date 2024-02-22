@@ -34,7 +34,10 @@ const Resources = () => {
 							</p>
 						</Col>
 					</Card.Body>
-					<Button className="fw-semibold border-top border border-0 customButton">
+					<Button
+						variant=""
+						className="fw-semibold border-top border border-0 customButton"
+					>
 						Mostra tutte le risorse ({Math.floor(Math.random() * 10)}){" "}
 						<i className="bi bi-arrow-right"></i>
 					</Button>
