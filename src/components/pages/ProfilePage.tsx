@@ -96,15 +96,27 @@ const Profile = () => {
 						<CardColWrapper>
 							<h6 className="mt-3 ms-2 mb-0">Persone che potresti conoscere</h6>
 							<p className=" ms-2 fs-6">Dal tuo settore</p>
-							<AsidePortrait label="Collegati" />
+							{profileInfo.map((AsideUsersProps) => {
+								return (
+									<div key={AsideUsersProps._id}>
+										<AsidePortrait
+											label="Collegati"
+											name={AsideUsersProps.name}
+											surname={AsideUsersProps.surname}
+											img={AsideUsersProps.image}
+											description={AsideUsersProps.bio}
+										/>
+										<hr />
+									</div>
+								);
+							})}
+							{/* <AsidePortrait label="Collegati" />
 							<hr />
 							<AsidePortrait label="Collegati" />
 							<hr />
 							<AsidePortrait label="Collegati" />
 							<hr />
-							<AsidePortrait label="Collegati" />
-							<hr />
-							<AsidePortrait label="Collegati" />
+							<AsidePortrait label="Collegati" /> */}
 							<Button className="fw-semibold border-top border border-0 customButton w-100 ">
 								Mostra tutto
 							</Button>

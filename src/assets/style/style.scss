@@ -655,3 +655,23 @@ input:checked + .slider:before {
 .flexContainer h5 {
 	margin-left: 5px; /* Aggiunge spazio tra l'icona e il testo */
 }
+
+.fsTextPost {
+	font-size: 1em;
+	font-weight: 400;
+}
+
+.cardGroupOptions {
+	right: 0;
+	min-width: 250px;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.post-options {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}

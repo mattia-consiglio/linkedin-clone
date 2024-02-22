@@ -28,7 +28,7 @@ export interface Experience {
 	__v: number;
 }
 
-export interface Comment {
+export interface Post {
 	text: string;
 	username: string;
 	createdAt: string;
