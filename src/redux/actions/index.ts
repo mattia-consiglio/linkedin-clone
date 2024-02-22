@@ -83,8 +83,42 @@ export const setUserImageAction = (image: File) => {
 		}
 	};
 };
+export const setExperienceImageAction = (image: File, experienceId: string) => {
+	return async (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id;
+		const currentProfileIndex = getState().profile.currentProfileIndex;
+		const bearerToken = getState().profile.tokens[currentProfileIndex];
+		const formData = new FormData();
+		formData.append("experience", image);
 
-export const getExperiencesAction = () => {
+		try {
+			let resp = await fetch(
+				`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${experienceId}/picture`,
+				{
+					method: "POST",
+					headers: {
+						//non aggiungere il Content-Type, viene aggiunto automaticamente
+						Authorization: "Bearer " + bearerToken,
+					},
+					body: formData,
+				},
+			);
+			if (resp.ok) {
+				let response = await resp.json();
+				console.log(response);
+				dispatch(editExperience(response));
+
+				// dispatch(getExperiencesAction(experienceId));
+			} else {
+				throw new Error(resp.status + ": " + resp.statusText);
+			}
+		} catch (error: any) {
+			dispatch(setErrorStatus(error.toString()));
+		}
+	};
+};
+
+export const getExperiencesAction = (experienceId?: string) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
 		const currentProfileIndex = getState().profile.currentProfileIndex;
@@ -95,7 +129,8 @@ export const getExperiencesAction = () => {
 		fetch(
 			"https://striveschool-api.herokuapp.com/api/profile/" +
 				userId +
-				"/experiences",
+				"/experiences/" +
+				(experienceId ? experienceId : ""),
 			{
 				method: "GET",
 				headers: {
@@ -115,7 +150,11 @@ export const getExperiencesAction = () => {
 				}
 			})
 			.then((data) => {
-				dispatch(setExperiences(data));
+				if (experienceId) {
+					dispatch(editExperience(data));
+				} else {
+					dispatch(setExperiences(data));
+				}
 			})
 			.catch((error: any) => {
 				dispatch(setErrorStatus(error.toString()));
@@ -126,14 +165,17 @@ export const getExperiencesAction = () => {
 	};
 };
 
-export const postExperiencesAction = (data: {
-	role: string;
-	company: string;
-	startDate: string;
-	endDate: string;
-	description: string;
-	area: string;
-}) => {
+export const postExperiencesAction = (
+	data: {
+		role: string;
+		company: string;
+		startDate: string;
+		endDate: string;
+		description: string;
+		area: string;
+	},
+	image?: File,
+) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
 
@@ -163,6 +205,9 @@ export const postExperiencesAction = (data: {
 			})
 			.then((data) => {
 				dispatch(addExperience(data));
+				if (image) {
+					dispatch(setExperienceImageAction(image, data._id));
+				}
 				alert("Esperienza aggiunta con successo!");
 			})
 			.catch((err) => {
@@ -181,6 +226,7 @@ export const putExperiencesAction = (
 		area: string;
 	},
 	idExeperience: string,
+	image?: File,
 ) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
@@ -213,6 +259,9 @@ export const putExperiencesAction = (
 			})
 			.then((data) => {
 				dispatch(editExperience({ ...data, ...formData }));
+				if (image) {
+					dispatch(setExperienceImageAction(image, idExeperience));
+				}
 				alert("Esperienza modificata correttamente");
 			})
 			.catch((err) => {
@@ -256,6 +305,7 @@ export const deleteExperiencesAction = (
 			.then((resp) => {
 				if (resp.ok) {
 					dispatch(deleteExperience(idExeperience));
+					alert("Esperienza eliminata correttamente");
 				} else {
 					throw new Error("DATI NON INVIATI AL SERVER, PUT EXP");
 				}

@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { User, Experience, Comment } from "../../intefaces";
-// import { SET_USER, SET_USER_IMAGE } from "../actions";
 
 export interface Profile {
 	me: User;
@@ -79,14 +78,16 @@ const profileReducer = createSlice({
 			state.exp.push(action.payload);
 		},
 		editExperience: (state, action: PayloadAction<Experience>) => {
-			state.exp[state.exp.findIndex((exp) => exp._id === action.payload._id)] =
-				action.payload;
+			const index = state.exp.findIndex(
+				(exp) => exp._id === action.payload._id,
+			);
+
+			state.exp[index] = action.payload;
 		},
 		deleteExperience: (state, action: PayloadAction<string>) => {
-			console.log(action.payload);
-			state.exp.splice(
-				state.exp.findIndex((exp) => exp._id === action.payload, 1),
-			);
+			const index = state.exp.findIndex((exp) => exp._id === action.payload);
+
+			state.exp.splice(index, 1);
 		},
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
 			state.currentProfileIndex = action.payload;
