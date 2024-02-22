@@ -12328,6 +12328,26 @@ input:checked + .slider:before {
   position: fixed;
   font-size: 0.7em;
 }
+@media screen and (max-width: 1300px) {
+  .fotterErrorPage {
+    font-size: 0.6em;
+  }
+}
+@media screen and (max-width: 1110px) {
+  .fotterErrorPage {
+    font-size: 0.52em;
+  }
+}
+@media screen and (max-width: 785px) {
+  .fotterErrorPage {
+    font-size: 0.55em;
+  }
+}
+@media screen and (max-width: 500px) {
+  .fotterErrorPage {
+    font-size: 0.45em;
+  }
+}
 
 .col2ShortFooter {
   width: 12%;

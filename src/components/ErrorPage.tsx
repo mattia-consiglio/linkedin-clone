@@ -2,8 +2,8 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const ErrorPage = () => (
-	<Container className="bg-white">
-		<Row className="flex-column">
+	<Container className="bg-white ">
+		<Row className="flex-column justify-content-center align-items-center">
 			<Col>
 				<Row className="errorPage BgPage">
 					<Col>

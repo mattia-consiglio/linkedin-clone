@@ -455,6 +455,18 @@ input:checked + .slider:before {
 	bottom: 15px;
 	position: fixed;
 	font-size: 0.7em;
+	@media screen and (max-width: 1300px) {
+		font-size: 0.6em;
+	}
+	@media screen and (max-width: 1110px) {
+		font-size: 0.52em;
+	}
+	@media screen and (max-width: 785px) {
+		font-size: 0.55em;
+	}
+	@media screen and (max-width: 500px) {
+		font-size: 0.45em;
+	}
 }
 
 .col2ShortFooter {
