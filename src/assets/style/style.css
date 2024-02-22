@@ -12005,7 +12005,7 @@ textarea.form-control-lg {
   color: grey;
 }
 
-.BgPage {
+body {
   background-color: #f4f2ee;
 }
 
@@ -12275,11 +12275,11 @@ i:hover {
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: #01754f;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px #01754f;
 }
 
 input:checked + .slider:before {
@@ -12317,6 +12317,158 @@ input:checked + .slider:before {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
+}
+
+/* Posts.css */
+.custom-button {
+  background-color: white; /* Sfondo bianco */
+  color: black; /* Testo nero */
+  margin-right: 10px; /* Margine a destra per separare i bottoni */
+}
+
+/* style.scss */
+/* style.scss */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  width: 400px;
+  background-color: rgb(248, 243, 243);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.card-footer {
+  margin-top: 10px;
+}
+
+/* style.scss */
+.card {
+  width: 800px;
+  margin-top: 20px;
+}
+
+/* style.scss */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn-no-border {
+  border: none;
+}
+
+.btn-like.liked {
+  color: rgb(34, 34, 158);
+}
+
+.btn-icon-extra-small svg {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-one {
+  background-color: rgb(248, 243, 243);
+  color: #000;
+}
+
+.btn-one .icon-container {
+  color: blue;
+}
+
+.btn-two {
+  color: #000;
+}
+
+.btn-two .icon-container {
+  color: rgb(225, 158, 13);
+}
+
+.btn-three {
+  color: #000;
+}
+
+.btn-three .icon-container {
+  color: rgb(244, 73, 6);
+}
+
+.btn-modal svg {
+  width: 20px;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+}
+.icon-button:hover {
+  background-color: #ebebeb;
+}
+.icon-button.large-icon {
+  width: 48px;
+  height: 48px;
+}
+.icon-button.large-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.col-with-icon {
+  flex-grow: 0;
+}
+.col-with-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.fs-12px {
+  font-size: 12px;
+}
+
+.fs-14px {
+  font-size: 14px;
+}
+
+.text-low-enpahsis {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.sky-blue-modal-section {
+  background-color: #edf3f8;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 20px;
+}
+
+.fixed-modal .modal-content {
+  max-height: 90vh;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+}
+.fixed-modal .modal-content .modal-body {
+  padding-top: 0;
+  overflow-x: hidden;
 }
 
 .errorPage {
