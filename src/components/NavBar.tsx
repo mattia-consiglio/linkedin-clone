@@ -36,9 +36,9 @@ const Navbar = () => {
 	return (
 		<nav className={`navbar`}>
 			<div className="container">
-				<div className="d-flex align-items-center">
+				<div className="d-flex align-items-center flex-nowrap ">
 					{isErrorPage ? <h4 className="text-primary fw-bold">Linked</h4> : ""}
-					<Link to="/" className="navbar-brand text-primary">
+					<Link to="/" className="navbar-brand text-primary m-0">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
