@@ -2,9 +2,9 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const ErrorPage = () => (
-	<Container className="bg-white ">
-		<Row className="flex-column justify-content-center align-items-center">
-			<Col>
+	<Container className="">
+		<Row className="flex-column justify-content-center align-items-center ">
+			<Col className="">
 				<Row className="errorPage BgPage">
 					<Col>
 						<Row className="justify-content-center text-center mt-5">
@@ -36,7 +36,7 @@ export const ErrorPage = () => (
 					</Col>
 				</Row>
 			</Col>
-			<Col className="fotterErrorPage">
+			<Col className="fotterErrorPage bg-white py-4">
 				<Row className="text-center justify-content-center align-items-center text-secondary m-0 fw-bold">
 					<Col className="px-0" xs={1}>
 						Contratto di licenza

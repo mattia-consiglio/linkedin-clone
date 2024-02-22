@@ -23,7 +23,7 @@ const FormComment = (
 	const [text, setText] = useState("");
 
 	useEffect(() => {
-		dispatch(getUserAction("me"));
+		dispatch(getUserAction());
 		dispatch(getPostAction(profileInfo._id));
 	}, [profileInfo._id]);
 

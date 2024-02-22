@@ -1,4 +1,3 @@
-// App.tsx
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./components/pages/ProfilePage";
@@ -32,6 +31,7 @@ function App() {
 						<Route path="/profile" element={<Profile />}></Route>
 						<Route path="/experiences" element={<ExperiencesPage />}></Route>
 						<Route path="/form" element={<FormComment />}></Route>
+
 						<Route path="/*" element={<ErrorPage />}></Route>
 					</Routes>
 				</main>

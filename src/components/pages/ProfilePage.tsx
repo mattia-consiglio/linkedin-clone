@@ -5,7 +5,7 @@ import AsidePortrait from "../AsidePortrait";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { setUserImageAction } from "../../redux/actions";
+import { getAllUserAction, setUserImageAction } from "../../redux/actions";
 import Analyses from "../Analyses";
 import Resources from "../Resources";
 
@@ -21,6 +21,14 @@ const Profile = () => {
 	const [image, setImage] = useState<File | null>(null);
 	const dispatch = useAppDispatch();
 	const profileExp = useAppSelector((state) => state.profile.exp);
+	const profileInfo = useAppSelector((state) => state.profile.allUsers);
+
+	useEffect(() => {
+		if (getAllUserAction.length > 0) {
+			return;
+		}
+		dispatch(getAllUserAction());
+	}, []);
 
 	useEffect(() => {
 		console.log("inputValue", inputValue);
@@ -58,7 +66,21 @@ const Profile = () => {
 					<>
 						<CardColWrapper>
 							<h6 className="mt-3 ms-2">Altri profili consultati</h6>
-							<AsidePortrait label="Collegati" />
+							{profileInfo.map((AsideUsersProps) => {
+								return (
+									<div key={AsideUsersProps._id}>
+										<AsidePortrait
+											label="Collegati"
+											name={AsideUsersProps.name}
+											surname={AsideUsersProps.surname}
+											img={AsideUsersProps.image}
+											description={AsideUsersProps.bio}
+										/>
+										<hr />
+									</div>
+								);
+							})}
+							{/* <AsidePortrait label="Collegati" />
 							<hr />
 							<AsidePortrait label="Collegati" />
 							<hr />
@@ -66,7 +88,7 @@ const Profile = () => {
 							<hr />
 							<AsidePortrait label="Segui" />
 							<hr />
-							<AsidePortrait label="Segui" />
+							<AsidePortrait label="Segui" /> */}
 							<Button className="fw-semibold border-top border border-0 customButton w-100 ">
 								Mostra tutto
 							</Button>
