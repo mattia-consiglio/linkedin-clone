@@ -464,10 +464,10 @@ input:checked + .slider:before {
 
 .card {
 	// width: 400px;
-	background-color: rgb(248, 243, 243);
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
-	padding: 20px;
+	// background-color: rgb(248, 243, 243);
+	// border-radius: 8px;
+	// box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
+	// padding: 20px;
 }
 
 .card-header {
@@ -488,8 +488,8 @@ input:checked + .slider:before {
 /* style.scss */
 
 .card {
-	width: 800px;
-	margin-top: 20px;
+	// width: 800px;
+	// margin-top: 20px;
 }
 /* style.scss */
 
@@ -510,12 +510,12 @@ input:checked + .slider:before {
 	height: 24px;
 }
 .btn-one {
-	background-color: rgb(248, 243, 243);
-	color: #000;
+	// background-color: rgb(248, 243, 243);
+	// color: #000;
 }
 
 .btn-one .icon-container {
-	color: blue;
+	color: #378fe9;
 }
 .btn-two {
 	color: #000;
@@ -594,4 +594,30 @@ input:checked + .slider:before {
 		padding-top: 0;
 		overflow-x: hidden;
 	}
+}
+
+.errorPage {
+	height: 88.5vh;
+}
+
+.fotterErrorPage {
+	bottom: 15px;
+	position: fixed;
+	font-size: 0.7em;
+	@media screen and (max-width: 1300px) {
+		font-size: 0.6em;
+	}
+	@media screen and (max-width: 1110px) {
+		font-size: 0.52em;
+	}
+	@media screen and (max-width: 785px) {
+		font-size: 0.55em;
+	}
+	@media screen and (max-width: 500px) {
+		font-size: 0.45em;
+	}
+}
+
+.col2ShortFooter {
+	width: 12%;
 }
