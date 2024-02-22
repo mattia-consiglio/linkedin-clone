@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./components/ProfilePage";
 import NavBar from "./components/NavBar";
 import ExperiencesPage from "./components/ExperiencesPage";
+import JobsCardLeft from "./components/JobsCardLeft";
+import JobsCardCenter from "./components/JobsCardCenter";
+import JobsCardRight from "./components/JobsCardRight";
 
 function App() {
 	return (
