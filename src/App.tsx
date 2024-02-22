@@ -1,14 +1,14 @@
 // App.tsx
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Profile from "./components/ProfilePage";
+import Profile from "./components/pages/ProfilePage";
 import NavBar from "./components/NavBar";
-import ExperiencesPage from "./components/ExperiencesPage";
+import ExperiencesPage from "./components/pages/ExperiencesPage";
 import Posts from "./components/Posts";
 import SideProfile from "./components/SideProfile";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/pages/HomePage";
 import FormComment from "./components/FromCommentProva";
-import { ErrorPage } from "./components/ErrorPage";
+import { ErrorPage } from "./components/pages/ErrorPage";
 import { useEffect } from "react";
 import { getUserAction, getExperiencesAction } from "./redux/actions";
 import { useAppDispatch, useAppSelector } from "./redux/store";

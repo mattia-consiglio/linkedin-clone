@@ -245,7 +245,7 @@ export const deleteExperiencesAction = (
 				"/experiences/" +
 				idExeperience,
 			{
-				method: "PUT",
+				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${bearerToken}`,
@@ -255,15 +255,12 @@ export const deleteExperiencesAction = (
 		)
 			.then((resp) => {
 				if (resp.ok) {
-					return resp.json();
+					dispatch(deleteExperience(idExeperience));
 				} else {
 					throw new Error("DATI NON INVIATI AL SERVER, PUT EXP");
 				}
 			})
-			.then((data) => {
-				dispatch(deleteExperience(data));
-				alert("Esperienza elimentata correttamente");
-			})
+
 			.catch((err) => {
 				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE EXP", err);
 			});
@@ -353,10 +350,6 @@ export const deleteCommentsAction = (id: string) => {
 					throw new Error("RESPONSE NOT OK FROM DELETE COMMENT");
 				}
 			})
-			// .then((data) => {
-			// 	console.log("DELETED COMMENT", data);
-			// 	// dispatch(getPostAction(id));
-			// })
 			.catch((err) => {
 				console.log("ERRORE NEL CONTATTARE IL SERVER, DELETE COMMENT", err);
 			});

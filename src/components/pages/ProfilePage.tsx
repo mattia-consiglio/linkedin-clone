@@ -1,19 +1,19 @@
 import { Container, Row, Col, Modal, Form } from "react-bootstrap";
-import { Profileinfo } from "./Profileinfo";
-import Experience from "./Experience";
-import AsidePortrait from "./AsidePortrait";
+import { Profileinfo } from "../Profileinfo";
+import Experience from "../Experience";
+import AsidePortrait from "../AsidePortrait";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-import { setUserImageAction } from "../redux/actions";
-import Analyses from "./Analyses";
-import Resources from "./Resources";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { setUserImageAction } from "../../redux/actions";
+import Analyses from "../Analyses";
+import Resources from "../Resources";
 
-import GridSystem from "./GridSystem";
-import { CardColWrapper } from "./CardColWrapper";
-import Footer from "./Footer";
-import CardWithPage from "./CardWithPage";
-import { buildingsIcon } from "../icons";
+import GridSystem from "../GridSystem";
+import { CardColWrapper } from "../CardColWrapper";
+import Footer from "../Footer";
+import CardWithPage from "../CardWithPage";
+import { buildingsIcon } from "../../icons";
 
 const Profile = () => {
 	const [show, setShow] = useState(false);
