@@ -435,3 +435,91 @@ input:checked + .slider:before {
 	padding: 10px;
 	margin: 10px;
 }
+/* Posts.css */
+.custom-button {
+	background-color: white; /* Sfondo bianco */
+	color: black; /* Testo nero */
+	margin-right: 10px; /* Margine a destra per separare i bottoni */
+}
+/* style.scss */
+
+/* style.scss */
+.center-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.card {
+	width: 400px;
+	background-color: rgb(248, 243, 243);
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
+	padding: 20px;
+}
+
+.card-header {
+	display: flex;
+	align-items: center;
+}
+
+.profile-image {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.card-footer {
+	margin-top: 10px;
+}
+/* style.scss */
+
+.card {
+	width: 800px;
+	margin-top: 20px;
+}
+/* style.scss */
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+.btn-no-border {
+	border: none;
+}
+.btn-like.liked {
+	color: rgb(34, 34, 158);
+}
+.btn-icon-extra-small svg {
+	width: 24px;
+	height: 24px;
+}
+.btn-one {
+	background-color: rgb(248, 243, 243);
+	color: #000;
+}
+
+.btn-one .icon-container {
+	color: blue;
+}
+.btn-two {
+	color: #000;
+}
+
+.btn-two .icon-container {
+	color: rgb(225, 158, 13);
+}
+.btn-three {
+	color: #000;
+}
+
+.btn-three .icon-container {
+	color: rgb(244, 73, 6);
+}
+.btn-modal svg {
+	width: 20px;
+}
