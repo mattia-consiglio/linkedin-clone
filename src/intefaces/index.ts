@@ -8,8 +8,8 @@ export interface User {
 	bio: string;
 	area: string;
 	image: string;
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: string;
+	updatedAt: string;
 	__v: number;
 }
 
@@ -23,5 +23,16 @@ export interface Experience {
 	area: string;
 	username: string;
 	image: string;
+	createdAt: string;
+	updatedAt: string;
 	__v: number;
+}
+
+export interface Comment {
+	text: string;
+	username: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+	_id: string;
 }

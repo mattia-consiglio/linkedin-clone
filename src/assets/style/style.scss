@@ -110,14 +110,14 @@ $font-family-sans-serif:
 	color: grey;
 }
 
-.BgPage {
+body {
 	background-color: #f4f2ee;
 }
 
 header {
 	position: sticky;
 	top: 0;
-	z-index: 9000;
+	z-index: 800;
 }
 
 .navbar {
@@ -185,12 +185,23 @@ header {
 	margin-top: -112px;
 	width: 152px;
 	height: 152px;
+	cursor: pointer;
 	@media screen and (max-width: 1200px) {
 		max-width: 100%;
 		min-width: 50px;
 		height: auto;
 		margin-top: -5em;
 	}
+}
+.fotoProfiloSide {
+	position: relative;
+	margin-top: -45px;
+	width: 72px;
+	height: 72px;
+}
+
+.littleFont {
+	font-size: 12px;
 }
 
 .text-primary-linkedin-a {
@@ -391,11 +402,11 @@ i {
 }
 
 input:checked + .slider {
-	background-color: #2196f3;
+	background-color: #01754f;
 }
 
 input:focus + .slider {
-	box-shadow: 0 0 1px #2196f3;
+	box-shadow: 0 0 1px #01754f;
 }
 
 input:checked + .slider:before {
@@ -522,4 +533,65 @@ input:checked + .slider:before {
 }
 .btn-modal svg {
 	width: 20px;
+}
+
+.icon-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border-radius: 50%;
+
+	&:hover {
+		background-color: #ebebeb;
+	}
+
+	&.large-icon {
+		width: 48px;
+		height: 48px;
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.col-with-icon {
+	flex-grow: 0;
+	svg {
+		width: 48px;
+		height: 48px;
+	}
+}
+
+.fs-12px {
+	font-size: 12px;
+}
+
+.fs-14px {
+	font-size: 14px;
+}
+
+.text-low-enpahsis {
+	color: rgb(0 0 0/0.9);
+}
+
+.sky-blue-modal-section {
+	background-color: #edf3f8;
+	margin-left: -20px;
+	margin-right: -20px;
+	padding: 20px;
+}
+
+.fixed-modal .modal-content {
+	max-height: 90vh;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 0;
+
+	.modal-body {
+		padding-top: 0;
+		overflow-x: hidden;
+	}
 }

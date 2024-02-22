@@ -1,17 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Experience from "./Experience";
-import "../assets/style/style.scss";
+
+import GridSystem from "./GridSystem";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { buildingsIcon } from "../icons";
+import CardWithPage from "./CardWithPage";
 
 const ExperiencesPage = () => {
+	const profileExp = useAppSelector((state) => state.profile.exp);
 	return (
-		<div className="experiences-page">
-			<div className="small-experience">
-				<Experience />
-			</div>
-		</div>
+		<GridSystem
+			colsNumber={2}
+			leftCol={
+				<>
+					<CardWithPage
+						title="Esperienza"
+						page="/experiences"
+						data={profileExp}
+						icon={buildingsIcon}
+					/>
+				</>
+			}
+			rightCol={<></>}
+		/>
 	);
 };
 
