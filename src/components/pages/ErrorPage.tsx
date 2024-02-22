@@ -36,7 +36,7 @@ export const ErrorPage = () => (
 					</Col>
 				</Row>
 			</Col>
-			<Col className="fotterErrorPage bg-white">
+			<Col className="fotterErrorPage bg-white py-4">
 				<Row className="text-center justify-content-center align-items-center text-secondary m-0 fw-bold">
 					<Col className="px-0" xs={1}>
 						Contratto di licenza
