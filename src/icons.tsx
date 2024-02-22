@@ -170,3 +170,111 @@ export const coccasioneIcon = (
 		<path d="M22 11.1L20.47 10a1.09 1.09 0 01-.4-1.25l.62-1.81a1.11 1.11 0 00-.7-1.4 1.07 1.07 0 00-.35-.06h-2a1.09 1.09 0 01-1.05-.76l-.59-2A1.09 1.09 0 0015 2a1.11 1.11 0 00-.66.22l-1.69 1.17a1.13 1.13 0 01-1.31 0L9.75 2.22a1.11 1.11 0 00-1.55.16 1.07 1.07 0 00-.2.38L7.41 4.7a1.09 1.09 0 01-1 .76h-2a1.11 1.11 0 00-1.16 1.06 1.34 1.34 0 00.06.4l.63 1.82a1.1 1.1 0 01-.4 1.26L2 11.11a1.1 1.1 0 00-.26 1.53 1.28 1.28 0 00.26.26L3.53 14a1.09 1.09 0 01.4 1.25l-.62 1.8a1.11 1.11 0 00.7 1.4 1.07 1.07 0 00.35.06h2a1.09 1.09 0 011 .76l.64 2a1.12 1.12 0 001.1.73 1.05 1.05 0 00.64-.22l1.6-1.17a1.1 1.1 0 011.31 0l1.6 1.17a1.14 1.14 0 001.75-.55l.62-1.93a1.11 1.11 0 011.05-.76h2a1.11 1.11 0 001.11-1.11 1 1 0 00-.06-.35l-.63-1.82a1.11 1.11 0 01.38-1.26L22 12.89a1.07 1.07 0 00.5-.89 1.1 1.1 0 00-.5-.9zM7 11v-1h10v1zm2 3v-1h6v1z"></path>
 	</svg>
 );
+
+export const curvedRightArrow = (
+	<>
+		<svg
+			className=" fs-3 mb-3 me-2 "
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			id="share-linkedin-medium"
+			aria-hidden="true"
+			role="none"
+			data-supported-dps="24x24"
+			fill="currentColor"
+			width="24"
+			height="24"
+		>
+			<path d="M23 12l-4.61 7H16l4-6H8a3.92 3.92 0 00-4 3.84V17a4 4 0 00.19 1.24L5.12 21H3l-.73-2.22A6.4 6.4 0 012 16.94 6 6 0 018 11h12l-4-6h2.39z"></path>
+		</svg>
+	</>
+);
+
+export const jobBag = (
+	<>
+		{" "}
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			data-supported-dps="24x24"
+			fill="currentColor"
+			className="mercado-match"
+			width="24"
+			height="24"
+			focusable="false"
+		>
+			<path d="M17 6V5a3 3 0 00-3-3h-4a3 3 0 00-3 3v1H2v4a3 3 0 003 3h14a3 3 0 003-3V6zM9 5a1 1 0 011-1h4a1 1 0 011 1v1H9zm10 9a4 4 0 003-1.38V17a3 3 0 01-3 3H5a3 3 0 01-3-3v-4.38A4 4 0 005 14z"></path>
+		</svg>{" "}
+	</>
+);
+
+export const workPlaceDip = (
+	<>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			data-supported-dps="24x24"
+			fill="currentColor"
+			className="mercado-match"
+			width="24"
+			height="24"
+			focusable="false"
+		>
+			<path d="M4 2v20h16V2zm14 18h-4v-2h-4v2H6V4h12zm-7-8H8v-2h3zm0 4H8v-2h3zm5-4h-3v-2h3zm-5-4H8V6h3zm5 0h-3V6h3zm0 8h-3v-2h3z"></path>
+		</svg>{" "}
+	</>
+);
+
+export const verifiedCandidate = (
+	<>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			id="responsive-medium"
+			aria-hidden="true"
+			role="none"
+			data-supported-dps="24x24"
+			fill="currentColor"
+			width="24"
+			height="24"
+		>
+			<path d="M20.77 10H18.7a6.91 6.91 0 01.3 2 7 7 0 11-7-7l-2 3h2.37L15 4l-2.63-4H10l2 3a9 9 0 109 9 8.76 8.76 0 00-.23-2z"></path>
+			<path d="M9.41 10.59L8 12l4 4 7.52-10H17l-5.2 7-2.39-2.41z"></path>
+		</svg>{" "}
+	</>
+);
+
+export const lampIcon = (
+	<>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			id="lightbulb-medium"
+			aria-hidden="true"
+			role="none"
+			data-supported-dps="24x24"
+			fill="currentColor"
+			width="24"
+			height="24"
+		>
+			<path d="M10 20h4v.1a1.9 1.9 0 01-1.9 1.9h-.2a1.9 1.9 0 01-1.9-1.9zm4.68-14.47A1 1 0 0016 5l.76-1.85a1 1 0 00-.54-1.3 1 1 0 00-1.31.54l-.76 1.85a1 1 0 00.53 1.29zm5.09 4.33l1.85-.76a1 1 0 00.54-1.31 1 1 0 00-1.3-.54L19 8a1 1 0 00-.54 1.31 1 1 0 001.3.55zM4.23 14.14l-1.85.76a1 1 0 00-.54 1.31 1 1 0 001.3.54L5 16a1 1 0 00.54-1.31 1 1 0 00-1.3-.55zm17.39.76l-1.85-.76A1 1 0 0019 16l1.85.76a1 1 0 00.78-1.86zM5 8l-1.86-.75a1 1 0 00-1.3.54 1 1 0 00.54 1.31l1.85.76A1 1 0 005 8zm3-3a1 1 0 001.31.54 1 1 0 00.54-1.3L9.1 2.38a1 1 0 00-1.31-.54 1 1 0 00-.54 1.3zm9 6.91V12a5.48 5.48 0 01-1.61 3.88l-.07.08a3.94 3.94 0 00-1.08 1.94L14 19h-4l-.24-1.08A4 4 0 008.68 16l-.07-.07A5.51 5.51 0 017 12v-.1A4.9 4.9 0 0111.9 7h.2a4.9 4.9 0 014.9 4.9zm-2 0A2.9 2.9 0 0012.11 9h-.21A2.9 2.9 0 009 11.9v.1a3.47 3.47 0 001 2.47l.08.08a5.92 5.92 0 011.5 2.45h.84a6 6 0 011.48-2.44l.08-.07A3.48 3.48 0 0015 12z"></path>
+		</svg>{" "}
+	</>
+);
+
+export const smallLinkedIn = (
+	<>
+		<svg
+			className="pb-1"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			data-supported-dps="24x24"
+			fill="currentColor"
+			width="22"
+			height="22"
+			focusable="false"
+		>
+			<path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+		</svg>{" "}
+	</>
+);
