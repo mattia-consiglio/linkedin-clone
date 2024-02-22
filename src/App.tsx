@@ -31,7 +31,7 @@ function App() {
 						<Route path="/profile" element={<Profile />}></Route>
 						<Route path="/experiences" element={<ExperiencesPage />}></Route>
 						<Route path="/form" element={<FormComment />}></Route>
-						<Route path="/navjob" element={<NavJob />}></Route>{" "}
+
 						<Route path="/*" element={<ErrorPage />}></Route>
 					</Routes>
 				</main>
