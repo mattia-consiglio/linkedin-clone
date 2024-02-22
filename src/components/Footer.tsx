@@ -4,68 +4,71 @@ import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { faShieldAlt } from "@fortawesome/free-solid-svg-icons";
 import { Col, Container, Row } from "react-bootstrap";
+import "../assets/style/style.scss"; // Importa il file CSS per le personalizzazioni
 
 const MyFooter = () => {
 	return (
-		<footer className="footer">
+		<footer className="footer ">
 			<Container className=" text-md-left">
 				<Row>
-					<Col md={2}>
-						<ul className="list-unstyled">
-							<li className="list-unstyled">Informazioni</li>
-							<li>Linee guida della community</li>
-							<select>
-								<option>Privacy e condizioni</option>
-								<option>Informativa sulla privacy</option>
-								<option>Contratto di licenza</option>
-								<option>Termini e condizioni delle pagine</option>
-								<option>Informativa sui cookie</option>
-								<option>Informativa sui copyright</option>
-							</select>
-							<li>Centro sicurezza</li>
+					<Col md={3}>
+						<ul className="list-unstyled mt-5">
+							<li className="list-unstyled small mb-1">Informazioni</li>
+							<li className="small mb-1">Linee guida della community</li>
+							<li className="small mb-4">Privacy</li>
+							<li className="small mb-">Sales Solution </li>
+							<li className="small">Centro sicurezza</li>
 						</ul>
 					</Col>
 					<Col md={2}>
-						<ul className="list-unstyled">
-							<li>Accessibilità</li>
-							<li>Carriera</li>
-							<li>
+						<ul className="list-unstyled mt-5">
+							<li className="small mb-1">Accessibilità</li>
+							<li className="small mb-1">Carriera</li>
+							<li className="small mb-2">
 								Opzioni per gli annunci <br />
 								pubblicitari
 							</li>
-							<li>Mobile</li>
+							<li className="small">Mobile</li>
 						</ul>
 					</Col>
 					<Col md={2}>
-						<ul className="list-unstyled">
-							<li>Talent Solutions</li>
-							<li>Soluzioni di marketing</li>
-							<li>Pubblicità</li>
-							<li>Piccole imprese</li>
+						<ul className="list-unstyled mt-5">
+							<li className="small mb-1">Talent Solutions</li>
+							<li className="small mb-1">Soluzioni di marketing</li>
+							<li className="small mb-4">Pubblicità</li>
+							<li className="small">Piccole imprese</li>
 						</ul>
 					</Col>
 					<Col md={2}>
-						<div className="footerSettings">
-							<FontAwesomeIcon icon={faQuestionCircle} />
-							<h5 className="title">Domande?</h5>
+						<div className="footerSettings mt-4 ">
+							<div className="flexContainer ">
+								<FontAwesomeIcon icon={faQuestionCircle} />
+								<h5 className="title small mt-2">Domande?</h5>
+							</div>
 						</div>
-						<p className="inline-text">Visita il nostro Centro assistenza.</p>
-						<div className="footerSettings">
+						<p className="inline-text small mt-1">
+							Visita il nostro Centro assistenza.
+						</p>
+						<div className="flexContainer">
 							<FontAwesomeIcon icon={faCog} />
-							<h5 className="title">
+							<h5 className="title small mb-1 mt-auto ">
 								Gestisci il tuo account e la tua privacy
 							</h5>
 						</div>
-						<p>Vai alle impostazioni</p>
-						<div className="footerSettings">
+						<p className="small">Vai alle impostazioni</p>
+						<div className="flexContainer">
 							<FontAwesomeIcon icon={faShieldAlt} />
-							<h5 className="title">Trasparenza sui contenuti consigliati</h5>
+							<h5 className="title small mt-auto">
+								Trasparenza sui contenuti consigliati
+							</h5>
 						</div>
-						<p>Scopri di più sui contenuti consigliati</p>
+						<p className="small mt-auto">
+							Scopri di più sui contenuti consigliati
+						</p>
 					</Col>
-					<Col md={2}>
-						<p>Seleziona una lingua</p>
-						<select>
+					<Col md={3}>
+						<p className="small mt-4">Seleziona una lingua</p>
+						<select className="form-select form-select-sm">
 							<option value="English">Italiano(italiano) </option>
 							<option value="Italian">Italian</option>
 							<option value="Spanish">Spanish</option>
@@ -90,7 +93,9 @@ const MyFooter = () => {
 				</Row>
 			</Container>
 
-			<Container fluid>&copy; {new Date().getFullYear()} LinkedIn</Container>
+			<Container fluid className="small  mx-3 mb-3">
+				&copy; {new Date().getFullYear()} LinkedIn Corporation
+			</Container>
 		</footer>
 	);
 };
