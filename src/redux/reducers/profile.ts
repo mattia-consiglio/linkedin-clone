@@ -8,6 +8,7 @@ export interface Profile {
 	currentProfileIndex: number;
 	exp: Experience[];
 	post: Comment[];
+	allUsers: User[];
 }
 
 const initialState: Profile = {
@@ -59,6 +60,7 @@ const initialState: Profile = {
 			_id: "",
 		},
 	],
+	allUsers: [],
 };
 
 const profileReducer = createSlice({
@@ -94,6 +96,9 @@ const profileReducer = createSlice({
 		setPostProfile: (state, action: PayloadAction<Comment[]>) => {
 			state.post = action.payload;
 		},
+		addUser: (state, action: PayloadAction<User>) => {
+			state.allUsers.push(action.payload);
+		},
 	},
 });
 
@@ -105,6 +110,7 @@ export const {
 	addExperience,
 	editExperience,
 	deleteExperience,
+	addUser,
 } = profileReducer.actions;
 
 export default profileReducer.reducer;

@@ -7,6 +7,7 @@ import {
 	setExperiences,
 	setUser,
 	setPostProfile,
+	addUser,
 } from "../reducers/profile";
 import { setErrorStatus, setLoadingStatus } from "../reducers/status";
 import { ImageProps } from "react-bootstrap";
@@ -387,5 +388,36 @@ export const putCommentsAction = (id: string, text: string) => {
 			.catch((err) => {
 				console.log("ERRORE NEL CONTATTARE IL SERVER, PUT COMMENT", err);
 			});
+	};
+};
+
+export const getAllUserAction = () => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const userId = getState().profile.me._id || "me";
+		const tokens = getState().profile.tokens;
+		dispatch(setLoadingStatus(true));
+
+		tokens.map(async (bearerToken) => {
+			console.log("BEARER", bearerToken);
+			return fetch(
+				"https://striveschool-api.herokuapp.com/api/profile/" + userId,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + bearerToken,
+					},
+				},
+			)
+				.then((resp) => {
+					if (!resp.ok) {
+						throw new Error(resp.status + ": " + resp.statusText);
+					}
+					return resp.json();
+				})
+				.then((data) => {
+					dispatch(addUser(data));
+				});
+		});
 	};
 };
