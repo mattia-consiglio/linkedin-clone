@@ -463,11 +463,11 @@ input:checked + .slider:before {
 }
 
 .card {
-	width: 400px;
-	background-color: rgb(248, 243, 243);
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
-	padding: 20px;
+	// width: 400px;
+	// background-color: rgb(248, 243, 243);
+	// border-radius: 8px;
+	// box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
+	// padding: 20px;
 }
 
 .card-header {
@@ -488,8 +488,8 @@ input:checked + .slider:before {
 /* style.scss */
 
 .card {
-	width: 800px;
-	margin-top: 20px;
+	// width: 800px;
+	// margin-top: 20px;
 }
 /* style.scss */
 
@@ -510,12 +510,12 @@ input:checked + .slider:before {
 	height: 24px;
 }
 .btn-one {
-	background-color: rgb(248, 243, 243);
-	color: #000;
+	// background-color: rgb(248, 243, 243);
+	// color: #000;
 }
 
 .btn-one .icon-container {
-	color: blue;
+	color: #378fe9;
 }
 .btn-two {
 	color: #000;

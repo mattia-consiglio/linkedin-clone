@@ -82,9 +82,10 @@ const profileReducer = createSlice({
 			state.exp[state.exp.findIndex((exp) => exp._id === action.payload._id)] =
 				action.payload;
 		},
-		deleteExperience: (state, action: PayloadAction<Experience>) => {
+		deleteExperience: (state, action: PayloadAction<string>) => {
+			console.log(action.payload);
 			state.exp.splice(
-				state.exp.findIndex((exp) => exp._id === action.payload._id),
+				state.exp.findIndex((exp) => exp._id === action.payload, 1),
 			);
 		},
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
