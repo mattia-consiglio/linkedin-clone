@@ -360,6 +360,11 @@ export const deleteCommentsAction = (id: string) => {
 
 export const putCommentsAction = (id: string, text: string) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
+		if (!id) {
+			console.error("ID del post non definito");
+			return;
+		}
+
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
 		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
@@ -382,7 +387,7 @@ export const putCommentsAction = (id: string, text: string) => {
 			})
 			.then((data) => {
 				console.log("COMMENT CHANGED DA PUT COMMENT", data);
-				alert("COMMENT PUT, REFRESH PAGE");
+				alert("COMMENT PUT");
 				dispatch(getPostAction(id));
 			})
 			.catch((err) => {

@@ -76,9 +76,9 @@ const Posts = () => {
 		dispatch(deleteCommentsAction(id));
 	};
 
-	const handleEditPost = (id: string, text: string) => {
-		dispatch(putCommentsAction(id, text));
-	};
+	// const handleEditPost = (id: string, text: string) => {
+	// 	dispatch(putCommentsAction(id, text));
+	// };
 
 	const handleCloseModal = () => {
 		setShowModal(false);
@@ -303,7 +303,7 @@ const Posts = () => {
 					return bDate - aDate;
 				})
 				.map((post) => {
-					return <SinglePost post={post} />;
+					return <SinglePost key={post._id} post={post} />;
 				})}
 		</div>
 	);

@@ -31,6 +31,9 @@ export interface Experience {
 export interface Post {
 	text: string;
 	username: string;
+	user: {
+		_id: string;
+	};
 	createdAt: string;
 	updatedAt: string;
 	__v: number;

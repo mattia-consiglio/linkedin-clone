@@ -54,6 +54,9 @@ const initialState: Profile = {
 		{
 			text: "",
 			username: "",
+			user: {
+				_id: "",
+			},
 			createdAt: new Date().toDateString(),
 			updatedAt: new Date().toDateString(),
 			__v: 0,

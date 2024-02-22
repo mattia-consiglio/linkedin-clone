@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import { likeIcon, commentIcon, arrowCircle, inviaIcon } from "../icons";
 import Comments from "./Comments";
@@ -9,7 +9,12 @@ import { MdBlockFlipped } from "react-icons/md";
 import { FaFlag } from "react-icons/fa6";
 import { Profileinfo } from "./Profileinfo";
 import { Post, User } from "../intefaces";
-import { useAppSelector } from "../redux/store";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+// import EditModal from "./ModalPostTextUpdate";
+import { deleteCommentsAction, putCommentsAction } from "../redux/actions";
+import Form from "react-bootstrap/Form";
+import { Modal, Button } from "react-bootstrap";
+import EditModal from "./ModalPostTextUpdate";
 
 interface PostProps {
 	post: Post;
@@ -20,6 +25,10 @@ const SinglePost = ({ post }: PostProps) => {
 	const [showPost, setShowPost] = useState(true);
 	const [showCommentSection, setShowCommentSection] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
+	const [isUserPost, setIsUserPost] = useState(false);
+	const userId = profileInfo._id;
+	const [showModal, setShowModal] = useState(false);
+	const dispatch = useAppDispatch();
 
 	const handleShowCommentSection = () => {
 		setShowCommentSection(true);
@@ -27,6 +36,16 @@ const SinglePost = ({ post }: PostProps) => {
 
 	const handleDeletePost = () => {
 		setShowPost(false);
+	};
+
+	useEffect(() => {
+		setIsUserPost(post.user._id === userId);
+	}, [post.user._id, userId]);
+
+	const handleClose = () => setShowModal(false);
+
+	const DeletePost = (id: string) => {
+		dispatch(deleteCommentsAction(id));
 	};
 
 	return (
@@ -57,6 +76,32 @@ const SinglePost = ({ post }: PostProps) => {
 									/>
 									{showMoreOptions && (
 										<ListGroup className="position-absolute cardGroupOptions">
+											{isUserPost && (
+												<>
+													<ListGroup.Item
+														onClick={() => setShowModal(true)}
+														className="mx-2"
+														action
+													>
+														<EditModal
+															show={showModal}
+															handleClose={handleClose}
+															postId={post._id}
+														/>{" "}
+														<MdSaveAlt className="mx-3" />
+														Modifica
+													</ListGroup.Item>
+													<ListGroup.Item
+														onClick={() => DeletePost(post._id)}
+														className="mx-2"
+														action
+													>
+														{" "}
+														<MdSaveAlt className="mx-3" />
+														Elimina
+													</ListGroup.Item>
+												</>
+											)}
 											<ListGroup.Item className="mx-2" action>
 												{" "}
 												<MdSaveAlt className="mx-3" />
