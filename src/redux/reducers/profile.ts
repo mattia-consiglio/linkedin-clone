@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User, Experience, Post } from "../../intefaces";
+import { User, Experience, Post, Comment } from "../../intefaces";
 // import { SET_USER, SET_USER_IMAGE } from "../actions";
 
 export interface Profile {
@@ -9,6 +9,7 @@ export interface Profile {
 	exp: Experience[];
 	post: Post[];
 	allUsers: User[];
+	comment: Comment[];
 }
 
 const initialState: Profile = {
@@ -64,6 +65,7 @@ const initialState: Profile = {
 		},
 	],
 	allUsers: [],
+	comment: [],
 };
 
 const profileReducer = createSlice({
@@ -102,6 +104,9 @@ const profileReducer = createSlice({
 		addUser: (state, action: PayloadAction<User>) => {
 			state.allUsers.push(action.payload);
 		},
+		setComment: (state, action: PayloadAction<Comment>) => {
+			state.comment.push(action.payload);
+		},
 	},
 });
 
@@ -114,6 +119,7 @@ export const {
 	editExperience,
 	deleteExperience,
 	addUser,
+	setComment,
 } = profileReducer.actions;
 
 export default profileReducer.reducer;
