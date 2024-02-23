@@ -233,15 +233,15 @@ header {
 }
 
 i {
-	// cursor: pointer;
-	// border-radius: 50%;
-	// transition:
-	// 	background-color 0.4s ease,
-	// 	padding 0.4s ease;
-	// &:hover {
-	// 	background-color: rgb(152, 152, 152) !important;
-	// 	padding: 0.5em;
-	// }
+	cursor: pointer;
+	border-radius: 50%;
+	transition:
+		background-color 0.4s ease,
+		padding 0.4s ease;
+	&:hover {
+		background-color: rgb(152, 152, 152) !important;
+		padding: 0.5em;
+	}
 }
 
 .bgLinkedin {
@@ -485,11 +485,13 @@ input:checked + .slider:before {
 .card-footer {
 	margin-top: 10px;
 }
+/* style.scss */
 
 .card {
 	// width: 800px;
 	// margin-top: 20px;
 }
+/* style.scss */
 
 .button-container {
 	display: flex;
@@ -631,17 +633,11 @@ input:checked + .slider:before {
 }
 
 .hoverColor {
-	cursor: pointer;
 	&:hover {
-		h6 {
-			text-decoration: underline;
-		}
-	}
-	&.active {
+		cursor: pointer;
 		background-color: #d7e9fb;
 	}
 }
-
 .footer {
 	font-size: small;
 	margin-top: 30px; /* Modifica questo valore a seconda del margine desiderato */
@@ -658,24 +654,6 @@ input:checked + .slider:before {
 
 .flexContainer h5 {
 	margin-left: 5px; /* Aggiunge spazio tra l'icona e il testo */
-}
-
-.company-logo {
-	width: 104px;
-	border-radius: 10px;
-	height: auto;
-}
-
-.grid-col-left {
-	width: 100%;
-	@media screen and (min-width: map.get($grid-breakpoints, "lg")) {
-		max-width: 225px;
-	}
-}
-
-.scroll-results {
-	max-height: calc(100vh - 123px); //altezza della pagina - altezza del header
-	overflow-x: hidden;
 }
 
 .fsTextPost {

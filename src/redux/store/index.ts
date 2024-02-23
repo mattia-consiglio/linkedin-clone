@@ -1,20 +1,39 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import profileReducer from "../reducers/profile";
 import statusReducer from "../reducers/status";
-import jobsReducer from "../reducers/jobs";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import searchReducer from "../reducers/search";
+
+// export interface RootState {
+// 	profile: Profile;
+// 	status: Status;
+// }
+
+// const rootStore = combineReducers({
+// 	profile: profileReducer,
+// 	status: statusReducer,
+// });
+
+// import statusReducer from "../reducers/status";
 
 const rootReducer = combineReducers({
 	profile: profileReducer,
 	status: statusReducer,
-	jobs: jobsReducer,
-	search: searchReducer,
 });
 
 export const store = configureStore({
 	reducer: rootReducer,
 });
+
+// const store = configureStore({
+// 	reducer: { profile: profileReducer, status: statusReducer },
+// });
+
+// const store = configureStore({
+// 	reducer: {
+// 		profile: profileReducer,
+// 		status: statusReducer,
+// 	},
+// });
 
 export default store;
 // Infer the `RootState` and `AppDispatch` types from the store itself

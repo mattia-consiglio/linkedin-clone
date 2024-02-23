@@ -7,20 +7,6 @@ import { Col } from "react-bootstrap";
  * @param children constuento JSX
  * @returns
  */
-export const CardColWrapper = ({
-	children,
-	className,
-}: {
-	children: React.ReactNode;
-	className?: string;
-}) => {
-	return (
-		<Col
-			className={
-				"border rounded-3 bg-white p-0" + (className ? " " + className : "")
-			}
-		>
-			{children}
-		</Col>
-	);
+export const CardColWrapper = ({ children }: { children: React.ReactNode }) => {
+	return <Col className="border rounded-3 bg-white p-0">{children}</Col>;
 };
