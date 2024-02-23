@@ -8,7 +8,7 @@ import {
 	// postPostAction,
 } from "../redux/actions";
 import { Button, Col, Row } from "react-bootstrap";
-
+import backgroundIMG from "../assets/img/background.png";
 export const Profileinfo = ({
 	setShow,
 }: {
@@ -30,15 +30,19 @@ export const Profileinfo = ({
 	// };
 
 	return (
-		<Row className="flex-column justify-content-center align-items-between">
-			<Col>
-				<img
-					className="rounded-top-3 w-100 z-1"
-					src="https://placekitten.com/400/100"
-					alt="bg profilo"
-				/>
+		<Row className="flex-column justify-content-center align-items-between  ">
+			<Col className="position-relative z-0">
+				<div style={{ maxHeight: "200px" }} className="d-flex overflow-hidden ">
+					<img
+						style={{ objectFit: "cover", minWidth: "100%", minHeight: "100%" }}
+						className="rounded-top-3 w-100  "
+						src={backgroundIMG}
+						alt="bg profilo"
+					/>
+				</div>
 			</Col>
-			<Col>
+
+			<Col className="position-relative z-1">
 				<Row className="justify-content-between mx-3 mt-3">
 					<Col>
 						<img

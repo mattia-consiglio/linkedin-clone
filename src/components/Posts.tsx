@@ -120,7 +120,7 @@ const Posts = () => {
 						className="card-header mt-2"
 					>
 						<img
-							src="https://placedog.net/30"
+							src={profileInfo.image}
 							alt="Profilo"
 							className="profile-image"
 						/>
