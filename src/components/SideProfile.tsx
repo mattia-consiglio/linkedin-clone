@@ -7,7 +7,7 @@ import MiniFooter from "./MiniFooter";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from "react";
 import { getUserAction } from "../redux/actions";
-
+import backgroundIMG from "../assets/img/background.png";
 const SideProfile = () => {
 	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
@@ -27,7 +27,7 @@ const SideProfile = () => {
 								<Card.Img
 									className="z-10 position-relative "
 									variant="top"
-									src="http://placekitten.com/200"
+									src={backgroundIMG}
 									height={100}
 								/>
 								<img
