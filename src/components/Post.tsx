@@ -30,8 +30,6 @@ const SinglePost = ({ post }: PostProps) => {
 	const userId = profileInfo._id;
 	const [showModal, setShowModal] = useState(false);
 	const dispatch = useAppDispatch();
-	// const allUsers = useAppSelector((state) => state.profile.allUsers);
-	// console.log(allUsers);
 
 	const handleShowCommentSection = () => {
 		setShowCommentSection(true);
@@ -61,7 +59,11 @@ const SinglePost = ({ post }: PostProps) => {
 					<Card className="post-card w-100 mt-3">
 						<Card.Header className="d-flex justify-content-between align-items-center bg-white border-0">
 							<div className="profile-info d-flex align-items-center">
-								<img src={post.image} alt="Profilo" className="profile-image" />
+								<img
+									src={profileInfo.image}
+									alt="Profilo"
+									className="profile-image"
+								/>
 								<div className="ml-2">
 									<span className="profile-name">{post.username}</span>
 									<br />

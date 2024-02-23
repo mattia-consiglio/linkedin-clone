@@ -664,6 +664,7 @@ input:checked + .slider:before {
 .cardGroupOptions {
 	right: 0;
 	min-width: 250px;
+	z-index: 100;
 }
 
 .cursor-pointer {

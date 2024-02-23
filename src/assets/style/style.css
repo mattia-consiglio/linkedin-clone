@@ -12335,14 +12335,6 @@ input:checked + .slider:before {
   flex-direction: column;
 }
 
-.card {
-  width: 400px;
-  background-color: rgb(248, 243, 243);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(255, 254, 254, 0.1);
-  padding: 20px;
-}
-
 .card-header {
   display: flex;
   align-items: center;
@@ -12360,11 +12352,6 @@ input:checked + .slider:before {
 }
 
 /* style.scss */
-.card {
-  width: 800px;
-  margin-top: 20px;
-}
-
 /* style.scss */
 .button-container {
   display: flex;
@@ -12385,13 +12372,8 @@ input:checked + .slider:before {
   height: 24px;
 }
 
-.btn-one {
-  background-color: rgb(248, 243, 243);
-  color: #000;
-}
-
 .btn-one .icon-container {
-  color: blue;
+  color: #378fe9;
 }
 
 .btn-two {
@@ -12476,7 +12458,7 @@ input:checked + .slider:before {
 }
 
 .fotterErrorPage {
-  bottom: 15px;
+  bottom: 0;
   position: fixed;
   font-size: 0.7em;
 }
@@ -12503,4 +12485,60 @@ input:checked + .slider:before {
 
 .col2ShortFooter {
   width: 12%;
+}
+
+.smallProfileImg {
+  height: 50px;
+  width: 50px;
+}
+.smallProfileImg img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.hoverColor:hover {
+  cursor: pointer;
+  background-color: #d7e9fb;
+}
+
+.footer {
+  font-size: small;
+  margin-top: 30px; /* Modifica questo valore a seconda del margine desiderato */
+}
+
+.footerSettings {
+  display: flex;
+  justify-content: flex-start; /* Allinea i contenuti alla fine del contenitore */
+}
+
+.flexContainer {
+  display: flex;
+  align-items: center; /* Centra verticalmente gli elementi all'interno */
+}
+
+.flexContainer h5, .flexContainer .h5 {
+  margin-left: 5px; /* Aggiunge spazio tra l'icona e il testo */
+}
+
+.fsTextPost {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.cardGroupOptions {
+  right: 0;
+  min-width: 250px;
+  z-index: 100;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.post-options {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }/*# sourceMappingURL=style.css.map */
