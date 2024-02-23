@@ -11,7 +11,11 @@ import { Profileinfo } from "./Profileinfo";
 import { Post, User } from "../intefaces";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 // import EditModal from "./ModalPostTextUpdate";
-import { deleteCommentsAction, putCommentsAction } from "../redux/actions";
+import {
+	deleteCommentsAction,
+	getCommentAction,
+	putCommentsAction,
+} from "../redux/actions";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
 import EditModal from "./EditModal";
@@ -22,6 +26,7 @@ interface PostProps {
 
 const SinglePost = ({ post }: PostProps) => {
 	const profileInfo = useAppSelector((state) => state.profile.me);
+	const postInfo = useAppSelector((state) => state.profile.post);
 	const [showPost, setShowPost] = useState(true);
 	const [showCommentSection, setShowCommentSection] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
@@ -138,11 +143,9 @@ const SinglePost = ({ post }: PostProps) => {
 
 						<Card.Body className="pt-2">
 							<h4 className="fsTextPost pb-2">{post.text}</h4>
-							<img
-								className="img-fluid"
-								src="https://placedog.net/700"
-								alt="Post"
-							/>
+							{post?.image && (
+								<img className="img-fluid" src={post.image} alt="Post" />
+							)}
 							<div>{Math.floor(Math.random() * 100)}</div>
 						</Card.Body>
 

@@ -34,6 +34,7 @@ import Comments from "./Comments";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import {
 	deleteCommentsAction,
+	getCommentAction,
 	// getAllUserAction,
 	getPostAction,
 	getUserAction,
@@ -56,12 +57,16 @@ const Posts = () => {
 	const postInfo = useAppSelector((state) => state.profile.post);
 	const [text, setText] = useState("");
 
-	// useEffect(() => {
-	// 	if (getAllUserAction.length > 0) {
-	// 		return;
-	// 	}
-	// 	dispatch(getAllUserAction());
-	// }, []);
+	const comments = useAppSelector((state) => state.profile.comment);
+
+	useEffect(() => {
+		dispatch(getCommentAction(profileInfo._id));
+		console.log("comments", comments);
+	}, [profileInfo._id]);
+
+	useEffect(() => {
+		dispatch(getPostAction(profileInfo._id));
+	}, [profileInfo._id]); //controlla param postInfo per dipendenze, per far sparire commento cancellato senza ricaricare pagina
 
 	useEffect(() => {
 		dispatch(getUserAction());
@@ -116,7 +121,7 @@ const Posts = () => {
 				<div className="card w-100">
 					<div className="card-header">
 						<img
-							src="https://placedog.net/30"
+							src={profileInfo.image}
 							alt="Profilo"
 							className="profile-image"
 						/>
@@ -165,7 +170,7 @@ const Posts = () => {
 			<Modal show={showModal} onHide={handleCloseModal}>
 				<Modal.Header closeButton>
 					<img
-						src="https://placedog.net/30"
+						src={profileInfo.image}
 						alt="Profilo"
 						className="profile-image"
 					/>
