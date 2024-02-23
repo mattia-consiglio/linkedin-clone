@@ -96,12 +96,12 @@ export const Profileinfo = ({
 						</span>
 					</Col>
 					<Col>
-						<a
+						{/* <a
 							className="text-primary-linkedin-a"
 							href="https://github.com/Perri-Alessandro"
 						>
 							https://github.com/Perri-Alessandro
-						</a>
+						</a> */}
 					</Col>
 					<Col>
 						<a className="text-primary-linkedin-a" href="">
