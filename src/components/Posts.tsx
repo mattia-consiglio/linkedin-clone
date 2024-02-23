@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
 	Modal,
 	Button,
@@ -31,13 +31,54 @@ import {
 	inviaIcon,
 } from "../icons";
 import Comments from "./Comments";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import {
+	deleteCommentsAction,
+	// getAllUserAction,
+	getPostAction,
+	getUserAction,
+	postPostAction,
+	putCommentsAction,
+} from "../redux/actions";
+import SinglePost from "./Post";
 const Posts = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [showEventModal, setShowEventModal] = useState(false);
-	const [showPost, setShowPost] = useState(true);
+
 	const [showSecondModal, setShowSecondModal] = useState(false);
 	const fileInputRef = useRef<HTMLInputElement>(null);
-	const [showCommentSection, setShowCommentSection] = useState(false);
+
+	const dispatch = useAppDispatch();
+
+	const profileInfo = useAppSelector((state) => state.profile.me);
+	// const profileAllInfo = useAppSelector((state) => state.profile.allUsers);
+
+	const postInfo = useAppSelector((state) => state.profile.post);
+	const [text, setText] = useState("");
+
+	// useEffect(() => {
+	// 	if (getAllUserAction.length > 0) {
+	// 		return;
+	// 	}
+	// 	dispatch(getAllUserAction());
+	// }, []);
+
+	useEffect(() => {
+		dispatch(getUserAction());
+		dispatch(getPostAction(profileInfo._id));
+	}, [profileInfo._id]);
+
+	const handleAddPost = () => {
+		dispatch(postPostAction(profileInfo._id, text));
+	};
+
+	const handleDeletePostDispatch = (id: string) => {
+		dispatch(deleteCommentsAction(id));
+	};
+
+	// const handleEditPost = (id: string, text: string) => {
+	// 	dispatch(putCommentsAction(id, text));
+	// };
 
 	const handleCloseModal = () => {
 		setShowModal(false);
@@ -61,20 +102,12 @@ const Posts = () => {
 		setShowEventModal(true);
 	};
 
-	const handleDeletePost = () => {
-		setShowPost(false);
-	};
-
 	const handleSecondCardOptions = () => {
 		setShowSecondModal(true);
 	};
 
 	const handleCloseSecondModal = () => {
 		setShowSecondModal(false);
-	};
-
-	const handleShowCommentSection = () => {
-		setShowCommentSection(true);
 	};
 
 	return (
@@ -143,7 +176,12 @@ const Posts = () => {
 				<Modal.Body className="d-flex flex-column align-items-center pt-4">
 					<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
 						<Form.Label>Di cosa vorresti parlare?</Form.Label>
-						<Form.Control as="textarea" rows={3} />
+						<Form.Control
+							as="textarea"
+							rows={3}
+							value={text}
+							onChange={(e) => setText(e.target.value)}
+						/>
 					</Form.Group>
 
 					<div className="d-flex justify-content-center">
@@ -188,7 +226,9 @@ const Posts = () => {
 					<hr />
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="outline-secondary">Pubblica</Button>
+					<Button onClick={handleAddPost} variant="outline-secondary">
+						Pubblica
+					</Button>
 				</Modal.Footer>
 			</Modal>
 			{/* Modale per gli eventi */}
@@ -252,112 +292,19 @@ const Posts = () => {
 					</Button>
 				</Modal.Footer>
 			</Modal>
-			{/* Secondo Modale */}
-			<Modal show={showSecondModal} onHide={handleCloseSecondModal}>
-				<Modal.Header closeButton></Modal.Header>
-				<Modal.Body>
-					<ListGroup>
-						<ListGroup.Item className="mx-2">
-							{" "}
-							<MdSaveAlt className="mx-3" />
-							Salva
-						</ListGroup.Item>
-						<ListGroup.Item className="mx-2">
-							{" "}
-							<IoIosLink className="mx-3" />
-							Copia link al post{" "}
-						</ListGroup.Item>
-						<ListGroup.Item className="mx-2">
-							{" "}
-							<FaRegEyeSlash className="mx-3" />
-							Non voglio vederlo
-						</ListGroup.Item>
-						<ListGroup.Item className="mx-2">
-							{" "}
-							<MdBlockFlipped className="mx-3" /> Smetti di seguire{" "}
-						</ListGroup.Item>
-						<ListGroup.Item className="mx-2">
-							{" "}
-							<FaFlag className="mx-3" />
-							Segnala post
-						</ListGroup.Item>
-					</ListGroup>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="outline-secondary" onClick={handleCloseSecondModal}>
-						Chiudi
-					</Button>
-				</Modal.Footer>
-			</Modal>
+
 			{/* Post */}
-			{showPost && (
-				<div className="center-content">
-					<Card className="post-card w-100 mt-3">
-						<Card.Header className="d-flex justify-content-between align-items-center">
-							<div className="profile-info d-flex align-items-center">
-								<img
-									src="https://placedog.net/30"
-									alt="Profilo"
-									className="profile-image"
-								/>
-								<div className="ml-2">
-									<span className="profile-name">Nome Utente</span>
-									<br />
-									<span className="followers-count">
-										Follower: {Math.floor(Math.random() * 1000)}
-									</span>
-								</div>
-							</div>
-							<div className="post-options">
-								<MdMoreHoriz onClick={handleSecondCardOptions} />
-								<MdClose onClick={handleDeletePost} className="ml-2" />
-							</div>
-						</Card.Header>
+			{[...postInfo]
+				.slice(-40)
+				.sort((a, b) => {
+					const aDate = new Date(a.createdAt).getTime();
+					const bDate = new Date(b.createdAt).getTime();
 
-						<Card.Body>
-							<img src="https://placedog.net/700" alt="Post" />
-							<div>{Math.floor(Math.random() * 100)}</div>
-						</Card.Body>
-
-						<Card.Footer>
-							<div className="post-actions text-center d-flex justify-content-between">
-								<button className="btn-like btn-no-border  btn-icon-extra-small">
-									{likeIcon} Consiglia
-								</button>
-								<button
-									className="btn-comment btn-no-border  btn-icon-extra-small"
-									onClick={handleShowCommentSection}
-								>
-									{commentIcon}
-									Commenta
-								</button>
-								<button className="btn-share btn-no-border  btn-icon-extra-small">
-									{arrowCircle}
-									Diffondi il post
-								</button>
-								<button className="btn-share btn-no-border  btn-icon-extra-small">
-									{inviaIcon}
-									Invia
-								</button>
-							</div>
-							{showCommentSection && <Comments comments={[]} />}
-						</Card.Footer>
-					</Card>
-					{/* Sezione commenti */}
-
-					{/* <Card className="comment-section w-100">
-							<Card.Body>
-								<Form.Group controlId="exampleForm.ControlTextarea1">
-									<Form.Label>Commenta</Form.Label>
-									<Form.Control as="textarea" rows={3} />
-								</Form.Group>
-								<Button variant="primary" size="sm" className="mt-2">
-									<IoIosSend /> Invia
-								</Button>
-							</Card.Body>
-						</Card> */}
-				</div>
-			)}
+					return bDate - aDate;
+				})
+				.map((post) => {
+					return <SinglePost key={post._id} post={post} />;
+				})}
 		</div>
 	);
 };

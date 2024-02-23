@@ -410,6 +410,11 @@ export const deleteCommentsAction = (id: string) => {
 
 export const putCommentsAction = (id: string, text: string) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
+		if (!id) {
+			console.error("ID del post non definito");
+			return;
+		}
+
 		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const bearerToken = getState().profile.tokens[currentProfileIndex];
 		fetch("https://striveschool-api.herokuapp.com/api/posts/" + id, {
@@ -432,7 +437,7 @@ export const putCommentsAction = (id: string, text: string) => {
 			})
 			.then((data) => {
 				console.log("COMMENT CHANGED DA PUT COMMENT", data);
-				alert("COMMENT PUT, REFRESH PAGE");
+				alert("COMMENT PUT");
 				dispatch(getPostAction(id));
 			})
 			.catch((err) => {
@@ -443,22 +448,21 @@ export const putCommentsAction = (id: string, text: string) => {
 
 export const getAllUserAction = () => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
-		const userId = getState().profile.me._id || "me";
+		// const userId = getState().profile.me._id;
+		const currentProfileIndex = getState().profile.currentProfileIndex;
 		const tokens = getState().profile.tokens;
 		dispatch(setLoadingStatus(true));
 
-		tokens.map(async (bearerToken) => {
+		tokens.map(async (bearerToken, i) => {
 			console.log("BEARER", bearerToken);
-			return fetch(
-				"https://striveschool-api.herokuapp.com/api/profile/" + userId,
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: "Bearer " + bearerToken,
-					},
+			if (i === currentProfileIndex) return;
+			return fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: "Bearer " + bearerToken,
 				},
-			)
+			})
 				.then((resp) => {
 					if (!resp.ok) {
 						throw new Error(resp.status + ": " + resp.statusText);

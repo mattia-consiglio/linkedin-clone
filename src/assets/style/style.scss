@@ -677,3 +677,23 @@ input:checked + .slider:before {
 	max-height: calc(100vh - 123px); //altezza della pagina - altezza del header
 	overflow-x: hidden;
 }
+
+.fsTextPost {
+	font-size: 1em;
+	font-weight: 400;
+}
+
+.cardGroupOptions {
+	right: 0;
+	min-width: 250px;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.post-options {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}

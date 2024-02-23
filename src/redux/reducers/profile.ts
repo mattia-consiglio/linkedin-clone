@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User, Experience, Comment } from "../../intefaces";
+import { User, Experience, Post } from "../../intefaces";
+// import { SET_USER, SET_USER_IMAGE } from "../actions";
 
 export interface Profile {
 	me: User;
 	tokens: string[];
 	currentProfileIndex: number;
 	exp: Experience[];
-	post: Comment[];
+	post: Post[];
 	allUsers: User[];
 }
 
@@ -25,7 +26,7 @@ const initialState: Profile = {
 		updatedAt: new Date().toDateString(),
 		__v: 0,
 	},
-	currentProfileIndex: 0,
+	currentProfileIndex: 1,
 	tokens: [
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMGNiYTI0ZjYwNTAwMTkzN2Q0NDkiLCJpYXQiOjE3MDgzMzAxNzAsImV4cCI6MTcwOTUzOTc3MH0.bxNveBRHEzm8op8lnJMQlFUQH7hpQVx2EKX4N9xuQlo", // Mattia
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTJjMDI0ZjYwNTAwMTkzN2Q0NjYiLCJpYXQiOjE3MDgzMzE3MTIsImV4cCI6MTcwOTU0MTMxMn0.kApVEAE7EuNP4OLFDVTbjttsI11FxXFMhjRTsu_XeVo", // Alessandro
@@ -53,6 +54,9 @@ const initialState: Profile = {
 		{
 			text: "",
 			username: "",
+			user: {
+				_id: "",
+			},
 			createdAt: new Date().toDateString(),
 			updatedAt: new Date().toDateString(),
 			__v: 0,
@@ -94,7 +98,7 @@ const profileReducer = createSlice({
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
 			state.currentProfileIndex = action.payload;
 		},
-		setPostProfile: (state, action: PayloadAction<Comment[]>) => {
+		setPostProfile: (state, action: PayloadAction<Post[]>) => {
 			state.post = action.payload;
 		},
 		addUser: (state, action: PayloadAction<User>) => {
