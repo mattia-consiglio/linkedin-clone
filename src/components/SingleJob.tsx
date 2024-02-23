@@ -1,12 +1,49 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import SingleJobDetails from "./SingleJobDetails";
+import { Job } from "../redux/reducers/jobs";
 
-function SingleJob() {
+interface SingleJobProps {
+	job: Job;
+	searchPage: boolean;
+	className?: string;
+	selectedJob?: Job;
+	setSelectedJob?: React.Dispatch<React.SetStateAction<Job>>;
+}
+
+function SingleJob({
+	job,
+	searchPage,
+	className,
+	selectedJob,
+	setSelectedJob,
+}: SingleJobProps) {
+	const [random, setRandom] = React.useState(0);
+	const genRandom = useCallback(
+		(): number => Math.floor(Math.random() * 20),
+		[],
+	);
+
+	useEffect(() => {
+		setRandom(genRandom());
+	}, []);
+
 	return (
 		<>
 			<Container className="">
-				<Row className="justify-content-center  hoverColor">
+				<Row
+					className={
+						"justify-content-center  hoverColor" +
+						(searchPage && selectedJob && selectedJob._id === job._id
+							? " active"
+							: "")
+					}
+					onClick={() => {
+						if (searchPage) {
+							setSelectedJob!(job);
+						}
+					}}
+				>
 					<Col xs={12} md={1} className="mt-2">
 						{" "}
 						<img
@@ -17,14 +54,16 @@ function SingleJob() {
 						/>
 					</Col>
 					<Col xs={12} md={10} className="mt-2">
-						<h6 className="text-primary mb-0">PlaceJobName</h6>
-						<p className="mb-0">placeJobInfo</p>
-						<p className="opacity-75 littleFont">placeJobLocation</p>
+						<h6 className="text-primary mb-0"> {job.title} </h6>
+						<p className="mb-0"> {job.company_name + " " + job.category} </p>
+						<p className="opacity-75 littleFont">
+							{" "}
+							{job.candidate_required_location}{" "}
+						</p>
 						<p className="littleFont opacity-75 mb-2">
-							Promosso <i className="bi bi-dot"></i>{" "}
 							<span className="text-success fw-semibold">
 								{" "}
-								{Math.floor(Math.random() * 20)} candidati{" "}
+								{random} candidati{" "}
 							</span>{" "}
 							<i className="bi bi-dot"></i>{" "}
 							<span>

@@ -11,6 +11,27 @@ import { ErrorPage } from "./components/pages/ErrorPage";
 import { useEffect } from "react";
 import { getUserAction, getExperiencesAction } from "./redux/actions";
 import { useAppDispatch, useAppSelector } from "./redux/store";
+import JobsPage from "./components/pages/JobsPage";
+import JobsSeachPage from "./components/pages/JobsSeachPage";
+
+const routesComponent = (
+	<Routes>
+		<Route path="/" element={<HomePage />}></Route>
+		<Route path="/profile" element={<Profile />}></Route>
+		<Route path="/experiences" element={<ExperiencesPage />}></Route>
+		<Route path="/form" element={<FormComment />}></Route>
+		<Route path="/jobs" element={<JobsPage />}></Route>
+		<Route path="/jobs/search" element={<JobsSeachPage />}></Route>
+
+		<Route path="/*" element={<ErrorPage />}></Route>
+	</Routes>
+);
+
+const appRoutes = routesComponent;
+export const declaredRoutes: string[] = [];
+appRoutes.props.children.forEach((child: React.ReactElement) => {
+	declaredRoutes.push(child!.props!.path);
+});
 
 function App() {
 	const dispatch = useAppDispatch();
@@ -25,16 +46,7 @@ function App() {
 				<header>
 					<NavBar />
 				</header>
-				<main>
-					<Routes>
-						<Route path="/" element={<HomePage />}></Route>
-						<Route path="/profile" element={<Profile />}></Route>
-						<Route path="/experiences" element={<ExperiencesPage />}></Route>
-						<Route path="/form" element={<FormComment />}></Route>
-
-						<Route path="/*" element={<ErrorPage />}></Route>
-					</Routes>
-				</main>
+				<main>{routesComponent}</main>
 				<footer></footer>
 			</BrowserRouter>
 		</>

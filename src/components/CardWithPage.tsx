@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, FloatingLabel, Form, Modal, Row } from "react-bootstrap";
 import { CardColWrapper } from "./CardColWrapper";
 import { Link, useLocation } from "react-router-dom";
@@ -28,8 +28,11 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 		company: "",
 		startDate: "",
 		endDate: "",
+		image: "",
 		// Aggiungi qui altri campi se necessario
 	});
+	const [image, setImage] = useState<File | undefined>(undefined);
+	const [fileInputValue, setFileInputValue] = useState("");
 
 	const dispatch = useAppDispatch();
 
@@ -91,6 +94,12 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 		}
 	};
 
+	useEffect(() => {
+		if (fileInputValue !== "" && !modalShow) {
+			setFileInputValue("");
+		}
+	}, [modalShow, fileInputValue]);
+
 	return (
 		<CardColWrapper>
 			<Row className="px-3 pt-2 ">
@@ -122,6 +131,7 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 								company: "",
 								startDate: "",
 								endDate: "",
+								image: "",
 							});
 						}}
 					>
@@ -186,6 +196,7 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 														company: item.company,
 														startDate: item.startDate.split("T")[0],
 														endDate: item.endDate.split("T")[0],
+														image: item.image,
 													});
 												}}
 											>
@@ -197,6 +208,15 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 								<Row className="mt-1">
 									<Col>
 										<p> {item.description} </p>
+										{item.image && (
+											<p>
+												<img
+													src={item.image}
+													alt={item.company}
+													className="company-logo"
+												/>
+											</p>
+										)}
 									</Col>
 								</Row>
 							</Col>
@@ -315,20 +335,54 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 
 							<Form.Group>
 								<Form.Label>Descrizione</Form.Label>
-								<FloatingLabel
-									controlId="floatingTextarea2"
-									label="Descrizione"
-								>
-									<Form.Control
-										as="textarea"
-										placeholder="Leave a comment here"
-										style={{ height: "100px" }}
-										name="description"
-										value={formData.description}
-										onChange={handleChange}
-									/>
-								</FloatingLabel>
+
+								<Form.Control
+									as="textarea"
+									placeholder="Leave a comment here"
+									style={{ height: "100px" }}
+									name="description"
+									value={formData.description}
+									onChange={handleChange}
+								/>
 							</Form.Group>
+							<Form.Group>
+								<Form.Label>Immagine</Form.Label>
+
+								<Form.Control
+									type="file"
+									placeholder="Seziona immagine"
+									accept=".jpg, .jpeg,.png"
+									value={fileInputValue}
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+										console.log(e.target.files);
+										const files = e.target.files;
+										setFileInputValue(e.target.value);
+										if (files && files[0].size < 102400) {
+											setImage(files[0]);
+										} else {
+											alert(
+												"Immagine troppo grande. L'immagine deve essere inferire a 102,4 KB",
+											);
+											setFileInputValue("");
+										}
+									}}
+								/>
+							</Form.Group>
+
+							{formData.image !== "" && image === undefined && (
+								<img
+									src={formData.image}
+									alt={formData.company}
+									className="img-fluid"
+								/>
+							)}
+							{image !== undefined && (
+								<img
+									src={URL.createObjectURL(image!)}
+									alt={formData.company}
+									className="img-fluid"
+								/>
+							)}
 							<input type="hidden" value={formData.id} name="id" />
 						</Form>
 					</div>
@@ -357,13 +411,12 @@ const CardWithPage = ({ title, page, data, icon }: CardWithPageProps) => {
 								company: string;
 								startDate: string;
 								endDate: string;
-								// Aggiungi qui altri campi se necessario
 							} = { ...formData };
 							delete data.id;
 							if (id === "") {
-								dispatch(postExperiencesAction(data));
+								dispatch(postExperiencesAction(data, image));
 							} else {
-								dispatch(putExperiencesAction(data, id));
+								dispatch(putExperiencesAction(data, id, image));
 							}
 							setModalShow(false);
 						}}
