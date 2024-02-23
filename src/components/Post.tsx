@@ -29,6 +29,10 @@ const SinglePost = ({ post }: PostProps) => {
 	const userId = profileInfo._id;
 	const [showModal, setShowModal] = useState(false);
 	const dispatch = useAppDispatch();
+	const [randomNumers, setRandomNumbers] = useState({
+		like: Math.floor(Math.random() * 100),
+		follower: Math.floor(Math.random() * 1000),
+	});
 
 	const handleShowCommentSection = () => {
 		setShowCommentSection(true);
@@ -64,7 +68,7 @@ const SinglePost = ({ post }: PostProps) => {
 									<span className="profile-name">{post.username}</span>
 									<br />
 									<span className="followers-count">
-										Follower: {Math.floor(Math.random() * 1000)}
+										Follower: {randomNumers.follower}
 									</span>
 								</div>
 							</div>
@@ -140,7 +144,7 @@ const SinglePost = ({ post }: PostProps) => {
 								src="https://placedog.net/700"
 								alt="Post"
 							/>
-							<div>{Math.floor(Math.random() * 100)}</div>
+							<div>{randomNumers.like}</div>
 						</Card.Body>
 
 						<Card.Footer className="bg-white">

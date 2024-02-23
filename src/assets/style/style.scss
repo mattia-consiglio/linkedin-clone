@@ -233,15 +233,15 @@ header {
 }
 
 i {
-	cursor: pointer;
-	border-radius: 50%;
-	transition:
-		background-color 0.4s ease,
-		padding 0.4s ease;
-	&:hover {
-		background-color: rgb(152, 152, 152) !important;
-		padding: 0.5em;
-	}
+	// cursor: pointer;
+	// border-radius: 50%;
+	// transition:
+	// 	background-color 0.4s ease,
+	// 	padding 0.4s ease;
+	// &:hover {
+	// 	background-color: rgb(152, 152, 152) !important;
+	// 	padding: 0.5em;
+	// }
 }
 
 .bgLinkedin {
