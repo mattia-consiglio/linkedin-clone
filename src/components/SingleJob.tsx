@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import SingleJobDetails from "./SingleJobDetails";
 import { Job } from "../redux/reducers/jobs";
+import "../assets/style/singlejob.scss";
 
 interface SingleJobProps {
 	job: Job;

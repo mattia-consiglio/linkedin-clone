@@ -4,8 +4,10 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Col } from "react-bootstrap";
 import MiniFooter from "./MiniFooter";
 import { CardColWrapper } from "./CardColWrapper";
+import { useAppSelector } from "../redux/store";
 
 const JobsCardRight = () => {
+	const profileImg = useAppSelector((state) => state.profile.me.image);
 	return (
 		<>
 			<CardColWrapper className="px-2 py-3">
@@ -16,7 +18,7 @@ const JobsCardRight = () => {
 						Mostra ai recruiter che sei <br /> disponibile per nuove <br />{" "}
 						opportunità di lavoro
 					</h6>
-					<img className="profile-image" />
+					<img className="profile-image" src={profileImg} alt="profile" />
 				</div>
 				<p>
 					Aumenta le probabilità di trovare presto un <br />

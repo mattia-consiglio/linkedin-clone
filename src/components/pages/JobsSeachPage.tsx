@@ -6,18 +6,19 @@ import { Col, Container, Row } from "react-bootstrap";
 import SingleJob from "../SingleJob";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Job, getJobsAction } from "../../redux/reducers/jobs";
+import "../../assets/style/jobs.scss";
 
 const JobsSeachPage = () => {
 	const jobs = useAppSelector((state) => state.jobs.search);
-	const dispatch = useAppDispatch();
+
 	const [selectedJob, setSelectedJob] = useState<Job>(jobs[0]);
 
 	useEffect(() => {
-		dispatch(getJobsAction({ search: "developer", limit: 15 }));
-	}, []);
-	useEffect(() => {
-		if (selectedJob === undefined) {
+		const tempSelectedJob = jobs.find((job) => job.selected);
+		if (selectedJob === undefined && tempSelectedJob === undefined) {
 			setSelectedJob(jobs[0]);
+		} else {
+			setSelectedJob(tempSelectedJob!);
 		}
 	}, [jobs]);
 

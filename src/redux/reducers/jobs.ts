@@ -13,6 +13,7 @@ export interface Job {
 	candidate_required_location: string;
 	salary: string;
 	description: string;
+	selected?: boolean;
 }
 
 interface JobsState {
@@ -46,10 +47,14 @@ const jobsReducer = createSlice({
 		setSearchTerm: (state, action: PayloadAction<string>) => {
 			state.searchTerm = action.payload;
 		},
+		setSelectedSearch: (state, action: PayloadAction<number>) => {
+			state.search[action.payload].selected = true;
+		},
 	},
 });
 
-export const { setJobs, setFixedJobs, setSearchTerm } = jobsReducer.actions;
+export const { setJobs, setFixedJobs, setSearchTerm, setSelectedSearch } =
+	jobsReducer.actions;
 
 export default jobsReducer.reducer;
 
