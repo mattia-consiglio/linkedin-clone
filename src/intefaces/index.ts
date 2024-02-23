@@ -39,3 +39,9 @@ export interface Post {
 	__v: number;
 	_id: string;
 }
+
+export interface Comment {
+	comment: string;
+	rate: string;
+	author: string;
+}
