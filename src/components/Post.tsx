@@ -63,10 +63,10 @@ const SinglePost = ({ post }: PostProps) => {
 									alt="Profilo"
 									className="profile-image"
 								/>
-								<div className="ml-2">
+								<div className="ml-2 ">
 									<span className="profile-name">{post.username}</span>
 									<br />
-									<span className="followers-count">
+									<span className="followers-count ">
 										Follower: {Math.floor(Math.random() * 1000)}
 									</span>
 								</div>
@@ -148,21 +148,21 @@ const SinglePost = ({ post }: PostProps) => {
 
 						<Card.Footer className="bg-white">
 							<div className="post-actions text-center d-flex justify-content-between ">
-								<button className="btn-like btn-no-border  btn-icon-extra-small">
+								<button className="btn-like btn-no-border  btn-icon-extra-small bg-white cardButtons">
 									{likeIcon} Consiglia
 								</button>
 								<button
-									className="btn-comment btn-no-border  btn-icon-extra-small"
+									className="btn-comment btn-no-border  btn-icon-extra-small bg-white cardButtons"
 									onClick={handleShowCommentSection}
 								>
 									{commentIcon}
 									Commenta
 								</button>
-								<button className="btn-share btn-no-border  btn-icon-extra-small">
+								<button className="btn-share btn-no-border  btn-icon-extra-small bg-white cardButtons">
 									{arrowCircle}
 									Diffondi il post
 								</button>
-								<button className="btn-share btn-no-border  btn-icon-extra-small">
+								<button className="btn-share btn-no-border  btn-icon-extra-small bg-white cardButtons">
 									{inviaIcon}
 									Invia
 								</button>

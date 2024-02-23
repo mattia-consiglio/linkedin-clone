@@ -35,8 +35,8 @@ const Navbar = () => {
 	const profileInfo = useAppSelector((state) => state.profile.me);
 
 	return (
-		<nav className={`navbar`}>
-			<div className="container">
+		<nav className={`navbar pb-5`}>
+			<div className="container ">
 				<div className="d-flex align-items-center flex-nowrap ">
 					<NavLink to="/" className="navbar-brand text-primary m-0">
 						{isErrorPage ? linkedinExtended : linkedin}
@@ -56,7 +56,7 @@ const Navbar = () => {
 					className={
 						isErrorPage
 							? "d-none d-flex flex-row mb-0 p-0 justify-flex-end"
-							: "d-flex flex-row mb-0 fex-grow-1 justify-flex-end p-0"
+							: "d-flex flex-row mb-0 fex-grow-1 justify-flex-end p-0 "
 					}
 				>
 					<li className="nav-item d-md-none">
