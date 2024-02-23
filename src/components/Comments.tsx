@@ -50,7 +50,7 @@ const Comments = ({ comments }: { comments: any[] }) => {
 						<Image
 							src="https://www.placedog.net/30"
 							roundedCircle
-							className="mx-3"
+							className="mx-3 mt-3"
 							width={50}
 							height={50}
 						/>

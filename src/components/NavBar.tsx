@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from "../redux/store";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 import "../assets/style/style.scss";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { declaredRoutes } from "./pages/App";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { declaredRoutes } from "../App";
 import { linkedin, linkedinExtended } from "../icons";
+import { ListGroup } from "react-bootstrap";
+import "../assets/style/navbar.scss";
+import { getJobsAction, setSelectedSearch } from "../redux/reducers/jobs";
+
 const Navbar = () => {
+	const searchDelay = 700;
+	const dispatch = useAppDispatch();
+
+	const profileInfo = useAppSelector((state) => state.profile.me);
+	const { search, searchTerm } = useAppSelector((state) => state.jobs);
+
 	const [showCard, setShowCard] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 	const [isErrorPage, setIsErrorPage] = useState(false);
 	const location = useLocation();
+	const [showSearch, setShowSearch] = useState(false);
+	const [searchValue, setSearchValue] = useState(searchTerm);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		///// ARRAY DI ROTTE DICHIARATE, AGGIUNGI QUA LA ROTTA "ESISTENTE" PER NON FAR APPARIRE LA NAV DI EORROR PAGE
+		console.log("location.pathname", location.pathname);
+		console.log("declared paths", declaredRoutes);
 
 		setIsErrorPage(!declaredRoutes.includes(location.pathname));
 	}, [location.pathname]);
@@ -32,23 +47,75 @@ const Navbar = () => {
 	const handleClick = (label: string) => {
 		console.log(label + " cliccato");
 	};
-	const profileInfo = useAppSelector((state) => state.profile.me);
+
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			if (searchValue) {
+				dispatch(getJobsAction({ search: searchValue, limit: 20 }));
+			}
+		}, searchDelay);
+
+		return () => clearTimeout(timeoutId);
+	}, [searchValue, searchDelay]);
 
 	return (
-		<nav className={`navbar`}>
-			<div className="container">
+		<nav className={`navbar pb-5`}>
+			<div className="container ">
 				<div className="d-flex align-items-center flex-nowrap ">
 					<NavLink to="/" className="navbar-brand text-primary m-0">
 						{isErrorPage ? linkedinExtended : linkedin}
 					</NavLink>
-					<form className={isErrorPage ? "d-none" : "d-lg-flex d-none"}>
+					<form
+						className={
+							"position-position-relative " +
+							(isErrorPage ? "d-none" : "d-lg-flex d-none")
+						}
+					>
 						<input
 							className="form-control me-2"
 							type="search"
-							placeholder="Search"
-							aria-label="Search"
+							placeholder={
+								location.pathname === "/jobs" ||
+								location.pathname === "/jobs/search"
+									? "Cerca per qualifica"
+									: "Cerca"
+							}
+							aria-label="Cerca"
 							style={{ height: "34px" }}
+							onFocus={() => setShowSearch(true)}
+							value={searchValue}
+							onChange={(e) => setSearchValue(e.target.value)}
 						/>
+						{(location.pathname === "/jobs" ||
+							location.pathname === "/jobs/search") && (
+							<>
+								<button
+									className="btn btn-outline-primary"
+									type="submit"
+									style={{ height: "34px" }}
+								>
+									Cerca
+								</button>
+								{showSearch && (
+									<ListGroup className="position-absolute search-result">
+										{search.slice(0, 5).map((item, i) => (
+											<ListGroup.Item
+												action
+												className="d-flex align-items-center"
+												key={item._id}
+												onClick={() => {
+													dispatch(setSelectedSearch(i));
+													navigate("/jobs/search/");
+													setShowSearch(false);
+												}}
+											>
+												{item.title}
+											</ListGroup.Item>
+										))}
+									</ListGroup>
+								)}
+							</>
+						)}
 					</form>
 				</div>
 
@@ -56,7 +123,7 @@ const Navbar = () => {
 					className={
 						isErrorPage
 							? "d-none d-flex flex-row mb-0 p-0 justify-flex-end"
-							: "d-flex flex-row mb-0 fex-grow-1 justify-flex-end p-0"
+							: "d-flex flex-row mb-0 fex-grow-1 justify-flex-end p-0 "
 					}
 				>
 					<li className="nav-item d-md-none">
