@@ -77,13 +77,13 @@ $font-family-sans-serif:
 @import "../../../node_modules/bootstrap/scss/utilities/api";
 
 // ---------------------------------------------
-.customButton {
+.customButton.btn {
 	background-color: white;
 	color: grey;
-}
-.customButton:hover {
-	background-color: rgb(214, 213, 213);
-	color: grey;
+	&:hover {
+		background-color: rgb(214, 213, 213);
+		color: grey;
+	}
 }
 
 .customButton:active {
@@ -232,15 +232,14 @@ header {
 	width: 25%;
 }
 
-i {
+i.icon-i {
 	cursor: pointer;
 	border-radius: 50%;
-	transition:
-		background-color 0.4s ease,
-		padding 0.4s ease;
+	padding: 0.5em;
+
+	transition: background-color 0.4s ease;
 	&:hover {
 		background-color: rgb(152, 152, 152) !important;
-		padding: 0.5em;
 	}
 }
 
@@ -618,10 +617,6 @@ input:checked + .slider:before {
 	}
 }
 
-.col2ShortFooter {
-	width: 12%;
-}
-
 .smallProfileImg {
 	height: 50px;
 	width: 50px;
@@ -632,12 +627,6 @@ input:checked + .slider:before {
 	}
 }
 
-.hoverColor {
-	&:hover {
-		cursor: pointer;
-		background-color: #d7e9fb;
-	}
-}
 .footer {
 	font-size: small;
 	margin-top: 30px; /* Modifica questo valore a seconda del margine desiderato */

@@ -1,0 +1,10 @@
+.company-logo {
+	width: 104px;
+	border-radius: 10px;
+	height: auto;
+}
+
+.scroll-results {
+	max-height: calc(100vh - 123px); //altezza della pagina - altezza del header
+	overflow-x: hidden;
+}

@@ -1,26 +1,28 @@
-import React from 'react';
+import React from "react";
+import { Col, Container } from "react-bootstrap";
+import { CardColWrapper } from "./CardColWrapper";
+import SingleJob from "./SingleJob";
+import { Job } from "../redux/reducers/jobs";
+interface JobsCardCenterProps {
+	title: string;
+	subtitle: string;
+	jobs: Job[];
+}
 
+const JobsCardCenter = ({ title, subtitle, jobs }: JobsCardCenterProps) => {
+	return (
+		<CardColWrapper className="pb-3">
+			<Container className="pt-3">
+				<h5> {title} </h5>
+				<p> {subtitle} </p>
+			</Container>
 
-const JobsCardCenter = () => {
-    return (
-        <div className="new-card">
-            <h5>Le principali offerte di lavoro per te</h5>
-            <p>Sulla base del tuo profilo e della tua cronologia di ricerche</p>
-            <div className="logo-container">
-           <img src="https://media.licdn.com/dms/image/D4E0BAQGyJM90uPP_iQ/company-logo_100_100/0/1692352081106/repubblica_e_cantone_ticino_logo?e=1716422400&v=beta&t=0pUgtSGtnc_zpeTmJp3EzvQOZJu6QKStV-VZAJyS_WE" alt="" width="60px" className='LogoJobs'/>
-           <div className="PerformerBootcamp">
-            <h5 style={{ marginBottom: '5px', color:'#0a66c2' }}>Performer Bootcamp</h5>
-            <p style={{ margin: '5px', color:'black' }}>Performer</p>
-            <p style={{ marginTop: '5px' }}>Bologna Emilia Romagna</p>
-           </div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="close-small" aria-hidden="true" role="none" data-supported-dps="16x16" fill="currentColor" width="30" height="30"  style={{ marginLeft: '300px' }}>
-  <path d="M14 3.41L9.41 8 14 12.59 12.59 14 8 9.41 3.41 14 2 12.59 6.59 8 2 3.41 3.41 2 8 6.59 12.59 2z"></path>
-</svg>
- </div>
- <hr style={{ borderColor: 'black', borderWidth: '1px', height: '1px', backgroundColor: 'black', opacity: 1 }} />
-
-        </div>
-    );
+			{jobs &&
+				jobs.map((job) => (
+					<SingleJob key={job._id} job={job} searchPage={true} />
+				))}
+		</CardColWrapper>
+	);
 };
 
 export default JobsCardCenter;

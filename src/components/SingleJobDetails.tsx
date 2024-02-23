@@ -7,18 +7,19 @@ import {
 	lampIcon,
 	smallLinkedIn,
 } from "../icons";
+import { Job } from "../redux/reducers/jobs";
 
 const random = (): number => {
 	return Math.ceil(Math.random() * 3);
 };
 
-const SingleJobDetails = () => {
+const SingleJobDetails = ({ job }: { job: Job }) => {
 	return (
 		<>
 			<Container>
 				<Row className="d-flex flex-column pt-3">
 					<Col className="d-flex flex-row justify-content-between ">
-						<h3 className="mb-1">PlaceJobName</h3>{" "}
+						<h3 className="mb-1"> {job.title} </h3>{" "}
 						<div>
 							{curvedRightArrow}
 							<i className=" fs-3 bi bi-three-dots mx-3"></i>
@@ -26,9 +27,9 @@ const SingleJobDetails = () => {
 					</Col>
 					<Col>
 						<p>
-							PlaceJobInfo <i className="bi bi-dot"></i> PlaceJobPlace{" "}
-							<i className="bi bi-dot"></i> Ripubblicata: {random()}{" "}
-							{random() === 1 ? "mese fa" : "mesi fa"}
+							{job.company_name} <i className="bi bi-dot"></i>{" "}
+							{job.candidate_required_location} <i className="bi bi-dot"></i>{" "}
+							Pubblicata: {random()} {random() === 1 ? "mese fa" : "mesi fa"}
 							<i className="bi bi-dot"></i>{" "}
 							<span className="text-success fw-semibold">
 								{Math.floor(Math.random() * 50)} candidati
@@ -36,7 +37,7 @@ const SingleJobDetails = () => {
 						</p>{" "}
 						<p>
 							{jobBag}
-							PlaceCategory <i className="bi bi-dot"></i> PlaceJobType
+							{job.category} <i className="bi bi-dot"></i> A tempo pieno
 						</p>
 						<p>
 							{workPlaceDip}
@@ -70,7 +71,7 @@ const SingleJobDetails = () => {
 							</div>
 						</div>
 						<h3 className="mt-5">Informazioni sull'offerta di lavoro</h3>
-						<p>PlaceJobDescription</p>
+						<div dangerouslySetInnerHTML={{ __html: job.description }} />
 					</Col>
 				</Row>
 			</Container>
