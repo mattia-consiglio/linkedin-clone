@@ -22,6 +22,7 @@ interface PostProps {
 
 const SinglePost = ({ post }: PostProps) => {
 	const profileInfo = useAppSelector((state) => state.profile.me);
+	const postInfo = useAppSelector((state) => state.profile.post);
 	const [showPost, setShowPost] = useState(true);
 	const [showCommentSection, setShowCommentSection] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
@@ -29,6 +30,8 @@ const SinglePost = ({ post }: PostProps) => {
 	const userId = profileInfo._id;
 	const [showModal, setShowModal] = useState(false);
 	const dispatch = useAppDispatch();
+	// const allUsers = useAppSelector((state) => state.profile.allUsers);
+	// console.log(allUsers);
 
 	const handleShowCommentSection = () => {
 		setShowCommentSection(true);
@@ -58,11 +61,7 @@ const SinglePost = ({ post }: PostProps) => {
 					<Card className="post-card w-100 mt-3">
 						<Card.Header className="d-flex justify-content-between align-items-center bg-white border-0">
 							<div className="profile-info d-flex align-items-center">
-								<img
-									src={profileInfo.image}
-									alt="Profilo"
-									className="profile-image"
-								/>
+								<img src={post.image} alt="Profilo" className="profile-image" />
 								<div className="ml-2">
 									<span className="profile-name">{post.username}</span>
 									<br />
@@ -138,11 +137,9 @@ const SinglePost = ({ post }: PostProps) => {
 
 						<Card.Body className="pt-2">
 							<h4 className="fsTextPost pb-2">{post.text}</h4>
-							<img
-								className="img-fluid"
-								src="https://placedog.net/700"
-								alt="Post"
-							/>
+							{post?.image && (
+								<img className="img-fluid" src={post.image} alt="Post" />
+							)}
 							<div>{Math.floor(Math.random() * 100)}</div>
 						</Card.Body>
 

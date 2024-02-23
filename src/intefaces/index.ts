@@ -34,6 +34,7 @@ export interface Post {
 	user: {
 		_id: string;
 	};
+	image?: string | undefined;
 	createdAt: string;
 	updatedAt: string;
 	__v: number;

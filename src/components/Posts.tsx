@@ -64,6 +64,10 @@ const Posts = () => {
 	// }, []);
 
 	useEffect(() => {
+		dispatch(getPostAction(profileInfo._id));
+	}, [profileInfo._id, postInfo]); //controlla param postInfo, per far sparire commento cancellato senza ricaricare pagina
+
+	useEffect(() => {
 		dispatch(getUserAction());
 		dispatch(getPostAction(profileInfo._id));
 	}, [profileInfo._id]);
@@ -116,7 +120,7 @@ const Posts = () => {
 				<div className="card w-100">
 					<div className="card-header">
 						<img
-							src="https://placedog.net/30"
+							src={profileInfo.image}
 							alt="Profilo"
 							className="profile-image"
 						/>
@@ -165,7 +169,7 @@ const Posts = () => {
 			<Modal show={showModal} onHide={handleCloseModal}>
 				<Modal.Header closeButton>
 					<img
-						src="https://placedog.net/30"
+						src={profileInfo.image}
 						alt="Profilo"
 						className="profile-image"
 					/>

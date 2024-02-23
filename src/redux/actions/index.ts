@@ -347,7 +347,7 @@ export const deleteCommentsAction = (id: string) => {
 			.then((resp) => {
 				if (resp.ok) {
 					console.log("RESPONSE OK FROM DELETE COMMENT", resp);
-					alert("COMMENT DELETE, REFRESH PAGE");
+					alert("COMMENT DELETED");
 				} else {
 					throw new Error("RESPONSE NOT OK FROM DELETE COMMENT");
 				}
