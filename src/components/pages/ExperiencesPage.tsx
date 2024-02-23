@@ -4,6 +4,7 @@ import GridSystem from "../GridSystem";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { buildingsIcon } from "../../icons";
 import CardWithPage from "../CardWithPage";
+import MiniFooter from "../MiniFooter";
 
 const ExperiencesPage = () => {
 	const profileExp = useAppSelector((state) => state.profile.exp);
@@ -20,7 +21,11 @@ const ExperiencesPage = () => {
 					/>
 				</>
 			}
-			rightCol={<></>}
+			rightCol={
+				<>
+					<MiniFooter />
+				</>
+			}
 		/>
 	);
 };

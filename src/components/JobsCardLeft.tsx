@@ -62,7 +62,7 @@ const JobsCardLeft = () => {
 
 			<Button
 				style={{ display: "flex", alignItems: "center" }}
-				className="d-flex align-items-center w-100 rounded-pill"
+				className="d-flex align-items-center w-100 rounded-pill "
 				variant="outline-primary"
 			>
 				{editPencilIcon}

@@ -34,6 +34,7 @@ import Comments from "./Comments";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import {
 	deleteCommentsAction,
+	getCommentAction,
 	// getAllUserAction,
 	getPostAction,
 	getUserAction,
@@ -41,6 +42,7 @@ import {
 	putCommentsAction,
 } from "../redux/actions";
 import SinglePost from "./Post";
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 const Posts = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [showEventModal, setShowEventModal] = useState(false);
@@ -56,12 +58,16 @@ const Posts = () => {
 	const postInfo = useAppSelector((state) => state.profile.post);
 	const [text, setText] = useState("");
 
-	// useEffect(() => {
-	// 	if (getAllUserAction.length > 0) {
-	// 		return;
-	// 	}
-	// 	dispatch(getAllUserAction());
-	// }, []);
+	const comments = useAppSelector((state) => state.profile.comment);
+
+	useEffect(() => {
+		dispatch(getCommentAction(profileInfo._id));
+		console.log("comments", comments);
+	}, [profileInfo._id]);
+
+	useEffect(() => {
+		dispatch(getPostAction(profileInfo._id));
+	}, [profileInfo._id]); //controlla param postInfo per dipendenze, per far sparire commento cancellato senza ricaricare pagina
 
 	useEffect(() => {
 		dispatch(getUserAction());
@@ -114,39 +120,45 @@ const Posts = () => {
 		<div>
 			<div className="center-content">
 				<div className="card w-100">
-					<div className="card-header">
+					<div
+						style={{ borderBottom: "none", backgroundColor: "white" }}
+						className="card-header mt-2"
+					>
 						<img
-							src="https://placedog.net/30"
+							src={profileInfo.image}
 							alt="Profilo"
 							className="profile-image"
 						/>
 						<Form.Control
-							type="password"
+							style={{ borderRadius: "25px" }}
+							className="threeButtons py-2"
+							type="text"
 							id="inputPassword5"
 							aria-describedby="passwordHelpBlock"
 							onClick={handleShowModal}
+							placeholder="Avvia un post"
 						/>
 					</div>
 					<div className="post-actions text-center d-flex justify-content-between">
 						<Button
 							onClick={handleChooseFile}
-							className="btn-one btn-no-border btn-icon-extra-small mt-3"
-							variant="outline-secondary"
+							className="btn-one btn-no-border btn-icon-extra-small my-2 mx-3 threeButtons"
+							variant=""
 						>
-							<span className="icon-container">{contenutiIcon}</span> Contenuti
+							<span className="icon-container ">{contenutiIcon}</span> Contenuti
 							multimediali
 						</Button>
 
 						<Button
-							className="btn-two btn-no-border  btn-icon-extra-small mt-3"
-							variant="outline-secondary"
+							className="btn-two btn-no-border  btn-icon-extra-small  mx-3 my-2 threeButtons"
+							variant=""
 							onClick={handleShowEventModal}
 						>
 							<span className="icon-container">{eventIcon}</span> Evento
 						</Button>
 						<Button
-							variant="outline-secondary"
-							className="btn-three btn-no-border  btn-icon-extra-small mt-3"
+							variant=""
+							className="btn-three btn-no-border  btn-icon-extra-small  mx-3 my-2 threeButtons"
 						>
 							<span className="icon-container">{artIcon}</span> Scrivi un
 							articolo
@@ -165,7 +177,7 @@ const Posts = () => {
 			<Modal show={showModal} onHide={handleCloseModal}>
 				<Modal.Header closeButton>
 					<img
-						src="https://placedog.net/30"
+						src={profileInfo.image}
 						alt="Profilo"
 						className="profile-image"
 					/>
@@ -173,10 +185,11 @@ const Posts = () => {
 						<h5>{profileInfo.username}</h5>
 					</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="d-flex flex-column align-items-center pt-4">
+				<Modal.Body className="d-flex flex-column align-items-center pt-4 ">
 					<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
 						<Form.Label>Di cosa vorresti parlare?</Form.Label>
 						<Form.Control
+							style={{ width: "30em", height: "10em" }}
 							as="textarea"
 							rows={3}
 							value={text}

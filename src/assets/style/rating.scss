@@ -1,0 +1,25 @@
+.rating {
+	display: flex;
+
+	&.rating-can-change {
+		font-size: 1.5em;
+		.rating-label {
+			cursor: pointer;
+		}
+	}
+
+	.rating-label {
+		color: orange;
+		padding: 0 0.25em;
+		&:first-of-type {
+			padding-left: 0;
+		}
+		&:last-of-type {
+			padding-right: 0;
+		}
+	}
+
+	.rating-input {
+		display: none;
+	}
+}

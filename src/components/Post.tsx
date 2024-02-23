@@ -11,7 +11,11 @@ import { Profileinfo } from "./Profileinfo";
 import { Post, User } from "../intefaces";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 // import EditModal from "./ModalPostTextUpdate";
-import { deleteCommentsAction, putCommentsAction } from "../redux/actions";
+import {
+	deleteCommentsAction,
+	getCommentAction,
+	putCommentsAction,
+} from "../redux/actions";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
 import EditModal from "./EditModal";
@@ -22,6 +26,7 @@ interface PostProps {
 
 const SinglePost = ({ post }: PostProps) => {
 	const profileInfo = useAppSelector((state) => state.profile.me);
+	const postInfo = useAppSelector((state) => state.profile.post);
 	const [showPost, setShowPost] = useState(true);
 	const [showCommentSection, setShowCommentSection] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
@@ -63,10 +68,10 @@ const SinglePost = ({ post }: PostProps) => {
 									alt="Profilo"
 									className="profile-image"
 								/>
-								<div className="ml-2">
+								<div className="ml-2 ">
 									<span className="profile-name">{post.username}</span>
 									<br />
-									<span className="followers-count">
+									<span className="followers-count ">
 										Follower: {Math.floor(Math.random() * 1000)}
 									</span>
 								</div>
@@ -138,31 +143,29 @@ const SinglePost = ({ post }: PostProps) => {
 
 						<Card.Body className="pt-2">
 							<h4 className="fsTextPost pb-2">{post.text}</h4>
-							<img
-								className="img-fluid"
-								src="https://placedog.net/700"
-								alt="Post"
-							/>
+							{post?.image && (
+								<img className="img-fluid" src={post.image} alt="Post" />
+							)}
 							<div>{Math.floor(Math.random() * 100)}</div>
 						</Card.Body>
 
 						<Card.Footer className="bg-white">
 							<div className="post-actions text-center d-flex justify-content-between ">
-								<button className="btn-like btn-no-border  btn-icon-extra-small">
+								<button className="btn-like btn-no-border  btn-icon-extra-small bg-white cardButtons">
 									{likeIcon} Consiglia
 								</button>
 								<button
-									className="btn-comment btn-no-border  btn-icon-extra-small"
+									className="btn-comment btn-no-border  btn-icon-extra-small bg-white cardButtons"
 									onClick={handleShowCommentSection}
 								>
 									{commentIcon}
 									Commenta
 								</button>
-								<button className="btn-share btn-no-border  btn-icon-extra-small">
+								<button className="btn-share btn-no-border  btn-icon-extra-small bg-white cardButtons">
 									{arrowCircle}
 									Diffondi il post
 								</button>
-								<button className="btn-share btn-no-border  btn-icon-extra-small">
+								<button className="btn-share btn-no-border  btn-icon-extra-small bg-white cardButtons">
 									{inviaIcon}
 									Invia
 								</button>
