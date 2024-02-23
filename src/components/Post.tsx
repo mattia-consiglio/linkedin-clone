@@ -11,7 +11,11 @@ import { Profileinfo } from "./Profileinfo";
 import { Post, User } from "../intefaces";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 // import EditModal from "./ModalPostTextUpdate";
-import { deleteCommentsAction, putCommentsAction } from "../redux/actions";
+import {
+	deleteCommentsAction,
+	getCommentAction,
+	putCommentsAction,
+} from "../redux/actions";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
 import EditModal from "./EditModal";

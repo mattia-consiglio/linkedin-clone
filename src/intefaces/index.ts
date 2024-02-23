@@ -40,3 +40,14 @@ export interface Post {
 	__v: number;
 	_id: string;
 }
+
+export interface Comment {
+	_id: string;
+	comment: string;
+	rate: string;
+	elementId: string;
+	author: string;
+	createdAt: string;
+	updatedAt: string;
+	__v: number;
+}
