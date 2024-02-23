@@ -664,3 +664,16 @@ input:checked + .slider:before {
 	align-items: center;
 	gap: 5px;
 }
+
+//minfooter
+.col2ShortFooter {
+	width: 12%;
+}
+
+//dimesione colonna di sinistra del gid system
+.grid-col-left {
+	width: 100%;
+	@media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+		max-width: 225px;
+	}
+}

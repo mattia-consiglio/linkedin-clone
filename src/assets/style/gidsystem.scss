@@ -1,9 +1,1 @@
-.col2ShortFooter {
-	width: 12%;
-}
-.grid-col-left {
-	width: 100%;
-	@media screen and (min-width: map.get($grid-breakpoints, "lg")) {
-		max-width: 225px;
-	}
-}
+@use "sass:map";

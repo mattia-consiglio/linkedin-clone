@@ -128,14 +128,17 @@ export const getExperiencesAction = () => {
 	};
 };
 
-export const postExperiencesAction = (data: {
-	role: string;
-	company: string;
-	startDate: string;
-	endDate: string;
-	description: string;
-	area: string;
-}, image?:File) => {
+export const postExperiencesAction = (
+	data: {
+		role: string;
+		company: string;
+		startDate: string;
+		endDate: string;
+		description: string;
+		area: string;
+	},
+	image?: File,
+) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
 
@@ -182,8 +185,9 @@ export const putExperiencesAction = (
 		endDate: string;
 		description: string;
 		area: string;
-	}, image:File,
+	},
 	idExeperience: string,
+	image?: File,
 ) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
