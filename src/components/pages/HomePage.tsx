@@ -8,21 +8,18 @@ import SingleJob from "../SingleJob";
 const HomePage = () => {
 	return (
 		<>
-			{" "}
 			<GridSystem
 				colsNumber={3}
 				leftCol={<SideProfile />}
 				centerCol={
 					<>
-						{" "}
 						<Posts />
 					</>
 				}
 				rightCol={
 					<>
-						{" "}
 						<News />
-						<MiniFooter />{" "}
+						<MiniFooter />
 					</>
 				}
 			/>

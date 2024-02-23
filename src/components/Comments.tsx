@@ -1,5 +1,8 @@
-import { Button, Form, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form, Image, Row, Col } from "react-bootstrap";
 import { IoIosSend } from "react-icons/io";
+import SingleComment from "./Comment";
+import StarRating from "./StarRating";
 
 const inviaIcon = (
 	<svg
@@ -16,34 +19,78 @@ const inviaIcon = (
 		<path d="M21 3L0 10l7.66 4.26L16 8l-6.26 8.34L14 24l7-21z"></path>
 	</svg>
 );
+
 const Comments = ({ comments }: { comments: any[] }) => {
+	const [value, setValue] = useState("");
+	const [rating, setRating] = useState(0);
+
 	return (
-		<>
-			<Form.Group controlId="exampleForm.ControlTextarea1">
-				<Form.Label className="mt-3">Commenta</Form.Label>
-				<div className="d-flex align-items-center">
-					<Image
-						src="https://www.placedog.net/30"
-						roundedCircle
-						className="mx-3"
-						width={50}
-						height={50}
-					/>
-					<Form.Control
-						className="rounded-left rounded-right"
-						type="text"
-						placeholder="Normal text"
-					/>
-				</div>
-			</Form.Group>
-			<Button
-				variant="primary"
-				size="sm"
-				className="mt-2 mx-5 d-flex align-items-center rounded-pill"
-			>
-				{inviaIcon} Pubblica
-			</Button>
-		</>
+		<Form.Group
+			className="mt-3 mr-3 mx-2"
+			controlId="exampleForm.ControlTextarea1"
+		>
+			<Row className="mt-2">
+				<Col>
+					<div className="d-flex align-items-center">
+						<Image
+							src="https://www.placedog.net/30"
+							roundedCircle
+							className="mx-3"
+							width={50}
+							height={50}
+						/>
+						<div className="flex-grow-1">
+							<StarRating
+								className="mb-2"
+								rating={rating}
+								canChange={true}
+								setRating={setRating}
+							/>
+							<Form.Control
+								onChange={(e) => setValue(e.target.value)}
+								value={value}
+								className="rounded-left rounded-right w-100"
+								type="text"
+								placeholder="Normal text"
+							/>
+						</div>
+					</div>
+				</Col>
+			</Row>
+			<Row className="mt-2">
+				<Col>
+					{value !== "" && (
+						<Button
+							variant="primary"
+							size="sm"
+							className="mt-2 mx-5 d-flex align-items-center rounded-pill"
+						>
+							{inviaIcon} Pubblica
+						</Button>
+					)}
+				</Col>
+			</Row>
+			<Row className="align-items-center mt-4 ">
+				<Col xs={6} className="d-flex align-items-center">
+					<div className="d-flex align-items-center">
+						<Image
+							src="https://www.placedog.net/31"
+							roundedCircle
+							className="mx-3"
+							width={50}
+							height={50}
+						/>
+						<SingleComment
+							review={{
+								comment: "Commento",
+								author: "Giorgio",
+								rate: "4",
+							}}
+						/>
+					</div>
+				</Col>
+			</Row>
+		</Form.Group>
 	);
 };
 

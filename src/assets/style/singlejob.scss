@@ -1,0 +1,11 @@
+.hoverColor {
+	cursor: pointer;
+	&:hover {
+		h6 {
+			text-decoration: underline;
+		}
+	}
+	&.active {
+		background-color: #d7e9fb;
+	}
+}

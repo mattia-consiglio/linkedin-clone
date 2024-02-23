@@ -129,14 +129,17 @@ export const getExperiencesAction = () => {
 	};
 };
 
-export const postExperiencesAction = (data: {
-	role: string;
-	company: string;
-	startDate: string;
-	endDate: string;
-	description: string;
-	area: string;
-}) => {
+export const postExperiencesAction = (
+	data: {
+		role: string;
+		company: string;
+		startDate: string;
+		endDate: string;
+		description: string;
+		area: string;
+	},
+	image?: File,
+) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
 
@@ -166,6 +169,7 @@ export const postExperiencesAction = (data: {
 			})
 			.then((data) => {
 				dispatch(addExperience(data));
+				// dispatch(setExe(true));
 				alert("Esperienza aggiunta con successo!");
 			})
 			.catch((err) => {
@@ -184,6 +188,7 @@ export const putExperiencesAction = (
 		area: string;
 	},
 	idExeperience: string,
+	image?: File,
 ) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
 		const userId = getState().profile.me._id;
