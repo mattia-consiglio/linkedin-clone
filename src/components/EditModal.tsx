@@ -6,21 +6,30 @@ import Form from "react-bootstrap/Form";
 
 interface EditModalProps {
 	show: boolean;
-	handleClose: () => void;
+	setShowModal: (show: boolean) => void;
 	postId: string;
 }
 
-const EditModal: React.FC<EditModalProps> = ({ show, handleClose, postId }) => {
+const EditModal: React.FC<EditModalProps> = ({
+	show,
+	setShowModal,
+	postId,
+}) => {
 	const dispatch = useAppDispatch();
 	const [text, setText] = useState<string>("");
 
 	const handleEditPost = () => {
 		dispatch(putCommentsAction(postId, text));
-		handleClose();
+		setShowModal(false);
 	};
 
 	return (
-		<Modal show={show} onHide={handleClose}>
+		<Modal
+			show={show}
+			onHide={() => {
+				setShowModal(false);
+			}}
+		>
 			<Modal.Header closeButton>
 				<Modal.Title>Modifica Post</Modal.Title>
 			</Modal.Header>

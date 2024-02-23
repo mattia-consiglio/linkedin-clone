@@ -317,7 +317,7 @@ export const postPostAction = (id: string, text: string) => {
 			.then((resp) => {
 				if (resp.ok) {
 					console.log("RESPONSE OK FROM POST COOMENT", resp);
-					alert("COMMENT POSTED, REFRESH PAGE");
+					alert("POST PUBBLICATO CON SUCCESSO");
 					return resp.json();
 				} else {
 					throw new Error("RESPONSE NOT OK FROM POST COMMENT");

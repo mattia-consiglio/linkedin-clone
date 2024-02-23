@@ -170,7 +170,7 @@ const Posts = () => {
 						className="profile-image"
 					/>
 					<Modal.Title>
-						<h5>Nome del Profilo</h5>
+						<h5>{profileInfo.username}</h5>
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="d-flex flex-column align-items-center pt-4">

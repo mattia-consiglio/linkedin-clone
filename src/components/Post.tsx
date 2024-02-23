@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { deleteCommentsAction, putCommentsAction } from "../redux/actions";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
-import EditModal from "./ModalPostTextUpdate";
+import EditModal from "./EditModal";
 
 interface PostProps {
 	post: Post;
@@ -42,7 +42,10 @@ const SinglePost = ({ post }: PostProps) => {
 		setIsUserPost(post.user._id === userId);
 	}, [post.user._id, userId]);
 
-	const handleClose = () => setShowModal(false);
+	const handleClose = () => {
+		console.log("CHIUDI MODAL");
+		setShowModal(false);
+	};
 
 	const DeletePost = (id: string) => {
 		dispatch(deleteCommentsAction(id));
@@ -85,7 +88,7 @@ const SinglePost = ({ post }: PostProps) => {
 													>
 														<EditModal
 															show={showModal}
-															handleClose={handleClose}
+															setShowModal={setShowModal}
 															postId={post._id}
 														/>{" "}
 														<MdSaveAlt className="mx-3" />
