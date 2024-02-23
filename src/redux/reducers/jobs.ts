@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "../store";
+import { act } from "react-dom/test-utils";
 
 export interface Job {
 	_id: string;
@@ -37,6 +38,7 @@ const jobsReducer = createSlice({
 			state,
 			action: PayloadAction<{ jobs: Job[]; index: number }>,
 		) => {
+			console.log(action.payload);
 			state.fixedSearches[action.payload.index] = action.payload.jobs;
 		},
 	},
@@ -74,17 +76,18 @@ export const getJobsAction = ({
 				delete queryParamsMap[key];
 			}
 		}
-		const queryParams = new URLSearchParams();
+		console.log(queryParamsMap, index);
+		const queryParams = new URLSearchParams(queryParamsMap).toString();
+		console.log(queryParams);
 
 		const response = await fetch(
-			"https://strive-benchmark.herokuapp.com/api/jobs?" +
-				queryParams.toString(),
+			"https://strive-benchmark.herokuapp.com/api/jobs?" + queryParams,
 		);
 		const data = await response.json();
-		if (index) {
-			dispatch(setFixedJobs({ jobs: data, index }));
+		if (index !== undefined) {
+			dispatch(setFixedJobs({ jobs: data.data, index }));
 		} else {
-			dispatch(setJobs(data));
+			dispatch(setJobs(data.data));
 		}
 	};
 };

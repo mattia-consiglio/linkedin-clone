@@ -3,11 +3,13 @@ import profileReducer from "../reducers/profile";
 import statusReducer from "../reducers/status";
 import jobsReducer from "../reducers/jobs";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
+import searchReducer from "../reducers/search";
 
 const rootReducer = combineReducers({
 	profile: profileReducer,
 	status: statusReducer,
 	jobs: jobsReducer,
+	search: searchReducer,
 });
 
 export const store = configureStore({
