@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Image, Row, Col } from "react-bootstrap";
 import { IoIosSend } from "react-icons/io";
 import SingleComment from "./Comment";
 import StarRating from "./StarRating";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import {
+	getAllUserAction,
+	getCommentAction,
+	getUserAction,
+} from "../redux/actions";
 
 const inviaIcon = (
 	<svg
@@ -23,6 +29,15 @@ const inviaIcon = (
 const Comments = ({ comments }: { comments: any[] }) => {
 	const [value, setValue] = useState("");
 	const [rating, setRating] = useState(0);
+	const profileInfo = useAppSelector((state) => state.profile.me);
+	const comment = useAppSelector((state) => state.profile.comment);
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getUserAction());
+		dispatch(getCommentAction(profileInfo._id));
+		console.log("comments", comments);
+	}, [profileInfo._id]);
 
 	return (
 		<Form.Group
@@ -74,7 +89,7 @@ const Comments = ({ comments }: { comments: any[] }) => {
 				<Col xs={6} className="d-flex align-items-center">
 					<div className="d-flex align-items-center">
 						<Image
-							src="https://www.placedog.net/31"
+							src={profileInfo.image}
 							roundedCircle
 							className="mx-3"
 							width={50}

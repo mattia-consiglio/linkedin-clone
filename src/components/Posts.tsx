@@ -57,12 +57,12 @@ const Posts = () => {
 	const postInfo = useAppSelector((state) => state.profile.post);
 	const [text, setText] = useState("");
 
-	const comments = useAppSelector((state) => state.profile.comment);
+	// const comments = useAppSelector((state) => state.profile.comment);
 
-	useEffect(() => {
-		dispatch(getCommentAction(profileInfo._id));
-		console.log("comments", comments);
-	}, [profileInfo._id]);
+	// useEffect(() => {
+	// 	dispatch(getCommentAction(profileInfo._id));
+	// 	console.log("comments", comments);
+	// }, [profileInfo._id]);
 
 	useEffect(() => {
 		dispatch(getPostAction(profileInfo._id));

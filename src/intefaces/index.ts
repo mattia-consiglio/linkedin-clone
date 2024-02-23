@@ -51,3 +51,10 @@ export interface Comment {
 	updatedAt: string;
 	__v: number;
 }
+
+export interface CommentDef {
+	comment: string;
+	rate: string;
+
+	author: string;
+}
