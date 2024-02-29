@@ -1,14 +1,14 @@
 import { Button, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import {
-	getPostAction,
-	postPostAction,
-	getUserAction,
-	deleteCommentsAction,
-	putCommentsAction,
-} from "../redux/actions";
+import { getUserAction } from "../redux/actions";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/store";
+import {
+	deletePostAction,
+	getPostsAction,
+	postPostAction,
+	putPostAction,
+} from "../redux/actions/posts";
 
 const FormComment = (
 	{
@@ -19,12 +19,12 @@ const FormComment = (
 ) => {
 	const dispatch = useAppDispatch();
 	const profileInfo = useAppSelector((state) => state.profile.me);
-	const commentInfo = useAppSelector((state) => state.profile.post);
+	const commentInfo = useAppSelector((state) => state.posts.comments);
 	const [text, setText] = useState("");
 
 	useEffect(() => {
 		dispatch(getUserAction());
-		dispatch(getPostAction(profileInfo._id));
+		dispatch(getPostsAction(profileInfo._id));
 	}, [profileInfo._id]);
 
 	const handleAddPost = () => {
@@ -32,11 +32,11 @@ const FormComment = (
 	};
 
 	const handleDeletePost = (id: string) => {
-		dispatch(deleteCommentsAction(id));
+		dispatch(deletePostAction(id));
 	};
 
 	const handleEditPost = (id: string, text: string) => {
-		dispatch(putCommentsAction(id, text));
+		dispatch(putPostAction(id, text));
 	};
 
 	return (
@@ -78,7 +78,7 @@ const FormComment = (
 							className="text-center my-2 justify-content-center align-items-center "
 						>
 							<hr />
-							<Col md={4}>{comment.text}</Col>
+							<Col md={4}>{comment.comment}</Col>
 							<Col md={4}>
 								<Button
 									onClick={() => handleDeletePost(comment._id)}

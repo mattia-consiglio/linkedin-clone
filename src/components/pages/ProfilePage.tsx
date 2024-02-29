@@ -21,7 +21,7 @@ const Profile = () => {
 	const [image, setImage] = useState<File | null>(null);
 	const dispatch = useAppDispatch();
 	const profileExp = useAppSelector((state) => state.profile.exp);
-	const profileInfo = useAppSelector((state) => state.profile.allUsers);
+	const profileInfo = useAppSelector((state) => state.profile.projectUsers);
 
 	useEffect(() => {
 		if (getAllUserAction.length > 0) {

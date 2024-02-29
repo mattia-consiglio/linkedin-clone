@@ -1,8 +1,8 @@
 import { Modal, Button } from "react-bootstrap";
-import { putCommentsAction } from "../redux/actions";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
+import { putPostAction } from "../redux/actions/posts";
 
 interface EditModalProps {
 	show: boolean;
@@ -19,7 +19,7 @@ const EditModal: React.FC<EditModalProps> = ({
 	const [text, setText] = useState<string>("");
 
 	const handleEditPost = () => {
-		dispatch(putCommentsAction(postId, text));
+		dispatch(putPostAction(postId, text));
 		setShowModal(false);
 	};
 

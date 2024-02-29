@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
-import { likeIcon, commentIcon, arrowCircle, inviaIcon } from "../icons";
+import {
+	likeIcon,
+	commentIcon,
+	arrowCircle,
+	inviaIcon,
+	circleLikeIcon,
+} from "../icons";
 import Comments from "./Comments";
 import { IoIosLink } from "react-icons/io";
 import { MdClose, MdMoreHoriz, MdSaveAlt } from "react-icons/md";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdBlockFlipped } from "react-icons/md";
 import { FaFlag } from "react-icons/fa6";
-import { Profileinfo } from "./Profileinfo";
-import { Post, User } from "../intefaces";
+import { Post } from "../intefaces";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 // import EditModal from "./ModalPostTextUpdate";
-import {
-	deleteCommentsAction,
-	getCommentAction,
-	putCommentsAction,
-} from "../redux/actions";
-import Form from "react-bootstrap/Form";
-import { Modal, Button } from "react-bootstrap";
 import EditModal from "./EditModal";
+import { deletePostAction } from "../redux/actions/posts";
 
 interface PostProps {
 	post: Post;
@@ -26,7 +25,8 @@ interface PostProps {
 
 const SinglePost = ({ post }: PostProps) => {
 	const profileInfo = useAppSelector((state) => state.profile.me);
-	const postInfo = useAppSelector((state) => state.profile.post);
+	const postInfo = useAppSelector((state) => state.posts.posts);
+	const comments = useAppSelector((state) => state.posts.comments);
 	const [showPost, setShowPost] = useState(true);
 	const [showCommentSection, setShowCommentSection] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
@@ -35,8 +35,13 @@ const SinglePost = ({ post }: PostProps) => {
 	const [showModal, setShowModal] = useState(false);
 	const dispatch = useAppDispatch();
 
+	const [randomNumbers, setRandomNumbers] = useState({
+		follower: Math.floor(Math.random() * 1000),
+		like: Math.floor(Math.random() * 1000),
+	});
+
 	const handleShowCommentSection = () => {
-		setShowCommentSection(true);
+		setShowCommentSection(!showCommentSection);
 	};
 
 	const handleDeletePost = () => {
@@ -53,7 +58,14 @@ const SinglePost = ({ post }: PostProps) => {
 	};
 
 	const DeletePost = (id: string) => {
-		dispatch(deleteCommentsAction(id));
+		dispatch(deletePostAction(id));
+	};
+
+	const addPostLike = () => {
+		setRandomNumbers((prevState) => ({
+			...prevState,
+			like: prevState.like + 1,
+		}));
 	};
 
 	return (
@@ -72,7 +84,7 @@ const SinglePost = ({ post }: PostProps) => {
 									<span className="profile-name">{post.username}</span>
 									<br />
 									<span className="followers-count ">
-										Follower: {Math.floor(Math.random() * 1000)}
+										Follower: {randomNumbers.follower}
 									</span>
 								</div>
 							</div>
@@ -86,16 +98,16 @@ const SinglePost = ({ post }: PostProps) => {
 										<ListGroup className="position-absolute cardGroupOptions">
 											{isUserPost && (
 												<>
+													<EditModal
+														show={showModal}
+														setShowModal={setShowModal}
+														postId={post._id}
+													/>
 													<ListGroup.Item
 														onClick={() => setShowModal(true)}
 														className="mx-2"
 														action
 													>
-														<EditModal
-															show={showModal}
-															setShowModal={setShowModal}
-															postId={post._id}
-														/>{" "}
 														<MdSaveAlt className="mx-3" />
 														Modifica
 													</ListGroup.Item>
@@ -141,17 +153,23 @@ const SinglePost = ({ post }: PostProps) => {
 							</div>
 						</Card.Header>
 
-						<Card.Body className="pt-2">
-							<h4 className="fsTextPost pb-2">{post.text}</h4>
+						<Card.Body className="pt-2 px-0">
+							<h4 className="fsTextPost pb-2 px-3">{post.text}</h4>
 							{post?.image && (
-								<img className="img-fluid" src={post.image} alt="Post" />
+								<img className="img-fluid w-100" src={post.image} alt="Post" />
 							)}
-							<div>{Math.floor(Math.random() * 100)}</div>
+							<div className="d-flex align-items-center ">
+								{circleLikeIcon}
+								{randomNumbers.like}
+							</div>
 						</Card.Body>
 
 						<Card.Footer className="bg-white">
 							<div className="post-actions text-center d-flex justify-content-between ">
-								<button className="btn-like btn-no-border  btn-icon-extra-small bg-white cardButtons">
+								<button
+									className="btn-like btn-no-border  btn-icon-extra-small bg-white cardButtons"
+									onClick={addPostLike}
+								>
 									{likeIcon} Consiglia
 								</button>
 								<button
@@ -170,7 +188,7 @@ const SinglePost = ({ post }: PostProps) => {
 									Invia
 								</button>
 							</div>
-							{showCommentSection && <Comments comments={[]} />}
+							{showCommentSection && <Comments postId={post._id} />}
 						</Card.Footer>
 					</Card>
 					{/* Sezione commenti */}

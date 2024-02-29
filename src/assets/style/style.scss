@@ -1,6 +1,7 @@
 @use "sass:map";
 @import "../../../node_modules/bootstrap/scss/functions";
 $primary: #0a66c2;
+// $primary-text-emphasis: $primary;
 // $secondary-dark: #e5e5e5;
 // $secondary: #737373;
 // $body-bg: #f3f3f3;
@@ -36,6 +37,9 @@ $font-family-sans-serif:
 
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
+
+// $primary: #0a66c2;
+// $primary: red;
 
 @import "../../../node_modules/bootstrap/scss/maps";
 @import "../../../node_modules/bootstrap/scss/mixins";
@@ -75,6 +79,11 @@ $font-family-sans-serif:
 @import "../../../node_modules/bootstrap/scss/helpers";
 
 @import "../../../node_modules/bootstrap/scss/utilities/api";
+
+// @debug $primary;
+// @debug $theme-colors;
+// @debug $primary-text-emphasis;
+// @debug $theme-colors-text;
 
 // ---------------------------------------------
 .customButton.btn {
@@ -682,4 +691,11 @@ input:checked + .slider:before {
 	@media screen and (min-width: map.get($grid-breakpoints, "lg")) {
 		max-width: 225px;
 	}
+}
+
+.review-container {
+	background-color: #f2f2f2;
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	width: 100%;
 }

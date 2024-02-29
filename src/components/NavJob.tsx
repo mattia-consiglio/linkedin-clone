@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Dropdown, Form } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const VerticalSeparator = () => <div className="vertical-separator"></div>;
 

@@ -1,53 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-	Modal,
-	Button,
-	Form,
-	OverlayTrigger,
-	Tooltip,
-	Card,
-} from "react-bootstrap";
-import { MdEventNote, MdCake, MdClose, MdMoreHoriz } from "react-icons/md";
-import { FaImage } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
+import { Modal, Button, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import eventImage from "../assets/img/Screenshot 2024-02-21 123701.png";
-import ListGroup from "react-bootstrap/ListGroup";
-import { SlLike } from "react-icons/sl";
-import { FaRegCommentDots } from "react-icons/fa6";
-import { IoIosSend } from "react-icons/io";
-import { PiShareFatThin } from "react-icons/pi";
-import { IoIosLink } from "react-icons/io";
-import { MdSaveAlt } from "react-icons/md";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { MdBlockFlipped } from "react-icons/md";
-import { FaFlag } from "react-icons/fa6";
-import {
-	contenutiIcon,
-	eventIcon,
-	artIcon,
-	coccasioneIcon,
-	likeIcon,
-	commentIcon,
-	arrowCircle,
-	inviaIcon,
-} from "../icons";
-import Comments from "./Comments";
+import { contenutiIcon, eventIcon, artIcon, coccasioneIcon } from "../icons";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import {
-	deleteCommentsAction,
-	getCommentAction,
-	// getAllUserAction,
-	getPostAction,
-	getUserAction,
-	postPostAction,
-	putCommentsAction,
-} from "../redux/actions";
 import SinglePost from "./Post";
-import { width } from "@fortawesome/free-solid-svg-icons/fa0";
+import {
+	getPostsAction,
+	postPostAction,
+	deletePostAction,
+	getCommentsAction,
+} from "../redux/actions/posts";
 const Posts = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [showEventModal, setShowEventModal] = useState(false);
 
-	const [showSecondModal, setShowSecondModal] = useState(false);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const dispatch = useAppDispatch();
@@ -55,36 +21,17 @@ const Posts = () => {
 	const profileInfo = useAppSelector((state) => state.profile.me);
 	// const profileAllInfo = useAppSelector((state) => state.profile.allUsers);
 
-	const postInfo = useAppSelector((state) => state.profile.post);
+	const postInfo = useAppSelector((state) => state.posts.posts);
 	const [text, setText] = useState("");
 
-	// const comments = useAppSelector((state) => state.profile.comment);
-
-	// useEffect(() => {
-	// 	dispatch(getCommentAction(profileInfo._id));
-	// 	console.log("comments", comments);
-	// }, [profileInfo._id]);
-
 	useEffect(() => {
-		dispatch(getPostAction(profileInfo._id));
+		dispatch(getPostsAction(profileInfo._id));
+		dispatch(getCommentsAction());
 	}, [profileInfo._id]); //controlla param postInfo per dipendenze, per far sparire commento cancellato senza ricaricare pagina
-
-	useEffect(() => {
-		dispatch(getUserAction());
-		dispatch(getPostAction(profileInfo._id));
-	}, [profileInfo._id]);
 
 	const handleAddPost = () => {
 		dispatch(postPostAction(profileInfo._id, text));
 	};
-
-	const handleDeletePostDispatch = (id: string) => {
-		dispatch(deleteCommentsAction(id));
-	};
-
-	// const handleEditPost = (id: string, text: string) => {
-	// 	dispatch(putCommentsAction(id, text));
-	// };
 
 	const handleCloseModal = () => {
 		setShowModal(false);
@@ -98,22 +45,6 @@ const Posts = () => {
 		if (fileInputRef.current) {
 			fileInputRef.current.click();
 		}
-	};
-
-	const handleCloseEventModal = () => {
-		setShowEventModal(false);
-	};
-
-	const handleShowEventModal = () => {
-		setShowEventModal(true);
-	};
-
-	const handleSecondCardOptions = () => {
-		setShowSecondModal(true);
-	};
-
-	const handleCloseSecondModal = () => {
-		setShowSecondModal(false);
 	};
 
 	return (
@@ -152,7 +83,7 @@ const Posts = () => {
 						<Button
 							className="btn-two btn-no-border  btn-icon-extra-small  mx-3 my-2 threeButtons"
 							variant=""
-							onClick={handleShowEventModal}
+							onClick={() => setShowEventModal(true)}
 						>
 							<span className="icon-container">{eventIcon}</span> Evento
 						</Button>
@@ -220,7 +151,7 @@ const Posts = () => {
 								className="btn-modal"
 								variant="outline-secondary"
 								style={{ margin: "10px" }}
-								onClick={handleShowEventModal}
+								onClick={() => setShowEventModal(true)}
 							>
 								{" "}
 								{eventIcon}
@@ -245,7 +176,7 @@ const Posts = () => {
 				</Modal.Footer>
 			</Modal>
 			{/* Modale per gli eventi */}
-			<Modal show={showEventModal} onHide={handleCloseEventModal}>
+			<Modal show={showEventModal} onHide={() => setShowEventModal(false)}>
 				<Modal.Header closeButton>
 					<Modal.Title>Crea un evento</Modal.Title>
 				</Modal.Header>
@@ -300,7 +231,10 @@ const Posts = () => {
 				</Modal.Body>
 
 				<Modal.Footer>
-					<Button variant="outline-secondary" onClick={handleCloseEventModal}>
+					<Button
+						variant="outline-secondary"
+						onClick={() => setShowEventModal(false)}
+					>
 						Chiudi
 					</Button>
 				</Modal.Footer>

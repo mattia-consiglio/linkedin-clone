@@ -7,9 +7,8 @@ export interface Profile {
 	tokens: string[];
 	currentProfileIndex: number;
 	exp: Experience[];
-	post: Post[];
-	allUsers: User[];
-	comment: Comment[];
+
+	projectUsers: User[];
 }
 
 const initialState: Profile = {
@@ -35,37 +34,9 @@ const initialState: Profile = {
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMWJkMjI0ZjYwNTAwMTkzN2Q0NzYiLCJpYXQiOjE3MDgzMzQwMzUsImV4cCI6MTcwOTU0MzYzNX0.q3_9_6g2DZdTVv8ET42lVOpu2nvm8GWthO_b3luwewM", // Gioele
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ1ZGFmOWEzM2ZjOTAwMTk2NTgzNmMiLCJpYXQiOjE3MDg1MTQwNDEsImV4cCI6MTcwOTcyMzY0MX0.IGws4Er_f4jcVYo98DjALA2yobA5OOcyxwwug63AHVE", // Ermias
 	],
-	exp: [
-		{
-			_id: "",
-			role: "",
-			company: "",
-			startDate: "",
-			endDate: "",
-			description: "",
-			area: "",
-			username: "",
-			image: "",
-			createdAt: new Date().toDateString(),
-			updatedAt: new Date().toDateString(),
-			__v: 0,
-		},
-	],
-	post: [
-		{
-			text: "",
-			username: "",
-			user: {
-				_id: "",
-			},
-			createdAt: new Date().toDateString(),
-			updatedAt: new Date().toDateString(),
-			__v: 0,
-			_id: "",
-		},
-	],
-	allUsers: [],
-	comment: [],
+	exp: [],
+
+	projectUsers: [],
 };
 
 const profileReducer = createSlice({
@@ -98,14 +69,9 @@ const profileReducer = createSlice({
 		setCurrentProfileIndex: (state, action: PayloadAction<number>) => {
 			state.currentProfileIndex = action.payload;
 		},
-		setPostProfile: (state, action: PayloadAction<Post[]>) => {
-			state.post = action.payload;
-		},
+
 		addUser: (state, action: PayloadAction<User>) => {
-			state.allUsers.push(action.payload);
-		},
-		setComment: (state, action: PayloadAction<Comment>) => {
-			state.comment.push(action.payload);
+			state.projectUsers.push(action.payload);
 		},
 	},
 });
@@ -114,12 +80,10 @@ export const {
 	setUser,
 	setUserImage,
 	setExperiences,
-	setPostProfile,
 	addExperience,
 	editExperience,
 	deleteExperience,
 	addUser,
-	setComment,
 } = profileReducer.actions;
 
 export default profileReducer.reducer;

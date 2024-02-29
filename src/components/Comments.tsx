@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Image, Row, Col } from "react-bootstrap";
 import { IoIosSend } from "react-icons/io";
-import SingleComment from "./Comment";
+import SingleComment from "./SingleComment";
 import StarRating from "./StarRating";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import {
-	getAllUserAction,
-	getCommentAction,
-	getUserAction,
-} from "../redux/actions";
+import { getAllUserAction, getUserAction } from "../redux/actions";
+import { Comment } from "../intefaces";
+import { getCommentsAction, postCommentAction } from "../redux/actions/posts";
 
 const inviaIcon = (
 	<svg
@@ -26,18 +24,20 @@ const inviaIcon = (
 	</svg>
 );
 
-const Comments = ({ comments }: { comments: any[] }) => {
+const Comments = ({ postId }: { postId: string }) => {
 	const [value, setValue] = useState("");
 	const [rating, setRating] = useState(0);
 	const profileInfo = useAppSelector((state) => state.profile.me);
-	const comment = useAppSelector((state) => state.profile.comment);
+	const comments = useAppSelector((state) => state.posts.comments).filter(
+		(comment) => comment.elementId === postId,
+	);
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		dispatch(getUserAction());
-		dispatch(getCommentAction(profileInfo._id));
-		console.log("comments", comments);
-	}, [profileInfo._id]);
+	const sendCommet = () => {
+		dispatch(postCommentAction(postId, value, rating.toString()));
+		setValue("");
+		setRating(0);
+	};
 
 	return (
 		<Form.Group
@@ -48,7 +48,7 @@ const Comments = ({ comments }: { comments: any[] }) => {
 				<Col>
 					<div className="d-flex align-items-center">
 						<Image
-							src="https://www.placedog.net/30"
+							src={profileInfo.image}
 							roundedCircle
 							className="mx-3 mt-3"
 							width={50}
@@ -66,7 +66,7 @@ const Comments = ({ comments }: { comments: any[] }) => {
 								value={value}
 								className="rounded-left rounded-right w-100"
 								type="text"
-								placeholder="Normal text"
+								placeholder="Scrivi un commento"
 							/>
 						</div>
 					</div>
@@ -79,6 +79,7 @@ const Comments = ({ comments }: { comments: any[] }) => {
 							variant="primary"
 							size="sm"
 							className="mt-2 mx-5 d-flex align-items-center rounded-pill"
+							onClick={sendCommet}
 						>
 							{inviaIcon} Pubblica
 						</Button>
@@ -86,22 +87,18 @@ const Comments = ({ comments }: { comments: any[] }) => {
 				</Col>
 			</Row>
 			<Row className="align-items-center mt-4 ">
-				<Col xs={6} className="d-flex align-items-center">
-					<div className="d-flex align-items-center">
-						<Image
-							src={profileInfo.image}
-							roundedCircle
-							className="mx-3"
-							width={50}
-							height={50}
-						/>
-						<SingleComment
-							review={{
-								comment: "Commento",
-								author: "Giorgio",
-								rate: "4",
-							}}
-						/>
+				<Col xs={12} className="d-flex align-items-center">
+					<div className="w-100 ">
+						{comments.map((comment) => (
+							<SingleComment
+								key={comment._id}
+								comment={{
+									comment: comment.comment,
+									author: comment.author,
+									rate: comment.rate,
+								}}
+							/>
+						))}
 					</div>
 				</Col>
 			</Row>

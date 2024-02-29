@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import profileReducer from "../reducers/profile";
 import statusReducer from "../reducers/status";
 import jobsReducer from "../reducers/jobs";
+import postsReducer from "../reducers/posts";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 
 const rootReducer = combineReducers({
 	profile: profileReducer,
 	status: statusReducer,
 	jobs: jobsReducer,
+	posts: postsReducer,
 });
 
 export const store = configureStore({
